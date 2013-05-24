@@ -1,0 +1,31 @@
+
+.Transparent,.Transparent2 {background : url(transparent-bg.png);
+                 padding-left : 5px;
+                 padding-right : 5px;
+                 padding-top : 5px;
+                 padding-bottom : 5px;
+                 -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+                 }
+ 
+
+.alert-info {
+  background : url(transparent-bg.png) !important;
+ }
+
+body {
+   color: #fff !important;
+  background-color: #000 !important;
+}
+
+.modal {
+    background-color: #000 !important;
+}
+
+ .add-on {
+     color: #000 !important;
+   }

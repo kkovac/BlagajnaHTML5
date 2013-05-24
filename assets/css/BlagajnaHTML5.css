@@ -1,0 +1,32 @@
+
+
+.mybigicon [class^="glyphicon-"] { font-size: 28px; }
+.mybigicon { font-size: 28px; }
+.myhide { display:none; }
+
+ 
+
+.kvadraticzarobu {  margin-top : 10px;
+                    overflow : hidden; 
+                    cursor : pointer;
+                }
+
+.nekikvadratic{  margin-top : 10px;
+                    overflow : hidden; 
+                    cursor : pointer;
+                }
+#searchproductstext {  height : 1.5em;
+                        font-size : 28px;
+                    }
+
+.mojtextarea {   height : 3em;
+                        font-size : 28px;
+                    }
+
+#themelist{  margin-top : 10px; }
+
+#doctotal1 { font-size: 28px; font-weight : bold; margin-left:50px; }
+
+.brand {font-size: 28px; font-weight : bold; }
+a.brand:hover {text-decoration:none !important ;color:#eee;   }
+a.brand { color:#ffffff;  }
