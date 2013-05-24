@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>POS | HTML5 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    
+    <meta name="author" content="kovack@gmail.com">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/BlagajnaHTML5.css" rel="stylesheet" />
+    <link href="" class="additional" rel="stylesheet" />
+  
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+    <!-- Custom styles for this template -->
+     
+  </head>
+
+  <body>
+
+    <div id="g" class="hide"></div>   <!-- user guid -->
+ 
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-fixed-top navbar-inverse ">
+        <div class="container">
+            
+       
+
+          <a class="brand navbutton mybigicon " href="#" ><span class="glyphicon glyphicon-home"></span> <span id="usernamenav">login</span><span id="doctotal1">0.00</span></a>
+
+            
+             
+            
+          <div class="nav-collapse collapse dugmicizaprodaju myhide">
+            <ul class="nav">
+
+                <li class="divider-vertical"></li>
+                <li class="navbutton  doclist  mybigicon collapsebigicon"   >    <a href="#"><button class="btn btn-danger btn-large btnkraj"><span  class="glyphicon glyphicon-asterisk"> Kraj</span></button> </a></li>
+                <li class="navbutton  doclist  mybigicon collapsebigicon" id="btnspremiracun" >    <a href="#"><button class="btn btn-danger btn-large"><span  class="glyphicon glyphicon-ok"> Spremi račun</span></button> </a></li>
+                <li class="navbutton dugmiczaprodaju doccur mybigicon collapsebigicon"><a href="#"><button class="btn btn-success btn-large"><span  class="glyphicon glyphicon-book"> Kartica</span></button></a></li>
+                <li class="navbutton dugmiczaprodaju doccur mybigicon collapsebigicon"><a href="#"><button class="btn btn-success btn-large"><span  class="glyphicon glyphicon-user"> Partner</span></button></a></li>
+                <li class="navbutton dugmiczaprodaju newdoclist mybigicon collapsebigicon"> <a href="#"><button class="btn btn-info btn-large"><span  class="glyphicon glyphicon-remove"></span> </button> </a></li>
+                <li class="navbutton dugmiczaprodaju doccur mybigicon collapsebigicon"><a href="#"><button class="btn btn-info btn-large"> <span  class="glyphicon glyphicon-edit"> </span> </button> </a></li>
+                <li class="navbutton dugmiczaprodaju doccur mybigicon collapsebigicon"><a href="#"><button class="btn btn-info btn-large"> <span  class="glyphicon glyphicon-sort"> </span> </button> </a></li>
+                <li class="navbutton dugmiczaprodaju doccur mybigicon collapsebigicon"><a href="#"><button class="btn btn-info btn-large butonzakomentiranje "> <span  class="glyphicon glyphicon-comment"> </span> </button> </a></li>
+                
+             </ul>
+          </div><!--/.nav-collapse -->
+
+        </div>
+      </div>
+
+      <!-- Begin page content -->
+
+
+        <div class="container">
+       <div class="row-fluid">
+            <br /><br /><br /><br /><br /><br />
+
+            <!-- LOGIN -->
+            <div id="loginsection" class="Transparent">
+                <br />
+                <form class="form-signin" id="loginform">
+                    <div class="controls">
+                        <div class="input-group span4">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
+                            <input type="text" id="d" autofocus class="enterastab" name="d" placeholder="Database">
+                        </div>
+                        <br />
+                        <div class="input-group span4">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="text" id="e" class="span4 enterastab" name="e" placeholder="Email">
+                        </div>
+                        <br />
+                        <div class="input-group span4">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                            <input type="password" id="p" class="span4 enterastab" name="p" placeholder="Password">
+                        </div>
+
+                        <br />
+                        <div class="btn-group">
+                            <button type="submit" id="loginbutton" class="btn btn-success btn-large"> <span class="glyphicon glyphicon-ok"></span> OK</button>
+                        </div>
+                        <img src="assets/ajax-loader.gif" class="loadergif" id="loginloadergif" />
+                    </div>
+                </form>
+                <br />
+            </div>
+            <!-- END OF LOGIN -->
+
+ 
+            <!-- CURRENT DOC -->
+            <div class="clearfix" />
+            <div class="myhide Transparent " id="doccursection">
+                        <form name="searchproductsform" id="searchproductsform">
+                                <input type="text" class="span4" name="searchproductstext" id="searchproductstext" autofocus >
+                                <button type="submit" class="btn span2 btn-success mybigicon afterclickfocussearchproductstext" id="searchproductsbutton"><span class="glyphicon glyphicon-search"></span></button>
+                                <button type="reset" class="btn span2 btn-success mybigicon afterclickfocussearchproductstext" id="Button1"><span class="glyphicon glyphicon-remove"></span></button>
+                                <button type="button" class="btn span2 btn-success mybigicon afterclickfocussearchproductstext pokazistavkedokumenta" id="Button2"><span class="glyphicon glyphicon-list"></span></button>
+                        </form>
+                <img src="assets/ajax-loader.gif" class="loadergif" id="doccurloadergif" />
+            </div> 
+            <!-- END OF CURRENT DOC -->
+
+           <!-- KRAJ -->
+            <div class="myhide" id="krajsection">
+                 <div class="btn btn-danger btn-large span3" id="naplata"><span class="glyphicon glyphicon-check"></span> Naplata</div>
+                 <div class="btn btn-danger btn-large span3 glavnimenidugmic"><span class="glyphicon glyphicon-th-large"></span> Glavni meni</div>
+                 <div class="btn btn-danger btn-large span3 nastavidugmic afterclickfocussearchproductstext"><span class="glyphicon glyphicon-shopping-cart "></span> Nastavi</div>
+            </div>
+           <!-- END OF KRAJ -->
+
+           <!-- COMMENT SECTION -->
+            <div class="myhide" id="commentsection">
+                <div class="Transparent">
+                <br />
+                <form name="commentform" id="commentform"><textarea  rows="3" class=" mojtextarea"></textarea></form>
+                    <br />
+                    <button class="btn btn-danger btn-large"><span  class="glyphicon glyphicon-ok"> Spremi napomenu</span></button>
+                    <button class="btn btn-danger btn-large nastavidugmic afterclickfocussearchproductstext"><span  class="glyphicon glyphicon-shopping-cart"> Nastavi</span></button>
+                </div>
+            </div>
+           <!-- END OF COMMENT SECTION -->
+
+            <div class="row-fluid" id="searchproductlist"></div>
+
+            <div class="row-fluid" id="documentitemslist"></div>
+
+            <form name="naplataitemsform" id="naplataitemsform"><div class="row-fluid" id="naplataitemslist"></div></form>
+
+            <input type="number" value="0" class="input-medium hide" step="any" id="bsjDocTotalEntered" >
+            <input type="number" value="0" class="input-medium hide" step="any" id="bsjDocTotal6" >
+
+           <!-- GLAVNI MENI -->
+            <div class="myhide" id="glavnimeni">
+                 <div class="btn nekikvadratic btn-info btn-large span3">Pregled računa</div>
+                 <div class="btn nekikvadratic btn-info btn-large span3 glavnimenidugmic">Zaključak blagajne</div>
+                 <div class="btn nekikvadratic btn-danger btn-large span3 nastavidugmic afterclickfocussearchproductstext"><span class="glyphicon glyphicon-shopping-cart "></span> Nastavi</div>
+
+                 <div class="btn nekikvadratic btn-info btn-large span3 themedugmic">Theme</div>
+                 <div class="btn nekikvadratic btn-info btn-large span3 uklunithemedugmic" id="themeblank" data-id="0.png" data-css="assets/css/bootaFBPb.css" >Ukolni themu</div>
+
+                 <div class="clearfix" />
+                    <div class="Transparent myhide" id="themelist" >
+                        <div class="span3 nekikvadratic themeimg "><img src="assets/css/bg/1s.jpg" data-id="1.jpg" data-css="assets/css/BlagajnaHTML5FBPw.css" class="img-rounded" ></div>
+                        <div class="span3 nekikvadratic themeimg "><img src="assets/css/bg/2s.jpg" data-id="2.jpg" data-css="assets/css/BlagajnaHTML5FBP.css"  class="img-rounded" ></div>
+                        <div class="span3 nekikvadratic themeimg "><img src="assets/css/bg/3s.jpg" data-id="3.jpg" data-css="assets/css/BlagajnaHTML5FBP.css"  class="img-rounded" ></div>
+                        <div class="span3 nekikvadratic themeimg "><img src="assets/css/bg/4s.jpg" data-id="4.jpg" data-css="assets/css/BlagajnaHTML5FBP.css"  class="img-rounded" ></div>
+                        <div class="span3 nekikvadratic themeimg "><img src="assets/css/bg/6s.jpg" data-id="6.jpg" data-css="assets/css/BlagajnaHTML5FBP.css"  class="img-rounded" ></div>
+                        <div class="span3 nekikvadratic themeimg "><img src="assets/css/bg/5s.jpg" data-id="5.jpg" data-css="assets/css/BlagajnaHTML5FBPw.css" class="img-rounded" ></div>
+                        
+                        <div class="clearfix" />
+                        
+                    </div>
+            </div>
+           <!-- END OF GLAVNI MENI -->
+
+
+            
+
+            
+         </div> <!-- end of row fluid  -->
+      
+    </div> <!-- end of container  -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+
+    <script src="assets/js2/jquery.Storage.js"></script>
+	<script src="assets/js2/BlagajnaHTML5.js?5"></script>
+    <script src="assets/js2/jquery.backstretch.js"></script>
+
+  </body>
+</html>
