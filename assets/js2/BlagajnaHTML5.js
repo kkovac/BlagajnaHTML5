@@ -92,16 +92,17 @@
                 $("#g").html(data.userguid);
                 if (data.userguid != '0') {
                     dataBase = data.database;
-                    $("#usernamenav").html(dataBase + "|" + data.username);
+                    // $("#usernamenav").html(dataBase + "|" + data.username);
+                    $("#usernamenav").html(data.username);
                     $.Storage.set({ "BlagajnaHTML5g": $("#g").html() });
                     $.Storage.set({ "BlagajnaHTML5e": $("#e").val() });
                     $.Storage.set({ "BlagajnaHTML5p": $("#p").val() });
                     $.Storage.set({ "BlagajnaHTML5d": $("#d").val() });
                     $("#loginsection,#btnspremiracun").hide();
-                    $("#doccursection,.dugmicizaprodaju").show('slow');
+                    $("#doccursection").show('slow');
                     //DocList();
                     //NewDocList();
-                    $(".brand").trigger('click');
+                    //$(".brand").trigger('click');
                     GetDocTotal();
                 } else
                 { $("#loginbutton").removeClass('disabled').removeAttr('disabled', 'disabled'); }
@@ -143,6 +144,7 @@
 
     function GetSearchProductsList() {
         var strFormattedHTML = '';
+        $("#desktoploader,#desktoploader2").show();
         $("#searchproductlist").fadeTo("fast", 0);
         $.ajax({
             url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&s=' + $("#searchproductstext").val(),
@@ -172,6 +174,7 @@
                     AddProductToDocument($(this).attr('robaid'));
                 });
 
+                $("#desktoploader,#desktoploader2").hide();
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -183,13 +186,15 @@
 
     // ============================================================================= DODAJ ROBU NA DOKUMENT ...
 
-        function AddProductToDocument(robaid) {
+    function AddProductToDocument(robaid) {
+            $("#desktoploader,#desktoploader2").show();
             $.ajax({
                 url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=AddProductToDocument&robaid=' + robaid,
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
                 timeout: 10000,
                 success: function (data, status) {
+                    $("#desktoploader,#desktoploader2").hide();
                     GetDocumentItems();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -202,6 +207,7 @@
 
     function GetDocumentItems() {
         var strFormattedHTML = '';
+        $("#desktoploader,#desktoploader2").show();
         ShowSection('#documentitemslist');
         //$("#documentitemslist").fadeTo("fast", 0);
         $.ajax({
@@ -227,6 +233,8 @@
                 //$("#documentitemslist").fadeTo("fast", 1);
                 $("#documentitemslist").html('' + strFormattedHTML + '');
 
+                $("#desktoploader,#desktoploader2").hide();
+
                 GetDocTotal();
 
             },
@@ -239,7 +247,8 @@
 
     // ============================================================================= NACINI PLACANJA ...
 
-    $("#naplata").click(function () {
+    $(".naplata").click(function () {
+        $("#desktoploader,#desktoploader2").show();
         var strFormattedHTML = '';
         var strPrviNacinPlacanja = '';
         var i5 = 1;
@@ -279,6 +288,8 @@
                     SUMbsjPayTimeValues();
                 });
                 
+                $("#desktoploader,#desktoploader2").hide();
+
                 GetDocTotal();
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -291,6 +302,8 @@
 
     function GetDocTotal() {
         var strFormattedHTML = '';
+        $("#doctotal1").hide();
+        $("#doctotal1loader").show();
         $.ajax({
             url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetDocTotal',
             dataType: 'jsonp',
@@ -303,6 +316,9 @@
                     $("#doctotal1").html('' + item.doctotal + 'kn');
                     $(".bsjDocTotal2,#bsjDocTotal6").val(item.doctotal);
                 });
+
+                $("#doctotal1loader").hide();
+                $("#doctotal1").show('slow');
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -344,6 +360,7 @@
 
     function SaveDoc() {
         var strFormattedHTML = '';
+        $("#desktoploader,#desktoploader2").show();
         $.ajax({
             url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=SaveDoc&' + $("#naplataitemsform").serialize(),
             dataType: 'jsonp',
@@ -355,6 +372,7 @@
                     if (item.errnumber == '0') { $(".nastavidugmic").trigger('click') } else { alert(item.errdescription)}
                 });
 
+                $("#desktoploader,#desktoploader2").hide();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
@@ -364,22 +382,27 @@
 
     // ============================================================================= KRAJ ...
 
+    
+    $(".pokaziopcijedokumenta").click(function () {
+        ShowSection('.dugmicizaprodaju');  
+    });
+
     $(".btnkraj").click(function () {
-        $("#doccursection").hide();
-        $(".dugmiczaprodaju").hide('slow');
+        //$("#doccursection").hide();
+        //$(".dugmicizaprodaju").hide('slow');
         ShowSection('#krajsection');
     });
 
     $(".nastavidugmic,.pokazistavkedokumenta").click(function () {
-        $(".dugmiczaprodaju").show('slow');
-        $("#doccursection").show();
+        //$(".dugmiczaprodaju").show('slow');
+        //$("#doccursection").show();
         $("#krajsection").hide();
         GetDocumentItems();
         $("#searchproductstext").focus();
     });
 
     $(".glavnimenidugmic").click(function () {
-        $(".dugmiczaprodaju").hide('slow');
+        //$(".dugmicizaprodaju").hide('slow');
         ShowSection('#glavnimeni');
     });
 
@@ -396,7 +419,7 @@
         $("#themelist").hide();
         $("#naplataitemslist").hide();
         $("#btnspremiracun").hide();
-        
+        $(".dugmicizaprodaju").hide();
         $(sectionname).show();
         $("#searchproductstext").focus();
     }
