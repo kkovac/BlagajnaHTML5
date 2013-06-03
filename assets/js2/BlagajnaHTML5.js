@@ -20,6 +20,13 @@
      
     $('form').submit(function (e) { e.preventDefault(); return false; });
 
+    $('#searchproductstext').on("keypress", function (e) {
+        if (e.keyCode == 13) {
+            $('#searchproductsbutton').trigger('click');
+            return false;
+        }
+    });
+
     Login();
 
     //    ================================================================= theme
@@ -56,7 +63,7 @@
     
     $('.themedugmic').click(function () {
         //$("#themelist").toggle('');
-        ShowSection('#glavnimeni,#themelist');
+        ShowSection('#themelist');
     });
 
     //    ================================================================= home 
@@ -158,17 +165,17 @@
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
                     + '<div class="span4   kvadraticzarobu" robaid="' + item.robaid + ' "><div class="Transparent">'
-                    + 'Userid : ' + item.userid + '<br>'
+                    + 'Userid : ' + item.userid + ' '
                     + 'Barcode : ' + item.barcode + ' '
                     + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
                     + '<div class="btn-danger btn-large">' + item.naziv + '</div>'
                     + '</div></div>';
-                    if (i5 == 3) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" />'}
+                    if (i5 == 3) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
 
                 $("#searchproductlist").fadeTo("fast", 1);
                 $("#searchproductlist").html('' + strFormattedHTML + '');
-                ShowSection('#searchproductlist');
+                ShowSection('#searchproductlistwrapper,#searchproductlist');
                 $(".kvadraticzarobu").on("click", function (event) {
                     $(this).addClass('btn-danger').addClass('disabled').attr('disabled', 'disabled');
                     AddProductToDocument($(this).attr('robaid'));
@@ -208,7 +215,7 @@
     function GetDocumentItems() {
         var strFormattedHTML = '';
         $("#desktoploader,#desktoploader2").show();
-        ShowSection('#documentitemslist');
+        ShowSection('#documentitemslistwrapper');
         //$("#documentitemslist").fadeTo("fast", 0);
         $.ajax({
             url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetDocumentItems' ,
@@ -225,9 +232,9 @@
                     + 'PrometId : ' + item.prometid + '<br>'
                     + 'Količina : ' + item.prometid + ' '
                     + '<h4>' + item.Cijena1200 + 'kn</h3>' + ' '
-                    + '<h4>' + item.Roba5400 + '<h4>'
+                    + '<div class="btn-success btn-large">' + item.Roba5400 + '</div>'
                     + '</div></div>';
-                    if (i5 == 3) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" />' }
+                    if (i5 == 3) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
 
                 //$("#documentitemslist").fadeTo("fast", 1);
@@ -252,7 +259,7 @@
         var strFormattedHTML = '';
         var strPrviNacinPlacanja = '';
         var i5 = 1;
-        ShowSection('#naplataitemslist');
+        ShowSection('#naplataitemslistwrapper');
         $.ajax({
             url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetNacinPlac',
             dataType: 'jsonp',
@@ -265,7 +272,7 @@
                     strFormattedHTML = strFormattedHTML
                     + '<div class="span4   nekikvadratic" id="' + item.SifraNacinPlac + ' "><div class="Transparent">'
                     + '<input type="number" class="input enterastab bsjPayTimeValues ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
-                    + '<div class="btn-danger btn-large">' + item.Naziv + '</div>'
+                    + '<div class="btn-warning btn-large">' + item.Naziv + '</div>'
                     + '</div></div>';
                 });
 
@@ -413,11 +420,12 @@
         $("#loginsection").hide();
         $("#commentsection").hide();
         $("#searchproductlist").hide();
-        $("#documentitemslist").hide();
+        $("#documentitemslistwrapper").hide();
         $("#krajsection").hide();
         $("#glavnimeni").hide();
         $("#themelist").hide();
-        $("#naplataitemslist").hide();
+        $("#naplataitemslistwrapper").hide();
+        $("#searchproductlistwrapper").hide();
         $("#btnspremiracun").hide();
         $(".dugmicizaprodaju").hide();
         $(sectionname).show();
@@ -428,8 +436,8 @@
 
 
     $(".butonzakomentiranje").click(function () {
-        $("#doccursection").hide();
-        $(".dugmiczaprodaju").hide('slow');
+        //$("#doccursection").hide();
+        //$(".dugmiczaprodaju").hide('slow');
         ShowSection('#commentsection');
     });
     

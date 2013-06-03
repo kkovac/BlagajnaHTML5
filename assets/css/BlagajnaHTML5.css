@@ -1,5 +1,4 @@
 
-
 .mybigicon [class^="glyphicon-"] { font-size: 24px; }
 .mybigicon { font-size: 24px; }
 .myhide { display:none; }
@@ -26,8 +25,6 @@
 
 #themelist{  margin-top : 10px; }
 
-.dugmiczaprodaju{  margin-top : 10px;  margin-bottom : 10px; }
-
 
 .iznoszanaplatu{font-size: 34px; font-weight : bold; margin-top:10px;  }
 .brand {font-size: 34px; font-weight : bold;  margin-top:10px; }
@@ -35,6 +32,9 @@ a.brand:hover {text-decoration:none !important ;color:#eee;   }
 a.brand { color:#ffffff;  }
 
 .mycol60 { width : 60%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
+.mycol50 { width : 50%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
 .mycol40 { width : 40%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
 .mycol20 { width : 20%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
+.mycol20r { width : 20%; display:block; float:right; margin : 0;padding:0;  cursor : pointer; text-align:right;}
 .mycol10 { width : 10%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
+.mycol10r { width : 10%; display:block; float:right; margin : 0;padding:0;  cursor : pointer; text-align:right;}
