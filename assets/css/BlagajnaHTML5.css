@@ -15,8 +15,8 @@
                     overflow : hidden; 
                     cursor : pointer;
                 }
-#searchproductstext {  height : 1.6em;
-                        font-size : 24px;
+#searchproductstext {  height : 1.8em;
+                        font-size : 22px;
                     }
 
 .mojtextarea {   height : 3em;
@@ -27,7 +27,7 @@
 
 
 .iznoszanaplatu{font-size: 34px; font-weight : bold; margin-top:10px;  }
-.brand {font-size: 34px; font-weight : bold;  margin-top:10px; }
+.brand {font-size: 32px; font-weight : bold;  margin-top:15px; }
 a.brand:hover {text-decoration:none !important ;color:#eee;   }
 a.brand { color:#ffffff;  }
 

@@ -229,9 +229,11 @@
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
                     + '<div class="span4   nekikvadratic" robaid="' + item.prometid + ' "><div class="Transparent">'
-                    + 'PrometId : ' + item.prometid + '<br>'
-                    + 'Količina : ' + item.prometid + ' '
-                    + '<h4>' + item.Cijena1200 + 'kn</h3>' + ' '
+                    + 'PrometId : ' + item.prometid + ' '
+                    + '<h4>'
+                    + item.Cijena1200 + 'kn '
+                    + 'Količina: ' + item.prometid + ' '  
+                    + '</h3>' + ' '
                     + '<div class="btn-success btn-large">' + item.Roba5400 + '</div>'
                     + '</div></div>';
                     if (i5 == 3) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
@@ -361,7 +363,7 @@
 
     // ============================================================================= SAVE DOCUMENT ...
 
-    $("#btnspremiracun").click(function () {
+    $(".btnspremiracun").click(function () {
         SaveDoc();
     });
 
@@ -386,6 +388,37 @@
             }
         });
     }
+
+
+    // ============================================================================= CANCEL DOCUMENT ...
+
+    $(".canceldoc").click(function () {
+        ShowSection('.canceldocsection');
+    });
+
+    $(".reallycanceldoc").click(function () {
+        CancelDoc();
+    });
+
+    function CancelDoc() {
+        var strFormattedHTML = '';
+        $("#desktoploader,#desktoploader2").show();
+        $.ajax({
+            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=CancelDoc' ,
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            timeout: 10000,
+            success: function (data, status) {
+                $("#desktoploader,#desktoploader2").hide();
+                GetDocumentItems();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+            }
+        });
+    }
+
+    
 
     // ============================================================================= KRAJ ...
 
@@ -428,6 +461,7 @@
         $("#searchproductlistwrapper").hide();
         $("#btnspremiracun").hide();
         $(".dugmicizaprodaju").hide();
+        $(".canceldocsection").hide();
         $(sectionname).show();
         $("#searchproductstext").focus();
     }
