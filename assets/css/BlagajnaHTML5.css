@@ -1,6 +1,6 @@
 
-.mybigicon [class^="glyphicon-"] { font-size: 24px; }
-.mybigicon { font-size: 24px; }
+.mybigiconOLD [class^="glyphicon-"] { font-size: 24px; }
+.mybigicon { font-size: 28px; margin-right : 5px;  margin-left : 5px;   }
 .myhide { display:none; }
 
 .kontejnerodfiksiranoghedera { padding-top : 10px; padding-bottom : 10px;
@@ -15,7 +15,7 @@
                     overflow : hidden; 
                     cursor : pointer;
                 }
-#searchproductstext {  height : 1.8em;
+#searchproductstext {  height : 2em;
                         font-size : 22px;
                     }
 
@@ -37,4 +37,5 @@ a.brand { color:#ffffff;  }
 .mycol20 { width : 20%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
 .mycol20r { width : 20%; display:block; float:right; margin : 0;padding:0;  cursor : pointer; text-align:right;}
 .mycol10 { width : 10%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
+.mycol15 { width : 15%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
 .mycol10r { width : 10%; display:block; float:right; margin : 0;padding:0;  cursor : pointer; text-align:right;}
