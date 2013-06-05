@@ -1,5 +1,5 @@
 
-.Transparent { border : solid 1px #e1dada;
+.Transparent { border : solid 0px   rgba(0, 0, 0, 0.05);
                  padding-left : 5px;
                  padding-right : 5px;
                  padding-top : 5px;
@@ -12,12 +12,15 @@
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
                  }
  
- 
+ .kvadraticzarobu  {
+  background-color : whitesmoke ;
+ }
 
 .alert-info {
   background : url(wash-white-30.png) !important;
  }
 
+ 
 body {
    color: #000 !important;
   background-color: #fff !important;
@@ -27,6 +30,6 @@ body {
     background-color: #fff !important;
 }
 
- .add-on {
+ .add-on, #usernamenav {
      color: #fff !important;
    }

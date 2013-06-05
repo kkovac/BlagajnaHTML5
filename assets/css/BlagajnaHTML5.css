@@ -15,7 +15,7 @@
                     overflow : hidden; 
                     cursor : pointer;
                 }
-#searchproductstext {  height : 2em;
+#searchproductstext {  height : 2.3em;
                         font-size : 22px;
                     }
 
@@ -26,7 +26,7 @@
 #themelist{  margin-top : 10px; }
 
 
-.iznoszanaplatu{font-size: 34px; font-weight : bold; margin-top:10px;  }
+.iznoszanaplatu {font-size: 34px; font-weight : bold;    }
 .brand {font-size: 32px; font-weight : bold;  margin-top:15px; }
 a.brand:hover {text-decoration:none !important ;color:#eee;   }
 a.brand { color:#ffffff;  }
@@ -34,8 +34,8 @@ a.brand { color:#ffffff;  }
 .mycol60 { width : 60%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
 .mycol50 { width : 50%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
 .mycol40 { width : 40%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
-.mycol20 { width : 20%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
-.mycol20r { width : 20%; display:block; float:right; margin : 0;padding:0;  cursor : pointer; text-align:right;}
+.mycol20 { width : 20%;  float:left; }
+.mycol20r { width : 20%;  float:right;  }
 .mycol10 { width : 10%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
 .mycol15 { width : 15%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
 .mycol10r { width : 10%; display:block; float:right; margin : 0;padding:0;  cursor : pointer; text-align:right;}

@@ -164,7 +164,7 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="span4   kvadraticzarobu" robaid="' + item.robaid + ' "><div class="Transparent">'
+                    + '<div class="span4   " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu">'
                     + 'Userid : ' + item.userid + ' '
                     + 'Barcode : ' + item.barcode + ' '
                     + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
@@ -178,7 +178,7 @@
                 ShowSection('#searchproductlistwrapper,#searchproductlist');
                 $(".kvadraticzarobu").on("click", function (event) {
                     $(this).addClass('btn-danger').addClass('disabled').attr('disabled', 'disabled');
-                    AddProductToDocument($(this).attr('robaid'));
+                    AddProductToDocument($(this).parent().attr('robaid'));
                 });
 
                 $("#desktoploader,#desktoploader2").hide();
@@ -228,7 +228,7 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="span4   nekikvadratic" robaid="' + item.prometid + ' "><div class="Transparent">'
+                    + '<div class="span4   nekikvadratic" robaid="' + item.prometid + ' "><div class="Transparent kvadraticzarobu">'
                     + 'PrometId : ' + item.prometid + ' '
                     + '<h4>'
                     + item.Cijena1200 + 'kn '
@@ -272,9 +272,9 @@
                 $.each(data, function (i, item) {
                     if (i5 == 1) { i5 = 0; strPrviNacinPlacanja = 'bsjDocTotal2';} else { strPrviNacinPlacanja = ''}
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="span4   nekikvadratic" id="' + item.SifraNacinPlac + ' "><div class="Transparent">'
+                    + '<div class="span4   nekikvadratic" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
                     + '<input type="number" class="input enterastab bsjPayTimeValues ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
-                    + '<div class="btn-warning btn-large">' + item.Naziv + '</div>'
+                    + '<div class="btn-primary btn-large">' + item.Naziv + '</div>'
                     + '</div></div>';
                 });
 
