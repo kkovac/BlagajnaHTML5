@@ -322,7 +322,7 @@
 
                 $.each(data, function (i, item) {
                      
-                    $("#doctotal1").html('' + item.doctotal + 'kn');
+                    $("#doctotal1").html('' + item.doctotal + '<span class="hidden-phone">kn</span>');
                     $(".bsjDocTotal2,#bsjDocTotal6").val(item.doctotal);
                 });
 
