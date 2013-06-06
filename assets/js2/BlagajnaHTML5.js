@@ -38,7 +38,7 @@
 
     $('.themeimg img,#themeblank').click(function () {
         bgindex = $(this).attr('data-id');
-        $.backstretch("assets/css/bg/" + bgindex);
+        if (bgindex == '0.png') { $('.backstretch').remove(); } else { $.backstretch("assets/css/bg/" + bgindex); }
         $.Storage.set({ "BlagajnaHTML5bgindex": bgindex });
         $.Storage.set({ "BlagajnaHTML5AdditionalCSS": $(this).attr('data-css') });
         $("link.additional").attr("href", $(this).attr('data-css'));
@@ -164,13 +164,13 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="span4   " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu">'
-                    + 'Userid : ' + item.userid + ' '
-                    + 'Barcode : ' + item.barcode + ' '
+                    + '<div class="span3   " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu">'
                     + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
                     + '<div class="btn-danger btn-large">' + item.naziv + '</div>'
+                    + 'Userid : ' + item.userid + ' '
+                    + '<br />Barcode : ' + item.barcode + ' '
                     + '</div></div>';
-                    if (i5 == 3) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
+                    if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
 
                 $("#searchproductlist").fadeTo("fast", 1);
@@ -228,15 +228,14 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="span4   nekikvadratic" robaid="' + item.prometid + ' "><div class="Transparent kvadraticzarobu">'
-                    + 'PrometId : ' + item.prometid + ' '
-                    + '<h4>'
+                    + '<div class="span3   nekikvadratic" robaid="' + item.prometid + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<h5>'
                     + item.Cijena1200 + 'kn '
-                    + 'Količina: ' + item.prometid + ' '  
-                    + '</h3>' + ' '
+                    + ' x  ' + item.prometid + ' ='  
+                    + '</h5>' + ' '
                     + '<div class="btn-success btn-large">' + item.Roba5400 + '</div>'
                     + '</div></div>';
-                    if (i5 == 3) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
+                    if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
 
                 //$("#documentitemslist").fadeTo("fast", 1);
