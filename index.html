@@ -46,37 +46,39 @@
       <div class="navbar navbar-fixed-top navbar-inverse ">
         <div class="container kontejnerodfiksiranoghedera">
 
-               <div class="mycol20 hidden-desktop glavnimenidugmic">
-                   <a class="btn btn-large btn-danger mybigicon" href="#" ><span class="glyphicon glyphicon-home"></span></a>
-                    <img src="assets/ajax-loader.gif" class="loadergif" id="desktoploader" alt="" />
-               </div>
-
-               <div class="mycol20 visible-desktop glavnimenidugmic">
-                   <a class="btn btn-large btn-danger mybigicon" href="#" ><span class="glyphicon glyphicon-home"></span> </a> <span id="usernamenav" >login</span>
+               <div class="row">
+                <div class="col-2 mojakolona visible-desktop glavnimenidugmic">
+                   <a class="btn btn-large btn-block btn-danger mybigicon" href="#" ><span class="glyphicon glyphicon-home"></span> <span id="usernamenav" >login</span></a> 
                 </div>
 
-                <div class="mycol50">
-                    <div class="myhide  " id="doccursection">
-                        <form name="searchproductsform" id="searchproductsform">
-                                <input type="text" class="span4" name="searchproductstext" id="searchproductstext" autofocus >
-                                <button type="submit" class="btn btn-large hidden-phone btn-danger mybigicon afterclickfocussearchproductstext" id="searchproductsbutton"><span class="glyphicon glyphicon-search"></span></button>
-                                <button type="reset"  class="btn btn-large myhide hidden-phone btn-danger mybigicon afterclickfocussearchproductstext" id="Button1"><span class="glyphicon glyphicon-remove"></span></button>
-                                <button type="button" class="btn btn-large hidden-phone btn-success mybigicon afterclickfocussearchproductstext pokazistavkedokumenta" id="Button2"><span class="glyphicon glyphicon-shopping-cart"></span></button>
-                                <button type="button" class="btn btn-large hidden-phone btn-info mybigicon afterclickfocussearchproductstext pokaziopcijedokumenta" id="Button3"><span class="glyphicon glyphicon-th-large"></span></button>
-                        </form>
-                    </div> 
-                </div>
+                
+
+                <form name="searchproductsform" id="searchproductsform">
+                    <div class="col-3 mojakolona">
+                      <input type="text" class="" name="searchproductstext" id="searchproductstext" autofocus >
+                    </div>
+
+                    <div class="col-1 mojakolona">
+                                <button type="submit" class="btn hidden-phone btn-block btn-danger btn-large  mybigicon " id="searchproductsbutton"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                    <div class="col-1 mojakolona">
+                                <button type="button" class="btn btn-block btn-large hidden-phone btn-success mybigicon  pokazistavkedokumenta" id="Button2"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                    </div>
+                    <div class="col-1 mojakolona">
+                                <button type="button" class="btn btn-block btn-large hidden-phone btn-info mybigicon  pokaziopcijedokumenta" id="Button3"><span class="glyphicon glyphicon-th-large"></span></button>
+                     </div>
+                </form>
              
-                <div class="mycol20r  btn btn-large btn-primary mybigicon naplata">
-                     <span class="glyphicon glyphicon-share-alt hidden-phone"></span>
-                     <span  class="iznoszanaplatu "><span id="doctotal1">0.00</span></span>
-                     <img src="assets/ajax-loader.gif" class="loadergif" id="doctotal1loader" alt="" />
+                 <div class="col-4 mojakolona">
+                     <button type="button" class="btn btn-block btn-large btn-primary  mybigicon naplata">
+                         <span class="glyphicon glyphicon-share-alt hidden-phone"></span>
+                         <span  class="iznoszanaplatu "><span id="doctotal1">0.00</span></span>
+                         <img src="assets/ajax-loader.gif" class="loadergif" id="doctotal1loader" alt="" />
+                     </button>
                 </div>   
 
-           <div class="mycol10">
-                  
+           
                </div>
-               
 
         </div>
       </div><!-- END OF FIXED HEADER -->
@@ -85,26 +87,26 @@
 
 
         <div class="container">
-       <div class="row-fluid">
+       <div class="row">
 
             <!-- LOGIN -->
             <div id="loginsection" class="Transparent">
                 <br />
                 <form class="form-signin" id="loginform">
                     <div class="controls">
-                        <div class="input-group span4">
+                        <div class="input-group col-4">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                             <input type="text" id="d" autofocus class="enterastab" name="d" placeholder="Database">
                         </div>
                         <br />
-                        <div class="input-group span4">
+                        <div class="input-group col-4">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" id="e" class="span4 enterastab" name="e" placeholder="Email">
+                            <input type="text" id="e" class="col-4 enterastab" name="e" placeholder="Email">
                         </div>
                         <br />
-                        <div class="input-group span4">
+                        <div class="input-group col-4">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                            <input type="password" id="p" class="span4 enterastab" name="p" placeholder="Password">
+                            <input type="password" id="p" class="col-4 enterastab" name="p" placeholder="Password">
                         </div>
 
                         <br />
@@ -123,62 +125,38 @@
 
             <!--OPCIJE DOKUMENTA -->
            <div class="dugmicizaprodaju myhide  Transparent clearfix">
-                 <div class="row-fluid">
-                      
-
-                     <div class="navbar navbar-inverse" >
-                      <div class="container">
-                          <ul class="nav">
-                            <li><a href="#">Opcije dokumenta</a></li>
-                            <li class="divider-vertical"></li>
-                            
-                            <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li class="nav-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                              </ul>
-                            </li>
-                          </ul>
-                      </div>
-                    </div>
-
-
-                     <div class="row-fluid Transparent clearfix">
-                        <div  class="span4 nekikvadratic " >
+                 <div class="row">
+                     
+                     <div class="clearfix">
+                        <div  class="col-4 nekikvadratic " >
                             <div class="Transparent" >
                             <div class="btn-primary btn-large  naplata  "  ><span  class="glyphicon glyphicon-share-alt"> Naplata</span></div>
                             </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="btn-success btn-large   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Košarica</div>
                              </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="btn-danger btn-large    canceldoc  " ><span  class="glyphicon glyphicon-remove"> Poništi račun</span></div>
                              </div>
                         </div>
                     </div>
 
-                     <div class="row-fluid ">
-                        <div  class="span4 nekikvadratic " >
+                     <div class="clearfix ">
+                        <div  class="col-4 nekikvadratic " >
                             <div class="Transparent" >
                             <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon"><span  class="glyphicon glyphicon-book"> Kartica</span></div>
                             </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon"><span  class="glyphicon glyphicon-user"> Partner</span></div>
                              </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="btn-info   dugmiczaprodaju newdoclist btn-large collapsebigicon"><span  class="glyphicon glyphicon-remove"> Brisanje stavke</span></div>
                              </div>
@@ -186,18 +164,18 @@
                     </div>
 
                
-                      <div class="row-fluid ">
-                        <div  class="span4 nekikvadratic " >
+                      <div class="clearfix ">
+                        <div  class="col-4 nekikvadratic " >
                             <div class="Transparent" >
                             <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon"><span  class="glyphicon glyphicon-edit"> Količina </span></div>
                             </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon"><span  class="glyphicon glyphicon-sort"> Popust</span></div>
                              </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon butonzakomentiranje"><span  class="glyphicon glyphicon-comment"> Napomena</span></div>
                              </div>
@@ -219,101 +197,45 @@
            <!-- END OF KRAJ -->
 
            <!-- COMMENT SECTION -->
-            <div class="myhide" id="commentsection">
-                <div class="Transparent">
+            <div class=" myhide" id="commentsection">
+                <div class="clearfix Transparent">
                 <h4>Napomena</h4>
                 <form name="commentform" id="commentform"><textarea  rows="3" class="mojtextarea"></textarea></form>
                     <br />
-                    <button class="btn btn-info btn-large span4"><span  class="glyphicon glyphicon-ok"> Spremi napomenu</span></button>
+                    <button class="btn btn-info btn-large col-4"><span  class="glyphicon glyphicon-ok"> Spremi napomenu</span></button>
                 </div>
             </div>
            <!-- END OF COMMENT SECTION -->
 
            <!-- REZULTATI TRAŽENJA SECTION --> 
            <div id="searchproductlistwrapper" class="myhide Transparent clearfix">
-               <div class="navbar navbar-inverse" >
-                      <div class="container">
-                          <ul class="nav">
-                            <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rezultati traženja <b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li class="nav-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                              </ul>
-                            </li>
-                            <li class="divider-vertical"></li>
-                          </ul>
-                      </div>
-                    </div>
-            <div class="row-fluid" id="searchproductlist"></div>
+            <div class="row" id="searchproductlist"></div>
            </div>
            <!-- END OF REZULTATI TRAŽENJA SECTION --> 
 
 
            <!-- STAVKE DOKUMENTA SECTION --> 
            <div id="documentitemslistwrapper" class="myhide Transparent clearfix">
-             <div class="navbar navbar-inverse" >
-                      <div class="container">
-                          <ul class="nav">
-                            <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stavke dokumenta <b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li class="nav-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                              </ul>
-                            </li>
-                            <li class="divider-vertical"></li>
-                          </ul>
-                      </div>
-                    </div>
-            <div class="row-fluid" id="documentitemslist"></div>
+                
+            <div class="row" id="documentitemslist"></div>
            </div>
             <!-- END OF STAVKE DOKUMENTA SECTION --> 
 
             <!-- NAPLATA SECTION --> 
             <div id="naplataitemslistwrapper" class="myhide Transparent clearfix">
-               <div class="navbar navbar-inverse" >
-                      <div class="container">
-                          <ul class="nav">
-                            <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Naplata <b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li class="nav-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                              </ul>
-                            </li>
-                            <li class="divider-vertical"></li>
-                          </ul>
-                      </div>
-                    </div>
-                
-               <div class="row-fluid Transparent clearfix">
-                    <div  class="span4 nekikvadratic " >
+                               
+               <div class="row clearfix">
+                    <div  class="col-4 nekikvadratic " >
                         <div class="Transparent" >
                         <div class="btn-primary btn-large  btnspremiracun" id="btnspremiracun" ><span  class="glyphicon glyphicon-check"> Spremi račun</span></div>
                         </div>
                     </div>
-                    <div  class="span4 nekikvadratic " >
+                    <div  class="col-4 nekikvadratic " >
                          <div class="Transparent" >
                          <div class="btn-success btn-large   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Košarica</div>
                          </div>
                     </div>
-                    <div  class="span4 nekikvadratic " >
+                    <div  class="col-4 nekikvadratic " >
                          <div class="Transparent" >
                          <div class="btn-danger btn-large    canceldoc  "  ><span  class="glyphicon glyphicon-remove"> Poništi račun</span></div>
                          </div>
@@ -322,7 +244,7 @@
                 
                                 
                 <form name="naplataitemsform" id="naplataitemsform" >
-                    <div class="row-fluid " id="naplataitemslist"></div>
+                    <div class="row " id="naplataitemslist"></div>
                 </form>
                   
             </div>
@@ -336,60 +258,42 @@
             <div class="clearfix" ></div>
             
            <!-- GLAVNI MENI -->
-            <div class="myhide Transparent clearfix" id="glavnimeni">
+            <div class="myhide Transparent mojpanel clearfix" id="glavnimeni">
                 
-                 <div class="row-fluid">
+                 <div class="row">
 
-                     <div class="navbar navbar-inverse" >
-                      <div class="container">
-                          <ul class="nav">
-                          
-                            <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Glavni izbornik <b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li class="nav-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                              </ul>
-                            </li>
-                          </ul>
-                      </div>
-                    </div>
+                    
                      
-                    <div class="row-fluid Transparent clearfix">
-                        <div  class="span4 nekikvadratic " >
+                    <div class="  clearfix">
+                        <div  class="col-4 nekikvadratic " >
                             <div class="Transparent" >
-                            <div class="btn-primary btn-large   naplata " ><span  class="glyphicon glyphicon-share-alt"> Naplata</span></div>
+                            <div class=" btn-primary btn-large   naplata " ><span  class="glyphicon glyphicon-share-alt"> Naplata</span></div>
                             </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
-                             <div class="btn-success btn-large   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Košarica</div>
+                             <div class=" btn-success btn-large   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Košarica</div>
                              </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
-                             <div class="btn-danger btn-large    canceldoc  " ><span  class="glyphicon glyphicon-remove"> Poništi račun</span></div>
+                             <div class="  btn-danger btn-large    canceldoc  " ><span  class="glyphicon glyphicon-remove"> Poništi račun</span></div>
                              </div>
                         </div>
                     </div>
                 
-                 <div class="row-fluid">
-                     <div  class="span4 nekikvadratic " >
+                 <div class="clearfix">
+                     <div  class="col-4 nekikvadratic " >
                          <div class="Transparent" >
                          <div class="btn-info btn-large  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Opcije dokumenta</div>
                          </div>
                     </div>
-                    <div  class="span4 nekikvadratic " >
+                    <div  class="col-4 nekikvadratic " >
                         <div class="Transparent" >
                          <div class="btn-success btn-large   afterclickfocussearchproductstext"><span class="glyphicon glyphicon-list "></span> Pregled računa</div>
                         </div>
                     </div>
-                     <div  class="span4 nekikvadratic " >
+                     <div  class="col-4 nekikvadratic " >
                         <div class="Transparent" >
                          <div class="btn-success btn-large glavnimenidugmic">Zaključak blagajne</div>
                         </div>
@@ -398,13 +302,13 @@
                 </div>
 
 
-                <div class="row-fluid">
-                    <div  class="span4 nekikvadratic" >
+                <div class="clearfix">
+                    <div  class="col-4 nekikvadratic" >
                          <div class="Transparent" >
                          <div class="btn-success btn-large themedugmic">Teme</div>
                          </div>
                     </div>
-                    <div  class="span4 nekikvadratic" >
+                    <div  class="col-4 nekikvadratic" >
                          <div class="Transparent" >
                          <div class="btn-success btn-large uklunithemedugmic" id="themeblank" data-id="0.png" data-css="assets/css/BlagajnaHTML5FBPb.css" >Ukloni temu</div>
                          </div>
@@ -421,18 +325,18 @@
            <div class="myhide Transparent clearfix" id="themelist" >
                <h4>Teme</h4>
                       
-                      <div class="row-fluid ">
-                        <div  class="span4 nekikvadratic " >
+                      <div class="row ">
+                        <div  class="col-4 nekikvadratic " >
                             <div class="Transparent" >
                              <div class="themeimg "><img src="assets/css/bg/1s.jpg" data-id="1.jpg" data-css="assets/css/BlagajnaHTML5FBPw.css" class="img-rounded" alt="" ></div>
                             </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="themeimg "><img src="assets/css/bg/2s.jpg" data-id="2.jpg" data-css="assets/css/BlagajnaHTML5FBP.css"  class="img-rounded" alt="" ></div>
                              </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="themeimg "><img src="assets/css/bg/3s.jpg" data-id="3.jpg" data-css="assets/css/BlagajnaHTML5FBP.css"  class="img-rounded" alt="" ></div>
                              </div>
@@ -440,18 +344,18 @@
                     </div>
 
                 
-                    <div class="row-fluid ">
-                        <div  class="span4 nekikvadratic " >
+                    <div class="row ">
+                        <div  class="col-4 nekikvadratic " >
                             <div class="Transparent" >
                              <div class="themeimg "><img src="assets/css/bg/4s.jpg" data-id="4.jpg" data-css="assets/css/BlagajnaHTML5FBP.css"  class="img-rounded" alt="" ></div>
                             </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="themeimg "><img src="assets/css/bg/6s.jpg" data-id="6.jpg" data-css="assets/css/BlagajnaHTML5FBP.css"  class="img-rounded" alt="" ></div>
                              </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="themeimg "><img src="assets/css/bg/5s.jpg" data-id="5.jpg" data-css="assets/css/BlagajnaHTML5FBPw.css" class="img-rounded" alt="" ></div>
                              </div>
@@ -468,13 +372,13 @@
            <div class="myhide Transparent clearfix canceldocsection"  >
                <h4>Poništiti račun ?</h4>
                       
-                     <div class="row-fluid clearfix">
-                        <div  class="span4 nekikvadratic " >
+                     <div class="row clearfix">
+                        <div  class="col-4 nekikvadratic " >
                             <div class="Transparent" >
                             <div class="btn-danger btn-large   reallycanceldoc " ><span  class="glyphicon glyphicon-remove"> Da , poništi </span></div>
                             </div>
                         </div>
-                        <div  class="span4 nekikvadratic " >
+                        <div  class="col-4 nekikvadratic " >
                              <div class="Transparent" >
                              <div class="btn-success btn-large   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Ne, nastavi</div>
                              </div>

@@ -1,20 +1,17 @@
 
-.Transparent { border : solid 0px   rgba(0, 0, 0, 0.05);
+.Transparent { border : none;
                  padding-left : 5px;
                  padding-right : 5px;
-                 padding-top : 5px;
+                   padding-top : 5px;
                  padding-bottom : 5px;
                  -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-           background-color: #dbd7d7 !important;
+           background-color: #eeecec !important;
                  }
  
  .kvadraticzarobu  {
-  background-color : #f5f0f0 !important;
+  background-color : #fff !important; border : 1px solid #d8d8d8;  box-sizing : border-box;
  }
 
 .alert-info {
@@ -24,7 +21,7 @@
  
 body {
    color: #000 !important;
-  background-color: #7e7c7c !important;
+  background-color: rgba(0,0,0,.2) !important;
 }
 
 .modal {

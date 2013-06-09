@@ -164,7 +164,7 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="span3   " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-3   " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu">'
                     + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
                     + '<div class="btn-danger btn-large">' + item.naziv + '</div>'
                     + 'Userid : ' + item.userid + ' '
@@ -228,7 +228,7 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="span3   nekikvadratic" robaid="' + item.prometid + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-3   nekikvadratic" robaid="' + item.prometid + ' "><div class="Transparent kvadraticzarobu">'
                     + '<h5>'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.prometid + ' ='  
@@ -271,7 +271,7 @@
                 $.each(data, function (i, item) {
                     if (i5 == 1) { i5 = 0; strPrviNacinPlacanja = 'bsjDocTotal2';} else { strPrviNacinPlacanja = ''}
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="span4   nekikvadratic" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-4   nekikvadratic" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
                     + '<input type="number" class="input enterastab bsjPayTimeValues ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
                     + '<div class="btn-primary btn-large">' + item.Naziv + '</div>'
                     + '</div></div>';

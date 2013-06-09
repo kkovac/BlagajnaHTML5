@@ -1,9 +1,11 @@
 
 .mybigiconOLD [class^="glyphicon-"] { font-size: 24px; }
-.mybigicon { font-size: 20px; margin-right : 5px;  margin-left : 5px;   }
+
 .myhide { display:none; }
 
 .kontejnerodfiksiranoghedera { padding-top : 10px; padding-bottom : 10px;
+}
+.mojpanel {padding-bottom : 20px !important;
 }
 
 .kvadraticzarobu {  margin-top : 10px;
@@ -15,7 +17,7 @@
                     overflow : hidden; 
                     cursor : pointer;
                 }
-#searchproductstext {  height : 2.2em;
+#searchproductstext {  height : 2.4em;
                         font-size : 22px;
                     }
 
@@ -26,16 +28,12 @@
 #themelist{  margin-top : 10px; }
 
 
-.iznoszanaplatu {font-size: 24px; font-weight : bold;    }
-.brand {font-size: 32px; font-weight : bold;  margin-top:15px; }
-a.brand:hover {text-decoration:none !important ;color:#eee;   }
-a.brand { color:#ffffff;  }
 
-.mycol60 { width : 60%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
-.mycol50 { width : 50%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
-.mycol40 { width : 40%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
-.mycol20 { width : 20%;  float:left; }
-.mycol20r { width : 20%;  float:right;  }
-.mycol10 { width : 10%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
-.mycol15 { width : 15%; display:block; float:left; margin : 0;padding:0;  cursor : pointer; }
-.mycol10r { width : 10%; display:block; float:right; margin : 0;padding:0;  cursor : pointer; text-align:right;}
+.mojakolona.col-1,
+.mojakolona.col-2,
+.mojakolona.col-3,
+.mojakolona.col-4
+ {
+  padding-right: 5px !important;
+  padding-left: 5px !important;
+}
