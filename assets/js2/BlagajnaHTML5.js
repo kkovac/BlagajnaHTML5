@@ -27,7 +27,7 @@
         }
     });
 
-    Login();
+    //Login();
 
     //    ================================================================= theme
 
@@ -164,7 +164,7 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-lg-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu">'
                     + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
                     + '<div class="btn-danger btn-large">' + item.naziv + '</div>'
                     + 'Userid : ' + item.userid + ' '
@@ -228,7 +228,7 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-3  mojakolona nekikvadratic" robaid="' + item.prometid + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-lg-3  mojakolona nekikvadratic" robaid="' + item.prometid + ' "><div class="Transparent kvadraticzarobu">'
                     + '<h5>'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.prometid + ' ='  
@@ -267,14 +267,16 @@
             jsonp: 'jsoncallback',
             timeout: 10000,
             success: function (data, status) {
-
+                var i6 = 0;
                 $.each(data, function (i, item) {
-                    if (i5 == 1) { i5 = 0; strPrviNacinPlacanja = 'bsjDocTotal2';} else { strPrviNacinPlacanja = ''}
+                    if (i5 == 1) { i5 = 0; strPrviNacinPlacanja = 'bsjDocTotal2'; } else { strPrviNacinPlacanja = '' }
+                    i6 = i6 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-4   nekikvadratic mojakolona" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-lg-4 nekikvadratic mojakolona" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
                     + '<input type="number" class="input enterastab bsjPayTimeValues ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
                     + '<div class="btn-primary btn-large">' + item.Naziv + '</div>'
                     + '</div></div>';
+                    if (i6 == 3) { i6 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
 
                 $("#naplataitemslist").html( strFormattedHTML );
@@ -427,21 +429,16 @@
     });
 
     $(".btnkraj").click(function () {
-        //$("#doccursection").hide();
-        //$(".dugmicizaprodaju").hide('slow');
         ShowSection('#krajsection');
     });
 
     $(".nastavidugmic,.pokazistavkedokumenta").click(function () {
-        //$(".dugmiczaprodaju").show('slow');
-        //$("#doccursection").show();
         $("#krajsection").hide();
         GetDocumentItems();
-        $("#searchproductstext").focus();
+        //$("#searchproductstext").focus();
     });
 
     $(".glavnimenidugmic").click(function () {
-        //$(".dugmicizaprodaju").hide('slow');
         ShowSection('#glavnimeni');
     });
 
@@ -462,7 +459,7 @@
         $(".dugmicizaprodaju").hide();
         $(".canceldocsection").hide();
         $(sectionname).show();
-        $("#searchproductstext").focus();
+       // $("#searchproductstext").focus();
     }
    
     // ============================================================================= 

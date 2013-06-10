@@ -55,7 +55,7 @@
 
                 <form name="searchproductsform" id="searchproductsform">
                     <div class="col-3 mojakolona">
-                      <input type="text" class="" name="searchproductstext" id="searchproductstext" autofocus >
+                      <input type="text" class="" name="searchproductstext" id="searchproductstext" autofocus-old >
                     </div>
 
                     <div class="col-1 mojakolona">
@@ -87,24 +87,23 @@
 
 
         <div class="container">
-       <div class="">
-
+      
             <!-- LOGIN -->
             <div id="loginsection" class="Transparent">
                 <br />
                 <form class="form-signin" id="loginform">
                     <div class="controls">
-                        <div class="input-group col-4">
+                        <div class="input-group ">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                             <input type="text" id="d" autofocus class="enterastab" name="d" placeholder="Database">
                         </div>
                         <br />
-                        <div class="input-group col-4">
+                        <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                             <input type="text" id="e" class="col-4 enterastab" name="e" placeholder="Email">
                         </div>
                         <br />
-                        <div class="input-group col-4">
+                        <div class="input-group ">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             <input type="password" id="p" class="col-4 enterastab" name="p" placeholder="Password">
                         </div>
@@ -125,6 +124,7 @@
 
             <!--OPCIJE DOKUMENTA -->
            <div class="dugmicizaprodaju myhide mojpanel Transparent clearfix">
+               <h4>Opcije računa</h4>
                  <div class="">
                      
                      <div class="clearfix">
@@ -202,6 +202,7 @@
 
            <!-- REZULTATI TRAŽENJA SECTION --> 
            <div id="searchproductlistwrapper" class="myhide mojpanel Transparent clearfix">
+               <h4>Rezultati traženja</h4>
             <div class="" id="searchproductlist"></div>
            </div>
            <!-- END OF REZULTATI TRAŽENJA SECTION --> 
@@ -209,14 +210,14 @@
 
            <!-- STAVKE DOKUMENTA SECTION --> 
            <div id="documentitemslistwrapper" class="myhide mojpanel Transparent clearfix">
-                
+               <h4>Stavke računa</h4> 
             <div class="" id="documentitemslist"></div>
            </div>
             <!-- END OF STAVKE DOKUMENTA SECTION --> 
 
             <!-- NAPLATA SECTION --> 
             <div id="naplataitemslistwrapper" class="myhide Transparent clearfix mojpanel">
-                               
+               <h4>Naplata</h4>
                <div class="clearfix">
                     <div  class="col-4 nekikvadratic mojakolona" >
                         <div class="Transparent" >
@@ -250,23 +251,23 @@
             
            <!-- GLAVNI MENI -->
             <div class="myhide Transparent mojpanel clearfix" id="glavnimeni" >
-                
+                <h4>Glavni izbornik</h4>
                  <div class="">
                      
                     <div class="  clearfix">
                         <div  class="col-4 nekikvadratic mojakolona" >
                             <div class="Transparent" >
-                            <div class="btn btn-block btn-primary btn-large   naplata " ><span  class="glyphicon glyphicon-share-alt"> Naplata</span></div>
+                            <div class=" btn-primary btn-large   naplata " ><span  class="glyphicon glyphicon-share-alt"> Naplata</span></div>
                             </div>
                         </div>
                         <div  class="col-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class="btn btn-block btn-success btn-large   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Košarica</div>
+                             <div class=" btn-success btn-large   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Košarica</div>
                              </div>
                         </div>
                         <div  class="col-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class="btn btn-block btn-danger btn-large    canceldoc  " ><span  class="glyphicon glyphicon-remove"> Poništi račun</span></div>
+                             <div class=" btn-danger btn-large    canceldoc  " ><span  class="glyphicon glyphicon-remove"> Poništi račun</span></div>
                              </div>
                         </div>
                     </div>
@@ -274,17 +275,17 @@
                  <div class="clearfix">
                      <div  class="col-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="btn btn-block btn-info btn-large  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Opcije dokumenta</div>
+                         <div class="btn-info btn-large  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Opcije dokumenta</div>
                          </div>
                     </div>
                     <div  class="col-4 nekikvadratic mojakolona" >
                         <div class="Transparent" >
-                         <div class="btn btn-block btn-success btn-large   afterclickfocussearchproductstext"><span class="glyphicon glyphicon-list "></span> Pregled računa</div>
+                         <div class="btn-success btn-large   afterclickfocussearchproductstext"><span class="glyphicon glyphicon-list "></span> Pregled računa</div>
                         </div>
                     </div>
                      <div  class="col-4 nekikvadratic mojakolona" >
                         <div class="Transparent" >
-                         <div class="btn btn-block btn-success btn-large glavnimenidugmic">Zaključak blagajne</div>
+                         <div class="btn-success btn-large glavnimenidugmic">Zaključak blagajne</div>
                         </div>
                     </div>
                 </div>
@@ -298,7 +299,7 @@
                     </div>
                     <div  class="col-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="btn btn-block btn-success btn-large uklunithemedugmic" id="themeblank" data-id="0.png" data-css="assets/css/BlagajnaHTML5FBPb.css" >Ukloni temu</div>
+                         <div class="btn-success btn-large uklunithemedugmic" id="themeblank" data-id="0.png" data-css="assets/css/BlagajnaHTML5FBPb.css" >Ukloni temu</div>
                          </div>
                     </div>
                     
@@ -357,7 +358,7 @@
 
 
              <!-- CANCEL DOC -->
-           <div class="myhide Transparent clearfix canceldocsection"  >
+           <div class="myhide Transparent clearfix canceldocsection mojpanel"  >
                <h4>Poništiti račun ?</h4>
                       
                      <div class="row clearfix">
