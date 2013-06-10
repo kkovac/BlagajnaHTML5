@@ -3,7 +3,7 @@
 
 .myhide { display:none; }
 
-.kontejnerodfiksiranoghedera { padding-top : 10px; padding-bottom : 10px;
+.kontejnerodfiksiranoghedera { padding-top : 6px; padding-bottom : 6px;
 }
 .mojpanel {padding-bottom : 30px !important;
 }
@@ -32,16 +32,16 @@ font-size: 16px !important;
                         font-size : 24px;
                     }
 
-#themelist{  margin-top : 10px; }
-
-
 
 .mojakolona.col-1,
 .mojakolona.col-2,
 .mojakolona.col-3,
 .mojakolona.col-lg-3,
-.mojakolona.col-4
+.mojakolona.col-4,
+.mojakolona.col-5,
+.mojakolona.col-6,
+.mojakolona.col-7
  {
-  padding-right: 2px !important;
-  padding-left: 2px !important;
+  padding-right: 3px !important;
+  padding-left: 3px !important;
 }

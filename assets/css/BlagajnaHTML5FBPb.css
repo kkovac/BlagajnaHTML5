@@ -11,7 +11,7 @@
                  }
  
  .kvadraticzarobu  {
-  background-color : #fff !important; border : 1px solid #d8d8d8;  box-sizing : border-box;
+  background-color : #fff !important;
  }
 
 .alert-info {
@@ -28,6 +28,6 @@ body {
     background-color: #fff !important;
 }
 
- .add-on, #usernamenav {
+ .add-on {
      color: #fff !important;
    }
