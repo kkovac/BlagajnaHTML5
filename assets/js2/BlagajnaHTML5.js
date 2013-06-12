@@ -272,7 +272,7 @@
                     if (i5 == 1) { i5 = 0; strPrviNacinPlacanja = 'bsjDocTotal2'; } else { strPrviNacinPlacanja = '' }
                     i6 = i6 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-lg-4 nekikvadratic mojakolona" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-lg-4 mojakolona" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
                     + '<input type="number" class="input enterastab bsjPayTimeValues ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
                     + '<div class="btn-primary btn-large">' + item.Naziv + '</div>'
                     + '</div></div>';

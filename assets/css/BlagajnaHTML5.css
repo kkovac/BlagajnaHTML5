@@ -3,9 +3,9 @@
 
 .myhide { display:none; }
 
-.kontejnerodfiksiranoghedera { padding-top : 6px; padding-bottom : 6px;
+.kontejnerodfiksiranoghedera { padding-top : 8px; padding-bottom : 8px;
 }
-.mojpanel {padding-bottom : 30px !important;
+.mojpanel {padding-bottom : 20px !important;
 }
 
 .iznoszanaplatu { font-weight : bold;
@@ -15,12 +15,13 @@
 font-size: 16px !important;
 }
 
-.kvadraticzarobu {  margin-top : 10px;
+.kvadraticzarobu {
+    margin-top : 5px;
                     overflow : hidden; 
                     cursor : pointer;
                 }
 
-.nekikvadratic{  margin-top : 10px;
+.nekikvadratic{  margin-top : 5px;
                     overflow : hidden; 
                     cursor : pointer;
                 }
@@ -37,6 +38,7 @@ font-size: 16px !important;
 .mojakolona.col-2,
 .mojakolona.col-3,
 .mojakolona.col-lg-3,
+.mojakolona.col-lg-4,
 .mojakolona.col-4,
 .mojakolona.col-5,
 .mojakolona.col-6,
