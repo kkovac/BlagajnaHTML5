@@ -15,7 +15,7 @@
 font-size: 16px !important;
 }
 
-.kvadraticzarobu {
+.kvadraticzarobu, .kvadraticzastavke {
     margin-top : 5px;
                     overflow : hidden; 
                     cursor : pointer;

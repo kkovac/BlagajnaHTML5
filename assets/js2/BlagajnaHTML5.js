@@ -210,6 +210,11 @@
             });
         }
 
+    // ============================================================================= DOC ITEM  ...
+    function ShowDocItem(robaid) {
+        ShowSection('.docitemsection');
+    }
+
     // ============================================================================= STAVKE DOKUMENTA  ...
 
     function GetDocumentItems() {
@@ -228,7 +233,7 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-lg-3  mojakolona nekikvadratic" robaid="' + item.prometid + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-lg-3  mojakolona" robaid="' + item.prometid + ' "><div class="Transparent kvadraticzastavke">'
                     + '<h5>'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.prometid + ' ='  
@@ -242,6 +247,11 @@
                 $("#documentitemslist").html('' + strFormattedHTML + '');
 
                 $("#desktoploader,#desktoploader2").hide();
+
+                $(".kvadraticzastavke").on("click", function (event) {
+                    $(this).addClass('btn-success').addClass('disabled').attr('disabled', 'disabled');
+                    ShowDocItem($(this).parent().attr('robaid'));
+                });
 
                 GetDocTotal();
 
@@ -458,6 +468,7 @@
         $("#btnspremiracun").hide();
         $(".dugmicizaprodaju").hide();
         $(".canceldocsection").hide();
+        $(".docitemsection").hide();
         $(sectionname).show();
        // $("#searchproductstext").focus();
     }
