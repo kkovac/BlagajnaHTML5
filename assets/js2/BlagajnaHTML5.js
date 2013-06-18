@@ -110,7 +110,8 @@
                     //DocList();
                     //NewDocList();
                     //$(".brand").trigger('click');
-                    GetDocTotal();
+                    //GetDocTotal();
+                    GetDocumentItems();
                 } else
                 { $("#loginbutton").removeClass('disabled').removeAttr('disabled', 'disabled'); }
                 $("#loginloadergif").hide();
@@ -151,7 +152,7 @@
 
     function GetSearchProductsList() {
         var strFormattedHTML = '';
-        $("#desktoploader,#desktoploader2").show();
+        $("#searchloader").show();
         $("#searchproductlist").fadeTo("fast", 0);
         $.ajax({
             url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&s=' + $("#searchproductstext").val(),
@@ -181,7 +182,7 @@
                     AddProductToDocument($(this).parent().attr('robaid'));
                 });
 
-                $("#desktoploader,#desktoploader2").hide();
+                $("#searchloader").hide();
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -210,16 +211,12 @@
             });
         }
 
-    // ============================================================================= DOC ITEM  ...
-    function ShowDocItem(robaid) {
-        ShowSection('.docitemsection');
-    }
-
     // ============================================================================= STAVKE DOKUMENTA  ...
 
     function GetDocumentItems() {
         var strFormattedHTML = '';
-        $("#desktoploader,#desktoploader2").show();
+        $("#documentitemslist").html();
+        $("#docitemsloader").show();
         ShowSection('#documentitemslistwrapper');
         //$("#documentitemslist").fadeTo("fast", 0);
         $.ajax({
@@ -233,10 +230,10 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-lg-3  mojakolona" robaid="' + item.prometid + ' "><div class="Transparent kvadraticzastavke">'
+                    + '<div class="col-lg-3  mojakolona" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke">'
                     + '<h5>'
                     + item.Cijena1200 + 'kn '
-                    + ' x  ' + item.prometid + ' ='  
+                    + ' x  ' + item.Količina1000 + ' = ' + item.Iznos1400
                     + '</h5>' + ' '
                     + '<div class="btn-success btn-large">' + item.Roba5400 + '</div>'
                     + '</div></div>';
@@ -246,11 +243,11 @@
                 //$("#documentitemslist").fadeTo("fast", 1);
                 $("#documentitemslist").html('' + strFormattedHTML + '');
 
-                $("#desktoploader,#desktoploader2").hide();
+                $("#docitemsloader").hide();
 
                 $(".kvadraticzastavke").on("click", function (event) {
                     $(this).addClass('btn-success').addClass('disabled').attr('disabled', 'disabled');
-                    ShowDocItem($(this).parent().attr('robaid'));
+                    ShowDocItem($(this).parent().attr('prometid'));
                 });
 
                 GetDocTotal();
@@ -266,7 +263,7 @@
     // ============================================================================= NACINI PLACANJA ...
 
     $(".naplata").click(function () {
-        $("#desktoploader,#desktoploader2").show();
+        $("#naplataloader").show();
         var strFormattedHTML = '';
         var strPrviNacinPlacanja = '';
         var i5 = 1;
@@ -283,7 +280,7 @@
                     i6 = i6 + 1;
                     strFormattedHTML = strFormattedHTML
                     + '<div class="col-lg-4 mojakolona" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<input type="number" class="input enterastab bsjPayTimeValues ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
+                    + '<input type="number" class="input enterastab bsjPayTimeValues krupnibrojevi ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
                     + '<div class="btn-primary btn-large">' + item.Naziv + '</div>'
                     + '</div></div>';
                     if (i6 == 3) { i6 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
@@ -308,7 +305,7 @@
                     SUMbsjPayTimeValues();
                 });
                 
-                $("#desktoploader,#desktoploader2").hide();
+                $("#naplataloader").hide();
 
                 GetDocTotal();
             },
@@ -429,7 +426,51 @@
         });
     }
 
-    
+    // ============================================================================= GET DOC ITEM  ...
+    function ShowDocItem(id) {
+        ShowSection('.docitemsection');
+        $("#kolicina").attr('data-id',id);
+        $("#saveqtyloader").show();
+        $.ajax({
+            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetDocumentItem&id=' + id,
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            timeout: 10000,
+            success: function (data, status) {
+                $("#saveqtyloader").hide();
+                $.each(data, function (i, item) {
+                    $("#kolicina").val(item.Kolicina);
+                });
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+            }
+        });
+
+    }
+    // ============================================================================= SPREMI KOLICINU ...
+
+    $(".spremikolicinu").click(function () {
+        SpremiKolicinu();
+    });
+
+   function SpremiKolicinu() {
+        var strFormattedHTML = '';
+        $("#saveqtyloader").show();
+        $.ajax({
+            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=SaveQty&id=' + $("#kolicina").attr('data-id') + '&qty=' + $("#kolicina").val() ,
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            timeout: 10000,
+            success: function (data, status) {
+                $("#saveqtyloader").hide();
+                GetDocumentItems();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+            }
+        });
+    }
 
     // ============================================================================= KRAJ ...
 

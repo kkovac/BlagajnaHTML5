@@ -1,38 +1,13 @@
-
-.mybigiconOLD [class^="glyphicon-"] { font-size: 24px; }
-
+#searchproductstext {  height : 2.4em; font-size : 22px; }
 .myhide { display:none; }
-
-.kontejnerodfiksiranoghedera { padding-top : 8px; padding-bottom : 8px;
-}
-.mojpanel {padding-bottom : 20px !important;
-}
-
-.iznoszanaplatu { font-weight : bold;
-}
-
-.btn-large {
-font-size: 16px !important;
-}
-
-.kvadraticzarobu, .kvadraticzastavke {
-    margin-top : 5px;
-                    overflow : hidden; 
-                    cursor : pointer;
-                }
-
-.nekikvadratic{  margin-top : 5px;
-                    overflow : hidden; 
-                    cursor : pointer;
-                }
-#searchproductstext {  height : 2.4em;
-                        font-size : 22px;
-                    }
-
-.mojtextarea {   height : 3em;
-                        font-size : 24px;
-                    }
-
+.kontejnerodfiksiranoghedera { padding-top : 8px; padding-bottom : 8px; }
+.mojpanel {padding-bottom : 20px !important;}
+.iznoszanaplatu { font-weight : bold; }
+.btn-large {font-size : 16px !important; }
+.kvadraticzarobu, .kvadraticzastavke { margin-top : 5px; overflow : hidden; cursor : pointer; }
+.nekikvadratic{  margin-top : 5px; overflow : hidden; cursor : pointer; }
+.mojtextarea { height : 3em; font-size : 24px; }
+.krupnibrojevi { font-size : 20px !important;   }
 
 .mojakolona.col-1,
 .mojakolona.col-2,
@@ -42,7 +17,8 @@ font-size: 16px !important;
 .mojakolona.col-4,
 .mojakolona.col-5,
 .mojakolona.col-6,
-.mojakolona.col-7
+.mojakolona.col-7,
+.mojakolona.col-12
  {
   padding-right: 3px !important;
   padding-left: 3px !important;

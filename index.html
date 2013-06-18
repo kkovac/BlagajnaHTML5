@@ -221,8 +221,11 @@
                    <div  class="col-4 mojakolona" >
                    <h4>Rezultati traženja</h4>
                    </div>
-                   <div  class="col-6 mojakolona" >
+                   <div  class="col-7 mojakolona" >
                    <h4> </h4>
+                   </div>
+                   <div  class="col-1 mojakolona " >
+                   <img src="assets/ajax-loader.gif" class="loadergif" id="searchloader" alt="" />
                    </div>
                </div>
             <div class="" id="searchproductlist"></div>
@@ -233,7 +236,7 @@
            <!-- STAVKE DOKUMENTA SECTION --> 
            <div id="documentitemslistwrapper" class="myhide mojpanel Transparent2 clearfix">
                <div class="Transparent2 clearfix">
-               <div  class="col-4 mojakolona" >
+               <div  class="col-3 mojakolona" >
                <h4>Stavke računa</h4> 
                </div>
                <div  class="col-2 mojakolona" >
@@ -241,6 +244,9 @@
                </div>
                <div  class="col-6 mojakolona" >
                <h4>asdfasdfsad asdfsdf.</h4> 
+               </div>
+               <div  class="col-1 mojakolona" >
+               <img src="assets/ajax-loader.gif" class="loadergif" id="docitemsloader" alt="" />
                </div>
                </div>
             <div class="clearfix    " id="documentitemslist"></div>
@@ -253,8 +259,11 @@
                    <div  class="col-4 mojakolona" >
                    <h4>Naplata</h4>
                    </div>
-                   <div  class="col-6 mojakolona" >
+                   <div  class="col-7 mojakolona" >
                    <h4> </h4>
+                   </div>
+                    <div  class="col-1 mojakolona " >
+                   <img src="assets/ajax-loader.gif" class="loadergif" id="naplataloader" alt="" />
                    </div>
                </div>
                <div class="clearfix">
@@ -435,36 +444,64 @@
                 </div>
             <!-- END OF CANCEL DOC -->
 
-            <!-- DOCITEM -->
+            <!-- DOCITEM KOLICINA -->
              <div class="myhide Transparent2 clearfix docitemsection mojpanel"  >
-                    <div class="Transparent2 clearfix">
-                        <div  class="col-4 mojakolona" >
-                        <h4>Detalji stavke</h4>
+                        <div class="Transparent2 clearfix">
+                            <div  class="col-3 mojakolona" >
+                            <h4>Detalji stavke:</h4>
+                            </div>
+                            <div  class="col-8 mojakolona" >
+                            <h4> </h4>
+                            </div>
+                            <div  class="col-1 mojakolona " >
+                            <img src="assets/ajax-loader.gif" class="loadergif" id="saveqtyloader" alt="" />
+                            </div>
                         </div>
-                        <div  class="col-6 mojakolona" >
-                        <h4> </h4>
-                        </div>
-                    </div>
-                     <div class="row clearfix">
-                          <div  class="col-6 nekikvadratic " >
-                         
-                        <ul id="myTab" class="nav nav-tabs">
-                          <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-                          <li class=""><a href="#profile" data-toggle="tab">Profile</a></li>
-                        </ul>
-                        <div id="myTabContent" class="tab-content">
-                          <div class="tab-pane fade active in" id="home">
-                            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-                          </div>
-                          <div class="tab-pane fade" id="profile">
-                            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-                          </div>
-                        </div>
-         </div>
                         
-                    </div>
+                 
+                            <ul id="myTab" class="nav nav-tabs">
+                              <li class="active"><a href="#home" data-toggle="tab">Količina</a></li>
+                              <li><a href="#profile" data-toggle="tab">Cijena</a></li>
+                              <li><a href="#profile" data-toggle="tab">Napomena</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                              <div class="tab-pane fade in active" id="home">
+                                                <div  class="col-4 nekikvadratic mojakolona" >
+                                                <div class="Transparent " >
+                                                 <form name="kolicinaform" id="kolicinaform">
+                                                      <input type="number" class="krupnibrojevi" name="kolicina" id="kolicina" data-id="0" placeholder="kolicina" / >
+                                                </form>
+                                                </div>
+                                                </div>
+                              </div>
+                              <div class="tab-pane fade" id="profile">
+                                <p>...</p>
+                              </div>
+                            </div>
+          
+ 
+                    <div class="clearfix"></div>     
+                     
+              
+                        <div  class="col-4 nekikvadratic mojakolona" >
+                            <div class="Transparent " >
+                            <div class=" btn-primary btn-large spremikolicinu " ><span  class="glyphicon glyphicon-ok"> Spremi izmjene</span></div>
+                            </div>
+                        </div>
+
+                        <div  class="col-4 nekikvadratic mojakolona" >
+                             <div class="Transparent" >
+                             <div class=" btn-success btn-large nastavidugmic  " ><span  class="glyphicon glyphicon-shopping-cart"> Odustani</span></div>
+                             </div>
+                        </div>
+                        
+                        <div  class="col-4 nekikvadratic mojakolona" >
+                             <div class="Transparent" >
+                             <div class=" btn-danger btn-large uklonistavku  " ><span  class="glyphicon glyphicon-remove"> Ukloni stavku</span></div>
+                             </div>
+                        </div>
                 </div>
-            <!-- END OF DOCITEM
+            <!-- END OF DOCITEM KOLICINA -->
 
 
 
