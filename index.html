@@ -126,7 +126,7 @@
            <div class="dugmicizaprodaju myhide mojpanel Transparent2 clearfix">
                <div class="Transparent2 clearfix">
                    <div  class="col-4 mojakolona" >
-                   <h4>Opcije računa</h4>
+                   <h4>Opcije dokumenta</h4>
                    </div>
                    <div  class="col-6 mojakolona" >
                    <h4>1234</h4>
@@ -148,7 +148,7 @@
                         </div>
                         <div  class="col-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class="btn-danger btn-large    canceldoc  " ><span  class="glyphicon glyphicon-remove"> Poništi račun</span></div>
+                             <div class="btn-danger btn-large    canceldoc  " ><span  class="glyphicon glyphicon-remove"> Poništi dokument</span></div>
                              </div>
                         </div>
                     </div>
@@ -208,9 +208,9 @@
                    </div>
               </div>
               
-                <form name="commentform" id="commentform"><textarea  rows="3" class="mojtextarea"></textarea></form>
+               <textarea  rows="3" class="mojtextarea" id="commentform"></textarea>
                     <br />
-                    <div class="btn-info btn-large col-4"><span  class="glyphicon glyphicon-ok"> Spremi napomenu</span></div>
+                    <div class="btn-info btn-large col-4 nastavidugmic" id="spreminapomenu"><span  class="glyphicon glyphicon-ok"> Spremi napomenu</span></div>
                  
             </div>
            <!-- END OF COMMENT SECTION -->
@@ -237,7 +237,7 @@
            <div id="documentitemslistwrapper" class="myhide mojpanel Transparent2 clearfix">
                <div class="Transparent2 clearfix">
                <div  class="col-3 mojakolona" >
-               <h4>Stavke računa</h4> 
+               <h4>Stavke dokumenta</h4> 
                </div>
                <div  class="col-2 mojakolona" >
                <h4>1234</h4> 
@@ -269,7 +269,7 @@
                <div class="clearfix">
                     <div  class="col-4 nekikvadratic mojakolona" >
                         <div class="Transparent" >
-                        <div class="btn-primary btn-large  btnspremiracun" id="btnspremiracun" ><span  class="glyphicon glyphicon-check"> Spremi račun</span></div>
+                        <div class="btn-primary btn-large  btnspremiracun" id="btnspremiracun" ><span  class="glyphicon glyphicon-check"> Spremi dokument</span></div>
                         </div>
                     </div>
                     <div  class="col-4 nekikvadratic mojakolona" >
@@ -279,7 +279,7 @@
                     </div>
                     <div  class="col-4 nekikvadratic mojakolona " >
                          <div class="Transparent" >
-                         <div class="btn-danger btn-large canceldoc"  ><span  class="glyphicon glyphicon-remove"> Poništi račun</span></div>
+                         <div class="btn-danger btn-large canceldoc"  ><span  class="glyphicon glyphicon-remove"> Poništi dokument</span></div>
                          </div>
                     </div>
                     <form name="naplataitemsform" id="naplataitemsform" >
@@ -320,7 +320,7 @@
                         </div>
                         <div  class="col-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class=" btn-danger btn-large    canceldoc  " ><span  class="glyphicon glyphicon-remove"> Poništi račun</span></div>
+                             <div class=" btn-danger btn-large    canceldoc  " ><span  class="glyphicon glyphicon-remove"> Poništi dokument</span></div>
                              </div>
                         </div>
                     </div>
@@ -333,7 +333,7 @@
                     </div>
                     <div  class="col-4 nekikvadratic mojakolona" >
                         <div class="Transparent" >
-                         <div class="btn-success btn-large   afterclickfocussearchproductstext"><span class="glyphicon glyphicon-list "></span> Pregled računa</div>
+                         <div class="btn-success btn-large   afterclickfocussearchproductstext"><span class="glyphicon glyphicon-list "></span> Pregled dokumenata</div>
                         </div>
                     </div>
                      <div  class="col-4 nekikvadratic mojakolona" >
@@ -421,7 +421,7 @@
            <div class="myhide Transparent2 clearfix canceldocsection mojpanel"  >
                     <div class="Transparent2 clearfix">
                         <div  class="col-4 mojakolona" >
-                        <h4>Poništiti račun ?</h4>
+                        <h4>Poništiti dokument ?</h4>
                         </div>
                         <div  class="col-6 mojakolona" >
                         <h4> </h4>
@@ -458,27 +458,47 @@
                             </div>
                         </div>
                         
-                 
-                            <ul id="myTab" class="nav nav-tabs">
-                              <li class="active"><a href="#home" data-toggle="tab">Količina</a></li>
-                              <li><a href="#profile" data-toggle="tab">Cijena</a></li>
-                              <li><a href="#profile" data-toggle="tab">Napomena</a></li>
+                 <div class="nekikvadratic Transparent">
+                
+                            <ul id="myTab" class="nav nav-tabs  ">
+                              <li class="active"><a href="#kolicinatab" data-toggle="tab">Količina</a></li>
+                              <li><a href="#popusttab" data-toggle="tab">Popust</a></li>
+                              <li><a href="#napomenastavketab" data-toggle="tab">Napomena</a></li>
                             </ul>
-                            <div id="myTabContent" class="tab-content">
-                              <div class="tab-pane fade in active" id="home">
-                                                <div  class="col-4 nekikvadratic mojakolona" >
+                            <div id="myTabContent" class="tab-content  clearfix ">
+                              <div class="tab-pane fade in active " id="kolicinatab">
+                                                <div  class="col-4 nekikvadratic mojakolona " >
                                                 <div class="Transparent " >
-                                                 <form name="kolicinaform" id="kolicinaform">
                                                       <input type="number" class="krupnibrojevi" name="kolicina" id="kolicina" data-id="0" placeholder="kolicina" / >
-                                                </form>
+                                                </div>
+                                                </div>
+                                                <div  class="col-2 nekikvadratic mojakolona " >
+                                                <div class="Transparent " >
+                                                      <div class=" btn-info btn-large pluskolicina " ><span  class="glyphicon glyphicon-plus"></span></div>
+                                                </div>
+                                                </div>
+                                                <div  class="col-2 nekikvadratic mojakolona " >
+                                                <div class="Transparent " >
+                                                      <div class=" btn-info btn-large minuskolicina " ><span  class="glyphicon glyphicon-minus"></span></div>
                                                 </div>
                                                 </div>
                               </div>
-                              <div class="tab-pane fade" id="profile">
-                                <p>...</p>
+                              <div class="tab-pane fade" id="popusttab">
+                                                <div  class="col-4 nekikvadratic mojakolona " >
+                                                <div class="Transparent " >
+                                                      <input type="number" class="krupnibrojevi" name="popust" id="popust" data-id="0" placeholder="popust %" / >
+                                                </div>
+                                                </div>
+                              </div>
+                                <div class="tab-pane fade" id="napomenastavketab">
+                                                <div  class="col-12 nekikvadratic mojakolona " >
+                                                <div class="Transparent " >
+                                                      <input type="text" class="krupnibrojevi" name="napomenastavke" id="napomenastavke" data-id="0" placeholder="napomena" / >
+                                                </div>
+                                                </div>
                               </div>
                             </div>
-          
+          </div>
  
                     <div class="clearfix"></div>     
                      

@@ -153,7 +153,7 @@
     function GetSearchProductsList() {
         var strFormattedHTML = '';
         $("#searchloader").show();
-        $("#searchproductlist").fadeTo("fast", 0);
+        $("#searchproductlist").html('');
         $.ajax({
             url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&s=' + $("#searchproductstext").val(),
             dataType: 'jsonp',
@@ -174,7 +174,6 @@
                     if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
 
-                $("#searchproductlist").fadeTo("fast", 1);
                 $("#searchproductlist").html('' + strFormattedHTML + '');
                 ShowSection('#searchproductlistwrapper,#searchproductlist');
                 $(".kvadraticzarobu").on("click", function (event) {
@@ -215,7 +214,7 @@
 
     function GetDocumentItems() {
         var strFormattedHTML = '';
-        $("#documentitemslist").html();
+        $("#documentitemslist").html('');
         $("#docitemsloader").show();
         ShowSection('#documentitemslistwrapper');
         //$("#documentitemslist").fadeTo("fast", 0);
@@ -454,11 +453,19 @@
         SpremiKolicinu();
     });
 
+    $(".pluskolicina").click(function () {
+        $("#kolicina").val(parseInt($("#kolicina").val()) + 1);
+    });
+
+    $(".minuskolicina").click(function () {
+        $("#kolicina").val(parseInt($("#kolicina").val()) - 1);
+    });
+
    function SpremiKolicinu() {
         var strFormattedHTML = '';
         $("#saveqtyloader").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=SaveQty&id=' + $("#kolicina").attr('data-id') + '&qty=' + $("#kolicina").val() ,
+            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=SaveQty&id=' + $("#kolicina").attr('data-id') + '&qty=' + $("#kolicina").val() + '&popust=' + $("#popust").val(),
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
