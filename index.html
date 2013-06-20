@@ -51,8 +51,6 @@
                    <a class="btn btn-large btn-block btn-danger mybigicon" href="#" ><span class="glyphicon glyphicon-home"></span></a> 
                 </div>
 
-                
-
                 <form name="searchproductsform" id="searchproductsform">
                     <div class="col-3 mojakolona">
                       <input type="text" class="" name="searchproductstext" id="searchproductstext" placeholder="tražilica" autofocus-old >
@@ -76,10 +74,8 @@
                          <img src="assets/ajax-loader.gif" class="loadergif" id="doctotal1loader" alt="" />
                      </button>
                 </div>   
-
            
                </div>
-
         </div>
       </div><!-- END OF FIXED HEADER -->
 
@@ -94,6 +90,11 @@
                 <form class="form-signin" id="loginform">
                     <div class="controls">
                         <div class="input-group ">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-headphones"></span></span>
+                            <input type="text" id="w" autofocus class="enterastab" name="w" placeholder="Web service">
+                        </div>
+                        <br />
+                        <div class="input-group ">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></span>
                             <input type="text" id="d" autofocus class="enterastab" name="d" placeholder="Database">
                         </div>
@@ -107,7 +108,6 @@
                             <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             <input type="password" id="p" class="col-4 enterastab" name="p" placeholder="Password">
                         </div>
-
                         <br />
                         <div class="btn-group">
                             <button type="submit" id="loginbutton" class="btn btn-success btn-large"> <span class="glyphicon glyphicon-ok"></span> OK</button>
@@ -165,23 +165,17 @@
                              </div>
                         </div>
                         <div  class="col-4 nekikvadratic mojakolona" >
-                             <div class="Transparent" >
-                             <div class="btn-info   dugmiczaprodaju newdoclist btn-large collapsebigicon"><span  class="glyphicon glyphicon-remove"> Brisanje stavke</span></div>
-                             </div>
+                              
                         </div>
                     </div>
 
                
                       <div class="clearfix ">
                         <div  class="col-4 nekikvadratic mojakolona" >
-                            <div class="Transparent" >
-                            <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon"><span  class="glyphicon glyphicon-edit"> Količina </span></div>
-                            </div>
+                             
                         </div>
                         <div  class="col-4 nekikvadratic mojakolona" >
-                             <div class="Transparent" >
-                             <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon"><span  class="glyphicon glyphicon-sort"> Popust</span></div>
-                             </div>
+                              
                         </div>
                         <div  class="col-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
@@ -231,6 +225,39 @@
             <div class="" id="searchproductlist"></div>
            </div>
            <!-- END OF REZULTATI TRAŽENJA SECTION --> 
+
+             <!-- BRZI ODABIR SECTION --> 
+           <div id="speeddial" class="myhide mojpanel Transparent2 clearfix">
+               <div class="Transparent2 clearfix">
+                    <div  class="col-3 mojakolona" >
+                    <h4>Odabir robe</h4>
+                    </div>
+                        <ul  class="nav nav-tabs  ">
+                            <li class="active col-2 mojakolona"><a href="#Atab" data-toggle="tab" id="AtabCaption" > A</a></li> 
+                            <li class="col-2 mojakolona" ><a href="#Btab" data-toggle="tab" id="BtabCaption" > B</a></li> 
+                            <li class="col-2 mojakolona"><a href="#Ctab" data-toggle="tab" id="CBtabCaption" > C</a></li>
+                            <li class="col-2 mojakolona"><a href="#Dtab" data-toggle="tab" id="DBtabCaption" > D</a></li>
+                        </ul>
+                    <div  class="col-1 mojakolona " >
+                    <img src="assets/ajax-loader.gif" class="loadergif" id="speeddialloader" alt="" />
+                    </div>
+               </div>
+               <div  class="tab-content  clearfix ">
+                    <div class="tab-pane fade in active " id="Atab">
+                               <div class="" id="searchproductlistA"></div>     
+                    </div>
+                    <div class="tab-pane fade" id="Btab">
+                               <div class="" id="searchproductlistB"></div> 
+                    </div>
+                    <div class="tab-pane fade" id="Ctab">
+                               <div class="" id="searchproductlistC"></div> 
+                    </div>
+                    <div class="tab-pane fade" id="Dtab">
+                               <div class="" id="searchproductlistD"></div> 
+                    </div>
+                </div>
+           </div>
+           <!-- END OF BRZI ODABIR SECTION --> 
 
 
            <!-- STAVKE DOKUMENTA SECTION --> 
@@ -347,12 +374,12 @@
                 <div class="clearfix">
                     <div  class="col-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="btn btn-block btn-success btn-large themedugmic">Teme</div>
+                         <div class="btn-success btn-large themedugmic"><span class="glyphicon glyphicon-tint "></span> Teme</div>
                          </div>
                     </div>
                     <div  class="col-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="btn-success btn-large uklunithemedugmic" id="themeblank" data-id="0.png" data-css="assets/css/BlagajnaHTML5FBPb.css" >Ukloni temu</div>
+                         <div class="btn-default btn-large uklunithemedugmic" id="themeblank" data-id="0.png" data-css="assets/css/BlagajnaHTML5FBPb.css" ><span class="glyphicon glyphicon-tint "></span> Ukloni temu</div>
                          </div>
                     </div>
                     
@@ -474,12 +501,12 @@
                                                 </div>
                                                 <div  class="col-2 nekikvadratic mojakolona " >
                                                 <div class="Transparent " >
-                                                      <div class=" btn-info btn-large pluskolicina " ><span  class="glyphicon glyphicon-plus"></span></div>
+                                                      <div class=" btn-info btn-large " id="pluskolicina" ><span  class="glyphicon glyphicon-plus"></span></div>
                                                 </div>
                                                 </div>
                                                 <div  class="col-2 nekikvadratic mojakolona " >
                                                 <div class="Transparent " >
-                                                      <div class=" btn-info btn-large minuskolicina " ><span  class="glyphicon glyphicon-minus"></span></div>
+                                                      <div class=" btn-info btn-large " id="minuskolicina" ><span  class="glyphicon glyphicon-minus"></span></div>
                                                 </div>
                                                 </div>
                               </div>

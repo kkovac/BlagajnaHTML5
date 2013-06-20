@@ -6,6 +6,7 @@
 
     $(".mysection,.loadergif").hide();
 
+    if ($.Storage.get("BlagajnaHTML5w") != undefined) { $("#w").val($.Storage.get("BlagajnaHTML5w")) };
     if ($.Storage.get("BlagajnaHTML5g") != undefined) { $("#g").html($.Storage.get("BlagajnaHTML5g")) };
     if ($.Storage.get("BlagajnaHTML5e") != undefined) { $("#e").val($.Storage.get("BlagajnaHTML5e")) };
     if ($.Storage.get("BlagajnaHTML5p") != undefined) { $("#p").val($.Storage.get("BlagajnaHTML5p")) };
@@ -87,8 +88,9 @@
     function Login() {
         $("#loginbutton").addClass('disabled').attr('disabled', 'disabled');
         $("#loginloadergif").show();
+        if ($("#w").val() != '') { strCrossDomainServiceURL = $("#w").val(); }
         $.ajax({
-            url: strCrossDomainServiceURL + '?a=login&' + $("#loginform").serialize(),
+            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&a=login&e=' + $("#e").val() + '&p=' + $("#p").val() ,
             type: 'POST',
             cache: false,
             dataType: 'jsonp',
@@ -101,6 +103,7 @@
                     dataBase = data.database;
                     // $("#usernamenav").html(dataBase + "|" + data.username);
                     $("#usernamenav").html(data.username);
+                    $.Storage.set({ "BlagajnaHTML5w": $("#w").val() });
                     $.Storage.set({ "BlagajnaHTML5g": $("#g").html() });
                     $.Storage.set({ "BlagajnaHTML5e": $("#e").val() });
                     $.Storage.set({ "BlagajnaHTML5p": $("#p").val() });
@@ -152,56 +155,62 @@
 
     function GetSearchProductsList() {
         var strFormattedHTML = '';
-        $("#searchloader").show();
-        $("#searchproductlist").html('');
-        $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&s=' + $("#searchproductstext").val(),
-            dataType: 'jsonp',
-            jsonp: 'jsoncallback',
-            timeout: 10000,
-            success: function (data, status) {
+        //if ($("#searchproductstext").val() == '') { ShowSection('#speeddial'); return; }
+        ShowSection('#speeddial');
+        //$("#searchproductlist").html('');
+        if ($("#searchproductstext").val() != '') {
+            $("#searchproductlistA").html('');
+            $("#speeddialloader").show();
+            $.ajax({
+                url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&s=' + $("#searchproductstext").val(),
+                dataType: 'jsonp',
+                jsonp: 'jsoncallback',
+                timeout: 10000,
+                success: function (data, status) {
+                    $("#searchproductstext").val('');
+                    var i5 = 0;
+                    $.each(data, function (i, item) {
+                        i5 = i5 + 1;
+                        strFormattedHTML = strFormattedHTML
+                        + '<div class="col-lg-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu">'
+                        + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
+                        + '<div class="btn-danger btn-large">' + item.naziv + '</div>'
+                        + 'Userid : ' + item.userid + ' '
+                        + '<br />Barcode : ' + item.barcode + ' '
+                        + '</div></div>';
+                        if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
+                    });
 
-                var i5 = 0;
-                $.each(data, function (i, item) {
-                    i5 = i5 + 1;
-                    strFormattedHTML = strFormattedHTML
-                    + '<div class="col-lg-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
-                    + '<div class="btn-danger btn-large">' + item.naziv + '</div>'
-                    + 'Userid : ' + item.userid + ' '
-                    + '<br />Barcode : ' + item.barcode + ' '
-                    + '</div></div>';
-                    if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
-                });
+                    //$("#searchproductlist").html('' + strFormattedHTML + '');
+                    $("#searchproductlistA").html('' + strFormattedHTML + '');
+                    //ShowSection('#searchproductlistwrapper,#searchproductlist');
+                    $(".kvadraticzarobu").on("click", function (event) {
+                        $(this).addClass('btn-danger').addClass('disabled').attr('disabled', 'disabled');
+                        AddProductToDocument($(this).parent().attr('robaid'));
+                    });
 
-                $("#searchproductlist").html('' + strFormattedHTML + '');
-                ShowSection('#searchproductlistwrapper,#searchproductlist');
-                $(".kvadraticzarobu").on("click", function (event) {
-                    $(this).addClass('btn-danger').addClass('disabled').attr('disabled', 'disabled');
-                    AddProductToDocument($(this).parent().attr('robaid'));
-                });
+                    $("#speeddialloader").hide();
 
-                $("#searchloader").hide();
-
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                //alert(thrownError);
-            }
-        });
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    //alert(thrownError);
+                }
+            });
+        }
         
     }
 
     // ============================================================================= DODAJ ROBU NA DOKUMENT ...
 
     function AddProductToDocument(robaid) {
-            $("#desktoploader,#desktoploader2").show();
+            $("#docitemsloader").show();
             $.ajax({
-                url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=AddProductToDocument&robaid=' + robaid,
+                url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=AddProductToDocument&robaid=' + robaid,
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
                 timeout: 10000,
                 success: function (data, status) {
-                    $("#desktoploader,#desktoploader2").hide();
+                    $("#docitemsloader").hide();
                     GetDocumentItems();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -219,7 +228,7 @@
         ShowSection('#documentitemslistwrapper');
         //$("#documentitemslist").fadeTo("fast", 0);
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetDocumentItems' ,
+            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocumentItems' ,
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -268,7 +277,7 @@
         var i5 = 1;
         ShowSection('#naplataitemslistwrapper');
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetNacinPlac',
+            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetNacinPlac',
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -321,7 +330,7 @@
         $("#doctotal1").hide();
         $("#doctotal1loader").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetDocTotal',
+            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocTotal',
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -378,7 +387,7 @@
         var strFormattedHTML = '';
         $("#desktoploader,#desktoploader2").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=SaveDoc&' + $("#naplataitemsform").serialize(),
+            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=SaveDoc&' + $("#naplataitemsform").serialize(),
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -411,7 +420,7 @@
         var strFormattedHTML = '';
         $("#desktoploader,#desktoploader2").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=CancelDoc' ,
+            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=CancelDoc' ,
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -431,7 +440,7 @@
         $("#kolicina").attr('data-id',id);
         $("#saveqtyloader").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=GetDocumentItem&id=' + id,
+            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocumentItem&id=' + id,
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -453,11 +462,11 @@
         SpremiKolicinu();
     });
 
-    $(".pluskolicina").click(function () {
+    $("#pluskolicina").click(function () {
         $("#kolicina").val(parseInt($("#kolicina").val()) + 1);
     });
 
-    $(".minuskolicina").click(function () {
+    $("#minuskolicina").click(function () {
         $("#kolicina").val(parseInt($("#kolicina").val()) - 1);
     });
 
@@ -465,7 +474,7 @@
         var strFormattedHTML = '';
         $("#saveqtyloader").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").html() + '&g=' + $("#g").html() + '&a=SaveQty&id=' + $("#kolicina").attr('data-id') + '&qty=' + $("#kolicina").val() + '&popust=' + $("#popust").val(),
+            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=SaveQty&id=' + $("#kolicina").attr('data-id') + '&qty=' + $("#kolicina").val() + '&popust=' + $("#popust").val(),
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -517,6 +526,7 @@
         $(".dugmicizaprodaju").hide();
         $(".canceldocsection").hide();
         $(".docitemsection").hide();
+        $("#speeddial").hide();
         $(sectionname).show();
        // $("#searchproductstext").focus();
     }

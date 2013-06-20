@@ -45,8 +45,9 @@
         cs = "DRIVER={SQL Server};SERVER=JUPITER2008R2;UID=sa;PWD=;DATABASE=" & database & ";"
     else
         ' ako imam sql login onda idem preko njega
-        database = SQLLogin & "dddd"
-        cs = "Driver={SQL Server};UID=" & SQLLogin & ";PWD=" & SQLLoginPass & ";"
+        database = SQLLogin 
+        'cs = "Driver={SQL Server};UID=" & SQLLogin & ";PWD=" & SQLLoginPass & ";"
+        cs = "DRIVER={SQL Server};SERVER=JUPITER2008R2;UID=sa;PWD=;DATABASE=" & database & ";"
     end if
   
     OpenDBConnection  
@@ -56,11 +57,33 @@
     if action="GetNacinPlac" then GetNacinPlac
     if action="AddProductToDocument" then AddProductToDocument
     if action="GetDocumentItems" then GetDocumentItems
+    if action="GetDocumentItem" then GetDocumentItem
     if action="SaveDoc" then SaveDoc
+    if action="SaveQty" then SaveQty
     if action="GetDocTotal" then GetDocTotal
+    if action="CancelDoc" then CancelDoc
     
     CloseDBConnection
  
+
+sub SaveQty
+    on error resume next
+    if CheckGUID = "" then 
+        response.Write ""
+        exit sub
+    end if
+    sql = "update tempp set kolicina=" & Replace(readx2("Qty",0), ",", ".") & " where prometid=" & id
+    err.Clear
+    conn.execute(sql)
+    if err.number <> 0 then
+        sql = "select  '" & err.number & "' as errnumber,'" & err.Description & "' as errdescription"
+        else
+        sql = "select  '0' as errnumber,'' as errdescription"
+    end if
+    CROSSDOMAIN_SqlToJSON(sql)
+end sub
+
+
 sub SaveDoc
     on error resume next
 
@@ -196,15 +219,20 @@ sub AddProductToDocument
              err.Clear
            
              sql1 = "select robaid,coalesce(mpcijena,0) as [mpcijena],jm,tarifaid,coalesce(proizvodind,0) as [proizvodind], porezpp, coalesce(porezippid,0) as porezippid from roba where robaid=" &  robaid 
+             'response.write sql1
+             'response.end
              Set trs = Conn.Execute(sql1)
+             if not trs.eof then
+                mpcijena = trs("mpcijena")
+             end if
              err.Clear
    
                 sql2 = "insert into tempp" & _
-                      " (Robaid,MPCijena,MPCijenaOrg,Kolicina,Partneriid,Operateriid," & _
+                      " (Robaid,CijAmb,MPCijena,MPCijenaOrg,Kolicina,Partneriid,Operateriid," & _
                       " DatumDok,Za_Platiti,IznNacin," & _
                       " SifraNacinPlac,MjeSif,Rabat,tarifaid,vrijeme,BrojDok,kasa,Rabat1,Rabat2,Opis,BrojRata,donoskasa,donosprometid,brojbodova,brojbodovaprije,rabatnom, porezpp, porezippid, iznospp, ssoperateriid, ugovoriid) " & _
                       " values(" & robaid & _
-                      "," & Replace(mpcijena, ",", ".") & _
+                      ",0," & Replace(mpcijena, ",", ".") & _
                       "," & Replace(mpcijena, ",", ".") & _
                       "," & Replace(DefoltnaKolicina, ",", ".") & _
                       "," & Partneriid & _
@@ -216,15 +244,30 @@ sub AddProductToDocument
            
                 Conn.Execute (sql2)
 
-         ' response.write sql2
-         ' response.end
+          'response.write sql2
+          'response.end
      
-          sql = "select  '" & err.number & "' as errnumber"
-          CROSSDOMAIN_SqlToJSON(sql)
+          if err.number <> 0 then
+                sql = "select  '" & err.number & "' as errnumber,'" & err.Description & "' as errdescription"
+                else
+                sql = "select  '0' as errnumber,'' as errdescription"
+          end if
 
+          CROSSDOMAIN_SqlToJSON(sql)
     
 end sub
-    
+
+sub CancelDoc
+        on error resume next
+        sql = "delete from tempp"
+        conn.execute(sql)
+        if err.number <> 0 then
+            sql = "select  '" & err.number & "' as errnumber,'" & err.Description & "' as errdescription"
+            else
+            sql = "select  '0' as errnumber,'' as errdescription"
+        end if
+        CROSSDOMAIN_SqlToJSON(sql)
+end sub
 
 sub GetDocTotal
         on error resume next
@@ -239,6 +282,12 @@ end sub
 
 sub GetDocumentItems
     sql = "spPrikaz @operateriid=" & CheckGUID()
+    CROSSDOMAIN_SqlToJSON(sql)
+end sub
+
+    
+sub GetDocumentItem
+    sql = "select Kolicina,MPCijena from tempp where prometid=" & id
     CROSSDOMAIN_SqlToJSON(sql)
 end sub
     
