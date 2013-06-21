@@ -18,21 +18,21 @@
  under the License.
 -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
-        id        = "io.cordova.helloCordova"
+        id        = "HTML5POS"
         version   = "2.0.0">
-    <name>Hello Cordova</name>
+    <name>Hello POS</name>
 
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        HTML5 POS
     </description>
 
-    <author href="http://cordova.io" email="dev@cordova.apache.org">
-        Apache Cordova Team
+    <author href="kovack" email="kovack@gmail.com">
+        kovack
     </author>
 
     <access origin="*"/>
 
-    <!-- <content src="http://mysite.com/myapp.html" /> for external pages -->
+    <!-- <content src="http://www." /> for external pages -->
     <content src="index.html" />
 
     <preference name="loglevel" value="DEBUG" />
