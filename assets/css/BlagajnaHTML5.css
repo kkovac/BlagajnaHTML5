@@ -1,7 +1,7 @@
 #searchproductstext {  height : 2.4em; font-size : 22px; }
 .myhide { display:none; }
 .kontejnerodfiksiranoghedera { padding-top : 8px; padding-bottom : 8px; }
-.mojpanel {padding-bottom : 20px !important;}
+.mojpanel {padding-bottom : 20px !important;  }
 .iznoszanaplatu { font-weight : bold; }
 .btn-large {font-size : 16px !important; }
 .kvadraticzarobu, .kvadraticzastavke { margin-top : 5px; overflow : hidden; cursor : pointer; }

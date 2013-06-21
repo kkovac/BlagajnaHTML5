@@ -232,15 +232,17 @@
                     <div  class="col-3 mojakolona" >
                     <h4>Odabir robe</h4>
                     </div>
-                        <ul  class="nav nav-tabs  ">
-                            <li class="active col-2 mojakolona"><a href="#Atab" data-toggle="tab" id="AtabCaption" > A</a></li> 
-                            <li class="col-2 mojakolona" ><a href="#Btab" data-toggle="tab" id="BtabCaption" > B</a></li> 
-                            <li class="col-2 mojakolona"><a href="#Ctab" data-toggle="tab" id="CBtabCaption" > C</a></li>
-                            <li class="col-2 mojakolona"><a href="#Dtab" data-toggle="tab" id="DBtabCaption" > D</a></li>
-                        </ul>
-                    <div  class="col-1 mojakolona " >
+                   <div  class="col-1 mojakolona pull-right " >
                     <img src="assets/ajax-loader.gif" class="loadergif" id="speeddialloader" alt="" />
                     </div>
+
+                        <ul  class="nav nav-tabs" id="speeddialsection">
+                            <li class="active col-2 mojakolona"><a href="#Atab" data-toggle="tab" data-tag="A" id="AtabCaption" > 1 </a></li> 
+                            <li class="col-2 mojakolona" ><a href="#Btab" data-toggle="tab" data-tag="B" id="BtabCaption" > 2 </a></li> 
+                            <li class="col-2 mojakolona"><a href="#Ctab" data-toggle="tab" data-tag="C" id="CtabCaption" > 3 </a></li>
+                            <li class="col-2 mojakolona"><a href="#Dtab" data-toggle="tab" data-tag="D" id="DtabCaption" > 4 </a></li>
+                        </ul>
+                    
                </div>
                <div  class="tab-content  clearfix ">
                     <div class="tab-pane fade in active " id="Atab">
@@ -284,7 +286,7 @@
             <div id="naplataitemslistwrapper" class="myhide Transparent2 clearfix mojpanel">
                 <div class="Transparent2 clearfix zaglavljesekcije">
                    <div  class="col-4 mojakolona" >
-                   <h4>Naplata</h4>
+                   <h4>Zaključi dokument</h4>
                    </div>
                    <div  class="col-7 mojakolona" >
                    <h4> </h4>
@@ -477,21 +479,22 @@
                             <div  class="col-3 mojakolona" >
                             <h4>Detalji stavke:</h4>
                             </div>
-                            <div  class="col-8 mojakolona" >
-                            <h4> </h4>
-                            </div>
-                            <div  class="col-1 mojakolona " >
+
+                            <div  class="col-1 mojakolona pull-right " >
                             <img src="assets/ajax-loader.gif" class="loadergif" id="saveqtyloader" alt="" />
                             </div>
+
+                             <ul id="myTab" class="nav nav-tabs  ">
+                              <li class="active col-2 mojakolona"><a href="#kolicinatab" data-toggle="tab">Količina</a></li>
+                              <li class="col-2 mojakolona "><a href="#popusttab" data-toggle="tab">Popust</a></li>
+                              <li class="col-2 mojakolona "><a href="#napomenastavketab" data-toggle="tab">Napomena</a></li>
+                            </ul>
+                            
                         </div>
                         
-                 <div class="nekikvadratic Transparent">
                 
-                            <ul id="myTab" class="nav nav-tabs  ">
-                              <li class="active"><a href="#kolicinatab" data-toggle="tab">Količina</a></li>
-                              <li><a href="#popusttab" data-toggle="tab">Popust</a></li>
-                              <li><a href="#napomenastavketab" data-toggle="tab">Napomena</a></li>
-                            </ul>
+                 <br/>
+                           
                             <div id="myTabContent" class="tab-content  clearfix ">
                               <div class="tab-pane fade in active " id="kolicinatab">
                                                 <div  class="col-4 nekikvadratic mojakolona " >
@@ -525,11 +528,11 @@
                                                 </div>
                               </div>
                             </div>
-          </div>
+          
  
                     <div class="clearfix"></div>     
                      
-              
+              <br/>
                         <div  class="col-4 nekikvadratic mojakolona" >
                             <div class="Transparent " >
                             <div class=" btn-primary btn-large spremikolicinu " ><span  class="glyphicon glyphicon-ok"> Spremi izmjene</span></div>

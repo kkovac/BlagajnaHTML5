@@ -3,6 +3,7 @@
     var strCrossDomainServiceURL = 'http://www.spin.hr/ng/posservice/';
     var stPicturesURL = 'http://127.0.0.1/BlagajnaHTML5/assets/pic/';
     var dataBase = '';
+    var speeddialsection = 'A';
 
     $(".mysection,.loadergif").hide();
 
@@ -28,7 +29,7 @@
         }
     });
 
-    //Login();
+    Login();
 
     //    ================================================================= theme
 
@@ -60,22 +61,11 @@
     }, function () {
         if ($(this).hasClass('img-thumbnail2') == false) { $(this).animate({ opacity: 0.3 }, 100) };
     });
-
-    
+        
     $('.themedugmic').click(function () {
-        //$("#themelist").toggle('');
         ShowSection('#themelist');
     });
-
-    //    ================================================================= home 
-    $(".brand").click(function () {
-        $(".navbutton").removeClass('active');
-        $(".brand").addClass('active');
-        $(".mysection").hide();
-        $("#brandsection").show();
-        if ($("#messagelist").html() != '') { GetMessages(); }
-    });
-
+    
     function GetMessages() {
         return
     }
@@ -108,12 +98,12 @@
                     $.Storage.set({ "BlagajnaHTML5e": $("#e").val() });
                     $.Storage.set({ "BlagajnaHTML5p": $("#p").val() });
                     $.Storage.set({ "BlagajnaHTML5d": $("#d").val() });
+                    if ($.Storage.get("AtabCaption") != undefined) { $("#AtabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $.Storage.get("AtabCaption")) };
+                    if ($.Storage.get("BtabCaption") != undefined) { $("#BtabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $.Storage.get("BtabCaption")) };
+                    if ($.Storage.get("CtabCaption") != undefined) { $("#CtabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $.Storage.get("CtabCaption")) };
+                    if ($.Storage.get("DtabCaption") != undefined) { $("#DtabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $.Storage.get("DtabCaption")) };
                     $("#loginsection,#btnspremiracun").hide();
                     $("#doccursection").show('slow');
-                    //DocList();
-                    //NewDocList();
-                    //$(".brand").trigger('click');
-                    //GetDocTotal();
                     GetDocumentItems();
                 } else
                 { $("#loginbutton").removeClass('disabled').removeAttr('disabled', 'disabled'); }
@@ -145,21 +135,22 @@
     });
 
     // ============================================================================= TRAŽILICA ROBE ...
-    $(".afterclickfocussearchproductstext").click(function () {
-        //$("#searchproductstext").focus();
+    $(".afterclickfocussearchproductstext").click(function () { 
+        //$("#searchproductstext").focus();  
     });
-
-    $("#searchproductsbutton").click(function () {
-        GetSearchProductsList();
+    $("#searchproductsbutton").click(function () { GetSearchProductsList();  });
+    $("#searchproductstext").click(function () { GetSearchProductsList(); });
+    $("#speeddialsection li a").click(function () {
+        speeddialsection = $(this).attr('data-tag');
+        if ($("#searchproductlist" + speeddialsection).text() == '') { $("#searchproductstext").val($(this).text()); GetSearchProductsList(); }
     });
 
     function GetSearchProductsList() {
         var strFormattedHTML = '';
-        //if ($("#searchproductstext").val() == '') { ShowSection('#speeddial'); return; }
+        var speeddialsectioncookie = 'A';
         ShowSection('#speeddial');
-        //$("#searchproductlist").html('');
         if ($("#searchproductstext").val() != '') {
-            $("#searchproductlistA").html('');
+            $("#searchproductlist" + speeddialsection).html('');
             $("#speeddialloader").show();
             $.ajax({
                 url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&s=' + $("#searchproductstext").val(),
@@ -167,12 +158,15 @@
                 jsonp: 'jsoncallback',
                 timeout: 10000,
                 success: function (data, status) {
+                    $("#" + speeddialsection + "tabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $("#searchproductstext").val());
+                    speeddialsectioncookie = speeddialsection + "tabCaption";
+                    $.Storage.set(speeddialsectioncookie , $("#searchproductstext").val());
                     $("#searchproductstext").val('');
                     var i5 = 0;
                     $.each(data, function (i, item) {
                         i5 = i5 + 1;
                         strFormattedHTML = strFormattedHTML
-                        + '<div class="col-lg-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu">'
+                        + '<div class="col-lg-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu kvadraticzarobu' + speeddialsection + '">'
                         + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
                         + '<div class="btn-danger btn-large">' + item.naziv + '</div>'
                         + 'Userid : ' + item.userid + ' '
@@ -180,24 +174,18 @@
                         + '</div></div>';
                         if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                     });
-
-                    //$("#searchproductlist").html('' + strFormattedHTML + '');
-                    $("#searchproductlistA").html('' + strFormattedHTML + '');
-                    //ShowSection('#searchproductlistwrapper,#searchproductlist');
-                    $(".kvadraticzarobu").on("click", function (event) {
+                    $("#searchproductlist" + speeddialsection).html('' + strFormattedHTML + '');
+                    $(".kvadraticzarobu" + speeddialsection).on("click", function (event) {
                         $(this).addClass('btn-danger').addClass('disabled').attr('disabled', 'disabled');
                         AddProductToDocument($(this).parent().attr('robaid'));
                     });
-
                     $("#speeddialloader").hide();
-
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     //alert(thrownError);
                 }
             });
         }
-        
     }
 
     // ============================================================================= DODAJ ROBU NA DOKUMENT ...
@@ -226,14 +214,12 @@
         $("#documentitemslist").html('');
         $("#docitemsloader").show();
         ShowSection('#documentitemslistwrapper');
-        //$("#documentitemslist").fadeTo("fast", 0);
         $.ajax({
             url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocumentItems' ,
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
             success: function (data, status) {
-
                 var i5 = 0;
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
@@ -247,25 +233,18 @@
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
-
-                //$("#documentitemslist").fadeTo("fast", 1);
                 $("#documentitemslist").html('' + strFormattedHTML + '');
-
                 $("#docitemsloader").hide();
-
                 $(".kvadraticzastavke").on("click", function (event) {
                     $(this).addClass('btn-success').addClass('disabled').attr('disabled', 'disabled');
                     ShowDocItem($(this).parent().attr('prometid'));
                 });
-
                 GetDocTotal();
-
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 //alert(thrownError);
             }
         });
-
     }
 
     // ============================================================================= NACINI PLACANJA ...
@@ -293,18 +272,14 @@
                     + '</div></div>';
                     if (i6 == 3) { i6 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
-
                 $("#naplataitemslist").html( strFormattedHTML );
-
                 $("#btnspremiracun").show();
-
                 $(".bsjPayTimeValues").on('change', function (event) {
                     if (isNaN(parseFloat(this.value))) return;
                     this.value = parseFloat(this.value).toFixed(2);
                     $(".bsjDocTotal2").val((parseFloat($("#bsjDocTotal6").val()).toFixed(2) - SUMbsjPayTimeValuesExceptFirst()).toFixed(2));
                     SUMbsjPayTimeValues();
                 });
-
                 $(".bsjPayTimeButton").on('click', function (event) {
                     $(".bsjPayTimeButton").removeClass('btn-danger');
                     $(this).addClass('btn-danger');
@@ -312,9 +287,7 @@
                     $("#PayTime" + $(this).attr('tid')).val($("#bsjDocTotal6").val());
                     SUMbsjPayTimeValues();
                 });
-                
                 $("#naplataloader").hide();
-
                 GetDocTotal();
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -335,16 +308,12 @@
             jsonp: 'jsoncallback',
             timeout: 10000,
             success: function (data, status) {
-
                 $.each(data, function (i, item) {
-                     
                     $("#doctotal1").html('' + item.doctotal + '<span class="hidden-phone"></span>');
                     $(".bsjDocTotal2,#bsjDocTotal6").val(item.doctotal);
                 });
-
                 $("#doctotal1loader").hide();
                 $("#doctotal1").show('slow');
-
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
@@ -392,11 +361,9 @@
             jsonp: 'jsoncallback',
             timeout: 10000,
             success: function (data, status) {
-
                 $.each(data, function (i, item) {
                     if (item.errnumber == '0') { $(".nastavidugmic").trigger('click') } else { alert(item.errdescription)}
                 });
-
                 $("#desktoploader,#desktoploader2").hide();
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -404,7 +371,6 @@
             }
         });
     }
-
 
     // ============================================================================= CANCEL DOCUMENT ...
 
@@ -454,8 +420,8 @@
                 alert(thrownError);
             }
         });
-
     }
+
     // ============================================================================= SPREMI KOLICINU ...
 
     $(".spremikolicinu").click(function () {
@@ -489,7 +455,6 @@
     }
 
     // ============================================================================= KRAJ ...
-
     
     $(".pokaziopcijedokumenta").click(function () {
         ShowSection('.dugmicizaprodaju');  
@@ -533,15 +498,11 @@
    
     // ============================================================================= 
 
-
     $(".butonzakomentiranje").click(function () {
         //$("#doccursection").hide();
         //$(".dugmiczaprodaju").hide('slow');
         ShowSection('#commentsection');
     });
-    
-
-
 
 });                                           // end of document ready
    
