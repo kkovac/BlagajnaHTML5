@@ -13,6 +13,7 @@
     if ($.Storage.get("BlagajnaHTML5p") != undefined) { $("#p").val($.Storage.get("BlagajnaHTML5p")) };
     if ($.Storage.get("BlagajnaHTML5d") != undefined) { $("#d").val($.Storage.get("BlagajnaHTML5d")) };
 
+
     $("input[type=text]").focus(function() { $(this).select(); });
     $("input[type=text]").mouseup(function (e) { e.preventDefault(); });
 
@@ -29,7 +30,7 @@
         }
     });
 
-    //Login();
+    Login();
 
     //    ================================================================= theme
 
@@ -105,6 +106,7 @@
                     $("#loginsection,#btnspremiracun").hide();
                     $("#doccursection").show('slow');
                     GetDocumentItems();
+                    GetStolovi();
                 } else
                 { $("#loginbutton").removeClass('disabled').removeAttr('disabled', 'disabled'); }
                 $("#loginloadergif").hide();
@@ -246,6 +248,45 @@
             }
         });
     }
+
+    
+
+    // ============================================================================= STOLOVI ...
+
+    function GetStolovi() {
+        $("#naplataloader").show();
+        var strFormattedHTML = '';
+        $.ajax({
+            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetStolovi',
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            timeout: 10000,
+            success: function (data, status) {
+                 $.each(data, function (i, item) {
+                    strFormattedHTML = strFormattedHTML
+                    + '<div class="col-lg-4 mojakolona " id="' + item.mpstoloviid + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="btn-default btn-large btnStol" brojstola="' + item.broj + '" >' + '[' + item.broj + '] ' + item.opis + '</div>'
+                    + '</div></div>';
+                 });
+
+                 $("#stolovilist").html(strFormattedHTML);
+              
+                $(".btnStol").on('click', function (event) {
+                    $(".btnStol").removeClass('btn-danger');
+                    $(this).addClass('btn-danger');
+                    $.Storage.set({ "brojstola": $(this).attr('brojstola') });
+                    $("#brojstola").html($(this).attr('brojstola'));
+                });
+               
+                if ($.Storage.get("brojstola") != undefined) { $("#brojstola").html($.Storage.get("brojstola")); $(".btnStol[brojstola='" + $.Storage.get("brojstola") + "']").addClass('btn-danger'); } else { $("#brojstola").html('1'); $(".btnStol[brojstola='1']").addClass('btn-danger'); };
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //alert(thrownError);
+            }
+        });
+    } 
+
 
     // ============================================================================= NACINI PLACANJA ...
 

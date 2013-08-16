@@ -63,7 +63,7 @@
                                 <button type="button" class="btn btn-block btn-large hidden-phone btn-success mybigicon  pokazistavkedokumenta" id="Button2"><span class="glyphicon glyphicon-shopping-cart"></span></button>
                     </div>
                     <div class="col-1 mojakolona">
-                                <button type="button" class="btn btn-block btn-large hidden-phone btn-info mybigicon  pokaziopcijedokumenta" id="Button3"><span class="glyphicon glyphicon-th-large"></span></button>
+                                <button type="button" class="btn btn-block btn-large hidden-phone btn-info mybigicon  pokaziopcijedokumenta" id="Button3"><span class="glyphicon glyphicon-th-large"></span> <span id="brojstola" class="iznoszanaplatu" /></button>
                      </div>
                 </form>
              
@@ -124,21 +124,27 @@
 
             <!--OPCIJE DOKUMENTA -->
            <div class="dugmicizaprodaju myhide mojpanel Transparent2 clearfix">
-               <div class="Transparent2 clearfix">
-                   <div  class="col-4 mojakolona" >
-                   <h4>Opcije dokumenta</h4>
-                   </div>
-                   <div  class="col-6 mojakolona" >
-                   <h4>1234</h4>
-                   </div>
-               </div>
                
-                 <div class="">
+               
+                 
+
+                            <!-- STOLOVI -->
+                
+                               <div class="Transparent2 clearfix">
+                                   <div  class="col-4 mojakolona" >
+                                   <h4>Stolovi</h4>
+                                   </div>
+                                   <div  class="col-6 mojakolona" >
+                                   <h4>...</h4>
+                                   </div>
+                               </div>
+
+               <div class="">
                      
                      <div class="clearfix">
                         <div  class="col-4 nekikvadratic mojakolona" >
                             <div class="Transparent" >
-                            <div class="btn-primary btn-large  naplata  "  ><span  class="glyphicon glyphicon-share-alt"> Naplata</span></div>
+                            <div class="btn-primary btn-large  naplata  "  ><span  class="glyphicon glyphicon-share-alt"> Zaključi dokument</span></div>
                             </div>
                         </div>
                         <div  class="col-4 nekikvadratic mojakolona" >
@@ -147,45 +153,18 @@
                              </div>
                         </div>
                         <div  class="col-4 nekikvadratic mojakolona" >
-                             <div class="Transparent" >
-                             <div class="btn-danger btn-large    canceldoc  " ><span  class="glyphicon glyphicon-remove"> Poništi dokument</span></div>
-                             </div>
-                        </div>
-                    </div>
-
-                     <div class="clearfix ">
-                        <div  class="col-4 nekikvadratic mojakolona" >
-                            <div class="Transparent" >
-                            <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon"><span  class="glyphicon glyphicon-book"> Kartica</span></div>
-                            </div>
-                        </div>
-                        <div  class="col-4 nekikvadratic mojakolona" >
-                             <div class="Transparent" >
-                             <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon"><span  class="glyphicon glyphicon-user"> Partner</span></div>
-                             </div>
-                        </div>
-                        <div  class="col-4 nekikvadratic mojakolona" >
-                              
-                        </div>
-                    </div>
-
-               
-                      <div class="clearfix ">
-                        <div  class="col-4 nekikvadratic mojakolona" >
                              
                         </div>
-                        <div  class="col-4 nekikvadratic mojakolona" >
-                              
-                        </div>
-                        <div  class="col-4 nekikvadratic mojakolona" >
-                             <div class="Transparent" >
-                             <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon butonzakomentiranje"><span  class="glyphicon glyphicon-comment"> Napomena</span></div>
-                             </div>
-                        </div>
                     </div>
-    
+
+
                 
                </div>
+               
+                               <div class="" id="stolovilist"></div>
+
+                            <!-- END OF STOLOVI -->
+
           </div>
             <!-- END OF OPCIJE DOKUMENTA -->
             
@@ -307,12 +286,12 @@
                          </div>
                     </div>
                     <div  class="col-4 nekikvadratic mojakolona " >
-                         <div class="Transparent" >
-                         <div class="btn-danger btn-large canceldoc"  ><span  class="glyphicon glyphicon-remove"> Poništi dokument</span></div>
-                         </div>
+                         
                     </div>
                     <form name="naplataitemsform" id="naplataitemsform" >
-                        <div class="" id="naplataitemslist"></div>
+                             <div class="clearfix" ></div>
+                                 <div class="" id="naplataitemslist"></div>
+                              
                     </form>
                 </div>
             </div>
@@ -339,7 +318,7 @@
                     <div class="  clearfix">
                         <div  class="col-4 nekikvadratic mojakolona" >
                             <div class="Transparent " >
-                            <div class=" btn-primary btn-large   naplata " ><span  class="glyphicon glyphicon-share-alt"> Naplata</span></div>
+                            <div class=" btn-primary btn-large   naplata " ><span  class="glyphicon glyphicon-share-alt"> Zaključi dokument</span></div>
                             </div>
                         </div>
                         <div  class="col-4 nekikvadratic mojakolona" >
@@ -357,7 +336,7 @@
                  <div class="clearfix">
                      <div  class="col-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="btn-info btn-large  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Opcije dokumenta</div>
+                         <div class="btn-info btn-large  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Stolovi</div>
                          </div>
                     </div>
                     <div  class="col-4 nekikvadratic mojakolona" >
@@ -371,6 +350,25 @@
                         </div>
                     </div>
                 </div>
+
+                     
+                     <div class="clearfix ">
+                        <div  class="col-4 nekikvadratic mojakolona" >
+                            <div class="Transparent" >
+                            <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon"><span  class="glyphicon glyphicon-book"> Kartica</span></div>
+                            </div>
+                        </div>
+                        <div  class="col-4 nekikvadratic mojakolona" >
+                             <div class="Transparent" >
+                             <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon"><span  class="glyphicon glyphicon-user"> Partner</span></div>
+                             </div>
+                        </div>
+                         <div  class="col-4 nekikvadratic mojakolona" >
+                             <div class="Transparent" >
+                             <div class="btn-info   dugmiczaprodaju doccur btn-large collapsebigicon butonzakomentiranje"><span  class="glyphicon glyphicon-comment"> Napomena</span></div>
+                             </div>
+                        </div>
+                    </div>
 
 
                 <div class="clearfix">
