@@ -1,24 +1,22 @@
-#searchproductstext {  height : 2.4em; font-size : 22px; }
 .myhide { display:none; }
-.kontejnerodfiksiranoghedera { padding-top : 8px; padding-bottom : 8px; }
-.mojpanel {padding-bottom : 20px !important;  }
+.kontejnerodfiksiranoghedera { padding-top : 5px; padding-bottom : 5px; }
+.mojpanel {padding-bottom : 15px !important;  }
 .iznoszanaplatu { font-weight : bold; }
-.btn-large {font-size : 16px !important; }
 .kvadraticzarobu, .kvadraticzastavke { margin-top : 5px; overflow : hidden; cursor : pointer; }
 .nekikvadratic{  margin-top : 5px; overflow : hidden; cursor : pointer; }
 .mojtextarea { height : 3em; font-size : 24px; }
-.krupnibrojevi { font-size : 20px !important;   }
 
-.mojakolona.col-1,
-.mojakolona.col-2,
-.mojakolona.col-3,
-.mojakolona.col-lg-3,
-.mojakolona.col-lg-4,
-.mojakolona.col-4,
-.mojakolona.col-5,
-.mojakolona.col-6,
-.mojakolona.col-7,
-.mojakolona.col-12
+
+.mojakolona.col-xs-1,
+.mojakolona.col-xs-2,
+.mojakolona.col-xs-3,
+.mojakolona.col-sm-3,
+.mojakolona.col-sm-4,
+.mojakolona.col-xs-4,
+.mojakolona.col-xs-5,
+.mojakolona.col-xs-6,
+.mojakolona.col-xs-7,
+.mojakolona.col-xs-12
  {
   padding-right: 3px !important;
   padding-left: 3px !important;

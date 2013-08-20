@@ -1,5 +1,6 @@
-﻿$(document).ready(function() {
+﻿$(document).ready(function () {
 
+    var POSType = 'N'; // N - samo narudžbe , blank je defoltni normalni POS
     var strCrossDomainServiceURL = 'http://www.spin.hr/ng/posservice/';
     var stPicturesURL = 'http://127.0.0.1/BlagajnaHTML5/assets/pic/';
     var dataBase = '';
@@ -168,9 +169,9 @@
                     $.each(data, function (i, item) {
                         i5 = i5 + 1;
                         strFormattedHTML = strFormattedHTML
-                        + '<div class="col-lg-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu kvadraticzarobu' + speeddialsection + '">'
+                        + '<div class="col-sm-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu kvadraticzarobu' + speeddialsection + '">'
                         + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
-                        + '<div class="btn-danger btn-large">' + item.naziv + '</div>'
+                        + '<div class="btn-danger btn-lg">' + item.naziv + '</div>'
                         + 'Userid : ' + item.userid + ' '
                         + '<br />Barcode : ' + item.barcode + ' '
                         + '</div></div>';
@@ -226,12 +227,12 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-lg-3  mojakolona" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke">'
+                    + '<div class="col-sm-3  mojakolona" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke">'
                     + '<h5>'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.Količina1000 + ' = ' + item.Iznos1400
                     + '</h5>' + ' '
-                    + '<div class="btn-success btn-large">' + item.Roba5400 + '</div>'
+                    + '<div class="btn-success btn-lg">' + item.Roba5400 + '</div>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
@@ -264,8 +265,8 @@
             success: function (data, status) {
                  $.each(data, function (i, item) {
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-lg-4 mojakolona " id="' + item.mpstoloviid + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<div class="btn-default btn-large btnStol" brojstola="' + item.broj + '" >' + '[' + item.broj + '] ' + item.opis + '</div>'
+                    + '<div class="col-sm-4 mojakolona " id="' + item.mpstoloviid + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="btn btn-default btn-block btn-lg btnStol" brojstola="' + item.broj + '" >' + '[' + item.broj + '] ' + item.opis + '</div>'
                     + '</div></div>';
                  });
 
@@ -307,9 +308,9 @@
                     if (i5 == 1) { i5 = 0; strPrviNacinPlacanja = 'bsjDocTotal2'; } else { strPrviNacinPlacanja = '' }
                     i6 = i6 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-lg-4 mojakolona" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<input type="number" class="input enterastab bsjPayTimeValues krupnibrojevi ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
-                    + '<div class="btn-primary btn-large">' + item.Naziv + '</div>'
+                    + '<div class="col-sm-4 mojakolona" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<input type="number" class="form-control input-lg enterastab bsjPayTimeValues' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
+                    + '<div class="btn-primary btn-lg">' + item.Naziv + '</div>'
                     + '</div></div>';
                     if (i6 == 3) { i6 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
@@ -397,7 +398,7 @@
         var strFormattedHTML = '';
         $("#desktoploader,#desktoploader2").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=SaveDoc&' + $("#naplataitemsform").serialize(),
+            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=SaveDoc&POSType=' + POSType + '&brojstola=' + $("#brojstola").html() + '&' + $("#naplataitemsform").serialize(),
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -540,8 +541,6 @@
     // ============================================================================= 
 
     $(".butonzakomentiranje").click(function () {
-        //$("#doccursection").hide();
-        //$(".dugmiczaprodaju").hide('slow');
         ShowSection('#commentsection');
     });
 
