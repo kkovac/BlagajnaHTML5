@@ -3,6 +3,7 @@
     var POSType = 'N'; // N - samo narudžbe , blank je defoltni normalni POS
     var strCrossDomainServiceURL = 'http://www.spin.hr/ng/posservice/';
     var stPicturesURL = 'http://127.0.0.1/BlagajnaHTML5/assets/pic/';
+    var strDevice = '';
     var dataBase = '';
     var speeddialsection = 'A';
 
@@ -13,15 +14,17 @@
     if ($.Storage.get("BlagajnaHTML5e") != undefined) { $("#e").val($.Storage.get("BlagajnaHTML5e")) };
     if ($.Storage.get("BlagajnaHTML5p") != undefined) { $("#p").val($.Storage.get("BlagajnaHTML5p")) };
     if ($.Storage.get("BlagajnaHTML5d") != undefined) { $("#d").val($.Storage.get("BlagajnaHTML5d")) };
-
+    if ($.Storage.get("BlagajnaHTML5o") != undefined) { $("#o").val($.Storage.get("BlagajnaHTML5o")) };
 
     $("input[type=text]").focus(function() { $(this).select(); });
     $("input[type=text]").mouseup(function (e) { e.preventDefault(); });
 
     $('a[href="#"]').click(function (e) { e.preventDefault(); });
  
-    $(".printdoc").on('click', function() { window.print(); return false; });
-     
+    $(".printdoc").on('click', function () { window.print(); return false; });
+    $("#settingsbutton").on('click', function () { $("#settingssection").toggle(''); });
+    
+    
     $('form').submit(function (e) { e.preventDefault(); return false; });
 
     $('#searchproductstext').on("keypress", function (e) {
@@ -80,9 +83,10 @@
     function Login() {
         $("#loginbutton").addClass('disabled').attr('disabled', 'disabled');
         $("#loginloadergif").show();
+        strDevice = $("#o").val();
         if ($("#w").val() != '') { strCrossDomainServiceURL = $("#w").val(); }
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&a=login&e=' + $("#e").val() + '&p=' + $("#p").val() ,
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&a=login&e=' + $("#e").val() + '&p=' + $("#p").val(),
             type: 'POST',
             cache: false,
             dataType: 'jsonp',
@@ -94,12 +98,15 @@
                 if (data.userguid != '0') {
                     dataBase = data.database;
                     // $("#usernamenav").html(dataBase + "|" + data.username);
+                    $(".navbar-brand").hide();
+                    $("#dugmicinafixnomhederu").show('');
                     $("#usernamenav").html(data.username);
                     $.Storage.set({ "BlagajnaHTML5w": $("#w").val() });
                     $.Storage.set({ "BlagajnaHTML5g": $("#g").html() });
                     $.Storage.set({ "BlagajnaHTML5e": $("#e").val() });
                     $.Storage.set({ "BlagajnaHTML5p": $("#p").val() });
                     $.Storage.set({ "BlagajnaHTML5d": $("#d").val() });
+                    $.Storage.set({ "BlagajnaHTML5o": $("#o").val() });
                     if ($.Storage.get("AtabCaption") != undefined) { $("#AtabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $.Storage.get("AtabCaption")) };
                     if ($.Storage.get("BtabCaption") != undefined) { $("#BtabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $.Storage.get("BtabCaption")) };
                     if ($.Storage.get("CtabCaption") != undefined) { $("#CtabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $.Storage.get("CtabCaption")) };
@@ -119,6 +126,9 @@
             }
         });
     }
+
+    // logout ...
+    $(".logoutdugmic").on('click', function () { $("#dugmicinafixnomhederu").hide(''); $(".navbar-brand").show(''); ShowSection('#loginsection'); $("#loginbutton").removeClass('disabled').removeAttr('disabled', 'disabled'); });
 
     // ============================================================================= ENTER AS TAB
 
@@ -156,7 +166,7 @@
             $("#searchproductlist" + speeddialsection).html('');
             $("#speeddialloader").show();
             $.ajax({
-                url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&s=' + $("#searchproductstext").val(),
+                url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&s=' + $("#searchproductstext").val(),
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
                 timeout: 10000,
@@ -196,7 +206,7 @@
     function AddProductToDocument(robaid) {
             $("#docitemsloader").show();
             $.ajax({
-                url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=AddProductToDocument&robaid=' + robaid,
+                url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=AddProductToDocument&robaid=' + robaid,
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
                 timeout: 10000,
@@ -218,7 +228,7 @@
         $("#docitemsloader").show();
         ShowSection('#documentitemslistwrapper');
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocumentItems' ,
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocumentItems',
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -258,7 +268,7 @@
         $("#naplataloader").show();
         var strFormattedHTML = '';
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetStolovi',
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetStolovi',
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -298,7 +308,7 @@
         var i5 = 1;
         ShowSection('#naplataitemslistwrapper');
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetNacinPlac',
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetNacinPlac',
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -309,7 +319,7 @@
                     i6 = i6 + 1;
                     strFormattedHTML = strFormattedHTML
                     + '<div class="col-sm-4 mojakolona" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<input type="number" class="form-control input-lg enterastab bsjPayTimeValues' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
+                    + '<input type="number" class="form-control input-lg enterastab bsjPayTimeValues ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
                     + '<div class="btn-primary btn-lg">' + item.Naziv + '</div>'
                     + '</div></div>';
                     if (i6 == 3) { i6 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
@@ -345,7 +355,7 @@
         $("#doctotal1").hide();
         $("#doctotal1loader").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocTotal',
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocTotal',
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -398,7 +408,7 @@
         var strFormattedHTML = '';
         $("#desktoploader,#desktoploader2").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=SaveDoc&POSType=' + POSType + '&brojstola=' + $("#brojstola").html() + '&' + $("#naplataitemsform").serialize(),
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=SaveDoc&POSType=' + POSType + '&brojstola=' + $("#brojstola").html() + '&' + $("#naplataitemsform").serialize(),
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -428,7 +438,7 @@
         var strFormattedHTML = '';
         $("#desktoploader,#desktoploader2").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=CancelDoc' ,
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=CancelDoc',
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -448,7 +458,7 @@
         $("#kolicina").attr('data-id',id);
         $("#saveqtyloader").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocumentItem&id=' + id,
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocumentItem&id=' + id,
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
@@ -482,7 +492,7 @@
         var strFormattedHTML = '';
         $("#saveqtyloader").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=SaveQty&id=' + $("#kolicina").attr('data-id') + '&qty=' + $("#kolicina").val() + '&popust=' + $("#popust").val(),
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=SaveQty&id=' + $("#kolicina").attr('data-id') + '&qty=' + $("#kolicina").val() + '&popust=' + $("#popust").val(),
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
