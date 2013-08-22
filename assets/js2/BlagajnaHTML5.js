@@ -9,6 +9,8 @@
 
     $(".mysection,.loadergif").hide();
 
+    $('.carousel').carousel();
+
     if ($.Storage.get("BlagajnaHTML5w") != undefined) { $("#w").val($.Storage.get("BlagajnaHTML5w")) };
     if ($.Storage.get("BlagajnaHTML5g") != undefined) { $("#g").html($.Storage.get("BlagajnaHTML5g")) };
     if ($.Storage.get("BlagajnaHTML5e") != undefined) { $("#e").val($.Storage.get("BlagajnaHTML5e")) };
@@ -34,7 +36,7 @@
         }
     });
 
-    Login();
+    //Login();
 
     //    ================================================================= theme
 
