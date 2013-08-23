@@ -9,7 +9,7 @@
 
     $(".mysection,.loadergif").hide();
 
-    $('.carousel').carousel();
+    //$('.carousel').carousel();
 
     if ($.Storage.get("BlagajnaHTML5w") != undefined) { $("#w").val($.Storage.get("BlagajnaHTML5w")) };
     if ($.Storage.get("BlagajnaHTML5g") != undefined) { $("#g").html($.Storage.get("BlagajnaHTML5g")) };
@@ -25,8 +25,9 @@
  
     $(".printdoc").on('click', function () { window.print(); return false; });
     $("#settingsbutton").on('click', function () { $("#settingssection").toggle(''); });
+    $(".readmoreaboutdugmic").on('click', function () { $("#readmoreabout").toggle(''); });
     
-    
+
     $('form').submit(function (e) { e.preventDefault(); return false; });
 
     $('#searchproductstext').on("keypress", function (e) {
@@ -191,7 +192,7 @@
                     });
                     $("#searchproductlist" + speeddialsection).html('' + strFormattedHTML + '');
                     $(".kvadraticzarobu" + speeddialsection).on("click", function (event) {
-                        $(this).addClass('btn-danger').addClass('disabled').attr('disabled', 'disabled');
+                        // $(this).addClass('btn-danger').addClass('disabled').attr('disabled', 'disabled');
                         AddProductToDocument($(this).parent().attr('robaid'));
                     });
                     $("#speeddialloader").hide();
@@ -251,7 +252,7 @@
                 $("#documentitemslist").html('' + strFormattedHTML + '');
                 $("#docitemsloader").hide();
                 $(".kvadraticzastavke").on("click", function (event) {
-                    $(this).addClass('btn-success').addClass('disabled').attr('disabled', 'disabled');
+                   // $(this).addClass('btn-success').addClass('disabled').attr('disabled', 'disabled');
                     ShowDocItem($(this).parent().attr('prometid'));
                 });
                 GetDocTotal();
