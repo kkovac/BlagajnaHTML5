@@ -25,7 +25,7 @@
  
     $(".printdoc").on('click', function () { window.print(); return false; });
     $("#settingsbutton").on('click', function () { $("#settingssection").toggle(''); });
-    $(".readmoreaboutdugmic").on('click', function () { $("#readmoreabout").toggle(''); });
+    $(".readmoreaboutdugmic").on('click', function () { $("#readmoreabout").toggle(''); $(".readmoreaboutdugmic").hide(); });
     
 
     $('form').submit(function (e) { e.preventDefault(); return false; });
@@ -98,7 +98,9 @@
             contentType: "application/json;charset=UTF-8",
             success: function (data, status) {
                 $("#g").html(data.userguid);
+                $(".errordescription").html('usao u success dio ');
                 if (data.userguid != '0') {
+                    $(".errordescription").html(data.userguid);
                     dataBase = data.database;
                     // $("#usernamenav").html(dataBase + "|" + data.username);
                     $(".navbar-brand").hide();
@@ -124,6 +126,7 @@
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 //alert('Login error !');
+                $(".errordescription").html('Login error !');
                 $("#loginbutton").removeClass('disabled').removeAttr('disabled', 'disabled');
                 $("#loginloadergif").hide();
             }
