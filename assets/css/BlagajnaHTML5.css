@@ -5,6 +5,7 @@
 .kvadraticzarobu, .kvadraticzastavke { margin-top : 5px; overflow : hidden; cursor : pointer; }
 .nekikvadratic{  margin-top : 5px; overflow : hidden; cursor : pointer; }
 .mojtextarea { height : 3em; font-size : 24px; }
+ .errordescription {font-size : 18px; }
 
 .navbar-brand { line-height: 15px; }
 

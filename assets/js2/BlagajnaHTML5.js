@@ -1,11 +1,12 @@
 ﻿$(document).ready(function () {
 
     var POSType = 'N'; // N - samo narudžbe , blank je defoltni normalni POS
-    var strCrossDomainServiceURL = 'http://www.spin.hr/ng/posservice/';
+    var strCrossDomainServiceURL = 'http://www.spin.hr/ng/posservice/'; // ili moj lokalni:  http://192.168.68.148/BlagajnaHTML5/posservice/
     var stPicturesURL = 'http://127.0.0.1/BlagajnaHTML5/assets/pic/';
     var strDevice = '';
     var dataBase = '';
     var speeddialsection = 'A';
+    var strFormattedHTMLzaKLASE = '';
 
     $(".mysection,.loadergif").hide();
 
@@ -24,8 +25,8 @@
     $('a[href="#"]').click(function (e) { e.preventDefault(); });
  
     $(".printdoc").on('click', function () { window.print(); return false; });
-    $("#settingsbutton").on('click', function () { $("#settingssection").toggle(''); });
-    $(".readmoreaboutdugmic").on('click', function () { $("#readmoreabout").toggle(''); $(".readmoreaboutdugmic").hide(); });
+    $("#settingsbutton").on('click', function () { $("#settingssection").toggle(''); $("#settingsbutton").hide('slow'); });
+    $(".readmoreaboutdugmic").on('click', function () { $("#readmoreabout").toggle(''); $(".readmoreaboutdugmic").hide('slow'); });
     
 
     $('form').submit(function (e) { e.preventDefault(); return false; });
@@ -84,6 +85,7 @@
     });
 
     function Login() {
+        $(".errordescription").html('');
         $("#loginbutton").addClass('disabled').attr('disabled', 'disabled');
         $("#loginloadergif").show();
         strDevice = $("#o").val();
@@ -98,9 +100,10 @@
             contentType: "application/json;charset=UTF-8",
             success: function (data, status) {
                 $("#g").html(data.userguid);
-                $(".errordescription").html('usao u success dio ');
+                if (data.errnumber != '0') {
+                    $(".errordescription").html(data.errdescription);
+                }
                 if (data.userguid != '0') {
-                    $(".errordescription").html(data.userguid);
                     dataBase = data.database;
                     // $("#usernamenav").html(dataBase + "|" + data.username);
                     $(".navbar-brand").hide();
@@ -118,7 +121,10 @@
                     if ($.Storage.get("DtabCaption") != undefined) { $("#DtabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $.Storage.get("DtabCaption")) };
                     $("#loginsection,#btnspremiracun").hide();
                     $("#doccursection").show('slow');
-                    GetDocumentItems();
+                    //GetDocumentItems();
+                    GetKlase();
+                    GetDocTotal();
+                    GetSearchProductsList();
                     GetStolovi();
                 } else
                 { $("#loginbutton").removeClass('disabled').removeAttr('disabled', 'disabled'); }
@@ -153,11 +159,51 @@
         }
     });
 
+    // ============================================================================= DAJ KLASE ... ovo se zove samo jednom 
+
+    function GetKlase() {
+        $.ajax({
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetKlase',
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            timeout: 10000,
+            success: function (data, status) {
+                
+                var i5 = 0;
+                $.each(data, function (i, item) {
+                    i5 = i5 + 1;
+                    strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE
+                    + '<div class="col-sm-3  mojakolona klasa" MPKLasaKasaID="' + item.MPKLasaKasaID + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="btn-primary btn-lg">' + item.naziv + '</div>'
+                    + '</div></div>';
+                    if (i5 == 4) { i5 = 0; strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE + '<div class="clearfix" ></div>' }
+                });
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //alert(thrownError);
+            }
+        });
+    }
+
     // ============================================================================= TRAŽILICA ROBE ...
+
     $(".afterclickfocussearchproductstext").click(function () { 
         //$("#searchproductstext").focus();  
     });
-    $("#searchproductsbutton").click(function () { GetSearchProductsList();  });
+
+    $("#searchproductsbutton").click(function () { // CLICK NA CRVENO SEARCH DUGME - ako nije ništa unešeno u tražilicu prikazujem klase robe
+        if ($("#searchproductstext").val() == '') { 
+            $("#searchproductlist" + speeddialsection).html(strFormattedHTMLzaKLASE);
+            $("#" + speeddialsection + "tabCaption").html("<span  class='glyphicon glyphicon-stop'></span> KLASE");
+            $(".klasa").off();
+            $(".klasa").on("click", function (event) {
+                alert($(this).attr('MPKLasaKasaID'));
+            });
+        };
+        GetSearchProductsList();
+    });
+
     $("#searchproductstext").click(function () { GetSearchProductsList(); });
     $("#speeddialsection li a").click(function () {
         speeddialsection = $(this).attr('data-tag');
@@ -218,7 +264,8 @@
                 timeout: 10000,
                 success: function (data, status) {
                     $("#docitemsloader").hide();
-                    GetDocumentItems();
+                    //GetDocumentItems();
+                    GetDocTotal();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     //alert(thrownError);
@@ -266,7 +313,34 @@
         });
     }
 
-    
+    // ================================================================================= PREGLED NARUCENOG PO STOLOVIMA ...
+
+    $(".pregledstolovadugmic").click(function () {
+        GetStoloviNarudzbe();
+    });
+
+    function GetStoloviNarudzbe() {
+        $("#pregledstolovaloader").show();
+        ShowSection('#pregledstolovasection');
+        var strFormattedHTML = '';
+        $.ajax({
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetStoloviNarudzbe',
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            timeout: 10000,
+            success: function (data, status) {
+                $.each(data, function (i, item) {
+                    strFormattedHTML = strFormattedHTML
+                    + '<tr><td>' + item.oznakauredjaja + '</td><td>' + item.Stol + '</td><td>' + item.sifra + '</td><td>' + item.Roba + '</td><td>' + item.Kolicina + '</td><td>' + item.MPCijena + '</td></tr>'
+                });
+                $("#pregledstolovalist").html('<table class="table"><thead><tr><th>Uređaj</th><th>Stol</th><th>Šifra</th><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>');
+                $("#pregledstolovaloader").hide();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //alert(thrownError);
+            }
+        });
+    }
 
     // ============================================================================= STOLOVI ...
 
@@ -303,7 +377,6 @@
             }
         });
     } 
-
 
     // ============================================================================= NACINI PLACANJA ...
 
@@ -369,6 +442,7 @@
                 $.each(data, function (i, item) {
                     $("#doctotal1").html('' + item.doctotal + '<span class="hidden-phone"></span>');
                     $(".bsjDocTotal2,#bsjDocTotal6").val(item.doctotal);
+                    $(".brojstavki,#brojstavki").html(item.brojstavki);
                 });
                 $("#doctotal1loader").hide();
                 $("#doctotal1").show('slow');
@@ -420,7 +494,11 @@
             timeout: 10000,
             success: function (data, status) {
                 $.each(data, function (i, item) {
-                    if (item.errnumber == '0') { $(".nastavidugmic").trigger('click') } else { alert(item.errdescription)}
+                    if (item.errnumber == '0') {
+                        // $(".nastavidugmic").trigger('click')
+                        GetDocTotal();
+                        GetSearchProductsList();
+                    } else { alert(item.errdescription) }
                 });
                 $("#desktoploader,#desktoploader2").hide();
             },
@@ -450,7 +528,9 @@
             timeout: 10000,
             success: function (data, status) {
                 $("#desktoploader,#desktoploader2").hide();
-                GetDocumentItems();
+                //GetDocumentItems();
+                GetDocTotal();
+                GetSearchProductsList();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
@@ -550,6 +630,7 @@
         $(".canceldocsection").hide();
         $(".docitemsection").hide();
         $("#speeddial").hide();
+        $("#pregledstolovasection").hide();
         $(sectionname).show();
        // $("#searchproductstext").focus();
     }

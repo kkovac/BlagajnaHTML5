@@ -17,7 +17,7 @@
     dim value
     dim guid
     dim database
-    
+    dim OznakaUredjaja
     action=""
     sql=""
     id=0
@@ -38,6 +38,8 @@
     guid = readx2("g","") ' guid
     
     jsoncallback = request.QueryString("jsoncallback") ' jsoncallback
+    OznakaUredjaja = ""
+    OznakaUredjaja  = trim(Request.QueryString("o"))
 
     if SQLLogin="" then 
         ' ako na klijentu nije unešen sql login onda radim sa MPBlagajnom i SA blank
@@ -47,7 +49,7 @@
         ' ako imam sql login onda idem preko njega
         database = SQLLogin 
         'cs = "Driver={SQL Server};UID=" & SQLLogin & ";PWD=" & SQLLoginPass & ";"
-        cs = "DRIVER={SQL Server};SERVER=JUPITER2008R2;UID=sa;PWD=;DATABASE=" & database & ";"
+        cs = "DRIVER={SQL Server};SERVER=kkovac-lap;UID=sa;PWD=tan5;DATABASE=" & database & ";"
     end if
   
     OpenDBConnection  
@@ -55,6 +57,9 @@
     if action="login" then Login
     if action="GetSearchProductsList" then GetSearchProductsList
     if action="GetNacinPlac" then GetNacinPlac
+    if action="GetStolovi" then GetStolovi
+    if action="GetKlase" then GetKlase
+    if action="GetStoloviNarudzbe" then GetStoloviNarudzbe
     if action="AddProductToDocument" then AddProductToDocument
     if action="GetDocumentItems" then GetDocumentItems
     if action="GetDocumentItem" then GetDocumentItem
@@ -65,14 +70,13 @@
     
     CloseDBConnection
  
-
 sub SaveQty
     on error resume next
     if CheckGUID = "" then 
         response.Write ""
         exit sub
     end if
-    sql = "update tempp set kolicina=" & Replace(readx2("Qty",0), ",", ".") & " where prometid=" & id
+    sql = "update tempp2 set kolicina=" & Replace(readx2("Qty",0), ",", ".") & " where prometid=" & id
     err.Clear
     conn.execute(sql)
     if err.number <> 0 then
@@ -91,6 +95,8 @@ sub SaveDoc
         response.Write ""
         exit sub
     end if
+
+    
 
     PrviIznos = 0
     DrugiIznos = 0
@@ -166,28 +172,38 @@ sub SaveDoc
     strYear = year(date)
     nezakInd = ""
 
-    sql = "spSpremi @operateriid=" & CheckGUID & ",@partnerid=" & strPartnerid & ",@god=" & strYear & ",@nezakind='" & nezakInd & "'" & _
-        ",@PrviIznos=" & Replace(PrviIznos, ",", ".") & _
-        ",@DrugiIznos=" & Replace(DrugiIznos, ",", ".") & _
-        ",@TreciIznos=" & Replace(TreciIznos, ",", ".") & _
-        ",@CetvrtiIznos=" & Replace(CetvrtiIznos, ",", ".") & _
-        ",@PetiIznos=" & Replace(PetiIznos, ",", ".") & _
-        ",@PrviNacinPlacanjaId=" & Replace(PrviNacinPlacanjaId, ",", ".") & _
-        ",@DrugiNacinPlacanjaId=" & Replace(DrugiNacinPlacanjaId, ",", ".") & _
-        ",@treciNacinPlacanjaId=" & Replace(TreciNacinPlacanjaId, ",", ".") & _
-        ",@cetvrtiNacinPlacanjaId=" & Replace(CetvrtiNacinPlacanjaId, ",", ".") & _
-        ",@petiNacinPlacanjaId=" & Replace(PetiNacinPlacanjaId, ",", ".") & _
-        ",@KupciR1ID=" & R1 & _
-        ",@KupciR1IDKONT=" & R1zakontignet & _
-        ",@BrojRata=" & BrojRata & _
-        ",@BrojPartije='" & BrojPartije & "'" & ",@Napomena='" & Replace(strNapomena, "'", "") & "'" & _
-        ",@brojbodova=" & Replace(BrojBodova, ",", ".") & ",@SifraClana='" & strSifraClana & "',@KupciKreditId=" & R1b & _
-        ""
+    POSType = ""
+    POSType = trim(Request.QueryString("POSType"))
+    BrojStola = ""
+    BrojStola  = trim(Request.QueryString("brojstola"))
+
+    if POSType = "N" then
+        sql = "spMPPrometTemp2 @action = 1 , @naziv='" & BrojStola & "', @OznakaUredjaja='" & OznakaUredjaja & "', @sifraclana = ''"
+    else
+        sql = "spSpremi2 @operateriid=" & CheckGUID & ",@partnerid=" & strPartnerid & ",@god=" & strYear & ",@nezakind='" & nezakInd & "'" & _
+            ",@PrviIznos=" & Replace(PrviIznos, ",", ".") & _
+            ",@DrugiIznos=" & Replace(DrugiIznos, ",", ".") & _
+            ",@TreciIznos=" & Replace(TreciIznos, ",", ".") & _
+            ",@CetvrtiIznos=" & Replace(CetvrtiIznos, ",", ".") & _
+            ",@PetiIznos=" & Replace(PetiIznos, ",", ".") & _
+            ",@PrviNacinPlacanjaId=" & Replace(PrviNacinPlacanjaId, ",", ".") & _
+            ",@DrugiNacinPlacanjaId=" & Replace(DrugiNacinPlacanjaId, ",", ".") & _
+            ",@treciNacinPlacanjaId=" & Replace(TreciNacinPlacanjaId, ",", ".") & _
+            ",@cetvrtiNacinPlacanjaId=" & Replace(CetvrtiNacinPlacanjaId, ",", ".") & _
+            ",@petiNacinPlacanjaId=" & Replace(PetiNacinPlacanjaId, ",", ".") & _
+            ",@KupciR1ID=" & R1 & _
+            ",@KupciR1IDKONT=" & R1zakontignet & _
+            ",@BrojRata=" & BrojRata & _
+            ",@BrojPartije='" & BrojPartije & "'" & ",@Napomena='" & Replace(strNapomena, "'", "") & "'" & _
+            ",@brojbodova=" & Replace(BrojBodova, ",", ".") & ",@SifraClana='" & strSifraClana & "',@KupciKreditId=" & R1b & _
+            ""
+    end if
 
     err.Clear
     conn.execute(sql)
 
     'response.Write sql
+    'response.end
 
     if err.number <> 0 then
         sql = "select  '" & err.number & "' as errnumber,'" & err.Description & "' as errdescription"
@@ -216,6 +232,7 @@ sub AddProductToDocument
              strnapomena=""
              strBrojDokumenta = "5555"
              strDatum = "20121029"
+
              err.Clear
            
              sql1 = "select robaid,coalesce(mpcijena,0) as [mpcijena],jm,tarifaid,coalesce(proizvodind,0) as [proizvodind], porezpp, coalesce(porezippid,0) as porezippid from roba where robaid=" &  robaid 
@@ -227,10 +244,10 @@ sub AddProductToDocument
              end if
              err.Clear
    
-                sql2 = "insert into tempp" & _
+                sql2 = "insert into tempp2" & _
                       " (Robaid,CijAmb,MPCijena,MPCijenaOrg,Kolicina,Partneriid,Operateriid," & _
                       " DatumDok,Za_Platiti,IznNacin," & _
-                      " SifraNacinPlac,MjeSif,Rabat,tarifaid,vrijeme,BrojDok,kasa,Rabat1,Rabat2,Opis,BrojRata,donoskasa,donosprometid,brojbodova,brojbodovaprije,rabatnom, porezpp, porezippid, iznospp, ssoperateriid, ugovoriid) " & _
+                      " SifraNacinPlac,MjeSif,Rabat,tarifaid,vrijeme,BrojDok,kasa,Rabat1,Rabat2,Opis,BrojRata,donoskasa,donosprometid,brojbodova,brojbodovaprije,rabatnom, porezpp, porezippid, iznospp, ssoperateriid, ugovoriid,oznakauredjaja) " & _
                       " values(" & robaid & _
                       ",0," & Replace(mpcijena, ",", ".") & _
                       "," & Replace(mpcijena, ",", ".") & _
@@ -240,7 +257,7 @@ sub AddProductToDocument
                       ",'" & strDatum & _
                       "',0,0,0,'" & MjeSif & "',0," & Replace(trs("tarifaid"), ",", ".") & ",getdate(),'" & strBrojDokumenta & "','" & Kasa & _
                       "',0,0,'" & left(strnapomena , 50) & "',0,'',0,0,0,0," & Replace(trs("porezpp"), ",", ".") & _
-                      "," & Replace(trs("porezippid"), ",", ".") & ",0," & strssOperateriID & "," & strssUgovorID & ")"
+                      "," & Replace(trs("porezippid"), ",", ".") & ",0," & strssOperateriID & "," & strssUgovorID & ",'" & OznakaUredjaja & "')"
            
                 Conn.Execute (sql2)
 
@@ -259,7 +276,7 @@ end sub
 
 sub CancelDoc
         on error resume next
-        sql = "delete from tempp"
+        sql = "delete from tempp2"
         conn.execute(sql)
         if err.number <> 0 then
             sql = "select  '" & err.number & "' as errnumber,'" & err.Description & "' as errdescription"
@@ -271,7 +288,7 @@ end sub
 
 sub GetDocTotal
         on error resume next
-        sql = "select isnull(SUM(kolicina * mpcijena),0) as doctotal from tempp"
+        sql = "select isnull(SUM(kolicina * mpcijena),0) as doctotal, count(*) as brojstavki from tempp2 where oznakauredjaja='" & OznakaUredjaja & "'"
         CROSSDOMAIN_SqlToJSON(sql)
 end sub
   
@@ -280,14 +297,28 @@ sub GetNacinPlac
     CROSSDOMAIN_SqlToJSON(sql)
 end sub
 
-sub GetDocumentItems
-    sql = "spPrikaz @operateriid=" & CheckGUID()
+sub GetKlase
+    sql = "select MPKLasaKasaID,naziv from mpklasakasa"  
     CROSSDOMAIN_SqlToJSON(sql)
 end sub
 
+sub GetStolovi
+    sql = "select  mpstoloviid,ltrim(rtrim(opis)) as opis,broj from mpstolovi order by broj"  
+    CROSSDOMAIN_SqlToJSON(sql)
+end sub
+
+sub GetStoloviNarudzbe
+    sql = "spPrikaz2 @action=1, @operateriid=" & CheckGUID() & ", @OznakaUredjaja='" & OznakaUredjaja & "'"
+    CROSSDOMAIN_SqlToJSON(sql)
+end sub
+
+sub GetDocumentItems
+    sql = "spPrikaz2 @operateriid=" & CheckGUID() & ", @OznakaUredjaja='" & OznakaUredjaja & "'"
+    CROSSDOMAIN_SqlToJSON(sql)
+end sub
     
 sub GetDocumentItem
-    sql = "select Kolicina,MPCijena from tempp where prometid=" & id
+    sql = "select Kolicina,MPCijena from tempp2 where prometid=" & id
     CROSSDOMAIN_SqlToJSON(sql)
 end sub
     
@@ -306,11 +337,17 @@ function CheckGUID
         CheckGUID=0
     end if
 end function
-
-
+    
 sub Login
+    on error resume next
+    if OznakaUredjaja="" then
+        response.Write jsoncallback & "({ ""errnumber"" :  ""-1"" , ""errdescription"" :  ""Oznaka ureðaja je obvezan podatak ! "" , ""userguid"" :  ""0""  });"
+        exit sub
+    end if
+
     sql = "select * from ssoperateri where naziv='" & readx2("e","") & "' and password='" & readx2("p","") & "'"
 	set trs=Conn.Execute(sql)
+
     if not trs.eof then 
         sql = "update ssoperateri set guid=newid() where operateriid=" & trs("operateriid")
         Conn.Execute(sql)
@@ -318,10 +355,9 @@ sub Login
 	    set trs2=Conn.Execute(sql)
         response.Write jsoncallback & "({ ""userguid"" :  """ & trs2("guid") & """ , ""username"" :  """ & trim(trs("naziv")) & """ , ""database"" : """ &  database & """ , ""inicijali"" :  """ & trim(trs("inicijali")) & """  });"
     else
-        response.Write jsoncallback & "({ ""userguid"" :  ""0"" });"
+        response.Write jsoncallback & "({ ""errnumber"" :  ""-1"" , ""errdescription"" :  ""Provjerite ime i lozinku ! "" , ""userguid"" :  ""0"" });"
     end if
 end sub
-     
 
 sub CROSSDOMAIN_SqlToJSON(sql)
     response.Write jsoncallback & "("
@@ -354,7 +390,7 @@ Function OpenDBConnection
 	conn.cursorlocation = 3
 	conn.Open cs
 	if err.number <> 0 then
-	    response.write "<br /><br />" & err.description
+	    response.Write jsoncallback & "({ ""errnumber"" :  ""-1"" , ""errdescription"" :  ""Greška kod otvaranja konekcije : " & err.Description & """ , ""userguid"" :  ""0"" });"
 	    response.End
 	   OpenDBConnection = False
 	   on error goto 0
@@ -374,7 +410,6 @@ sub CloseDBConnection
 	end if
 end sub
     
-
 function FNumb(param1)
   on error resume next
   FNumb = replace(param1,",",".")  
