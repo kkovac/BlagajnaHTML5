@@ -323,8 +323,13 @@ sub GetDocumentItem
 end sub
     
 sub GetSearchProductsList
-    s = readx2("s","")
-    sql = "select top 21 robaid,naziv,mpcijena,barcode,userid from roba where naziv like '%" & s & "%'"
+    klasaid = fnumb(readx2("klasaid","0"))
+    if klasaid=0 then
+        s = readx2("s","")
+        sql = "select top 40 robaid,naziv,mpcijena,barcode,userid from roba where naziv like '%" & s & "%'"
+    else
+        sql = "select top 120 r.robaid,r.naziv,r.mpcijena,r.barcode,r.userid from roba r inner join MPLNKLasaKasa l on r.RobaId=l.robaid where l.MPKLasaKasaID=" & klasaid
+    end if
     CROSSDOMAIN_SqlToJSON(sql)
 end sub
      

@@ -38,11 +38,11 @@
         }
     });
 
-    //Login();
+    Login();
 
     //    ================================================================= theme
 
-    var bgindex = "3.jpg";
+    var bgindex = "1.jpg";
     if ($.Storage.get("BlagajnaHTML5bgindex") != undefined) { bgindex = $.Storage.get("BlagajnaHTML5bgindex") };
     $.backstretch("assets/css/bg/" + bgindex);
     $('img[data-id="' + bgindex + '"]').removeClass('img-rounded').addClass('img-thumbnail2').css('opacity','1');
@@ -124,7 +124,7 @@
                     //GetDocumentItems();
                     GetKlase();
                     GetDocTotal();
-                    GetSearchProductsList();
+                    GetSearchProductsList(0);
                     GetStolovi();
                 } else
                 { $("#loginbutton").removeClass('disabled').removeAttr('disabled', 'disabled'); }
@@ -162,6 +162,7 @@
     // ============================================================================= DAJ KLASE ... ovo se zove samo jednom 
 
     function GetKlase() {
+        strFormattedHTMLzaKLASE = '';
         $.ajax({
             url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetKlase',
             dataType: 'jsonp',
@@ -198,27 +199,27 @@
             $("#" + speeddialsection + "tabCaption").html("<span  class='glyphicon glyphicon-stop'></span> KLASE");
             $(".klasa").off();
             $(".klasa").on("click", function (event) {
-                alert($(this).attr('MPKLasaKasaID'));
+                GetSearchProductsList($(this).attr('MPKLasaKasaID'));
             });
         };
-        GetSearchProductsList();
+        GetSearchProductsList(0);
     });
 
-    $("#searchproductstext").click(function () { GetSearchProductsList(); });
+    $("#searchproductstext").click(function () { GetSearchProductsList(0); });
     $("#speeddialsection li a").click(function () {
         speeddialsection = $(this).attr('data-tag');
-        if ($("#searchproductlist" + speeddialsection).text() == '') { $("#searchproductstext").val($(this).text()); GetSearchProductsList(); }
+        if ($("#searchproductlist" + speeddialsection).text() == '') { $("#searchproductstext").val($(this).text()); GetSearchProductsList(0); }
     });
 
-    function GetSearchProductsList() {
+    function GetSearchProductsList(klasaid) {
         var strFormattedHTML = '';
         var speeddialsectioncookie = 'A';
         ShowSection('#speeddial');
-        if ($("#searchproductstext").val() != '') {
+        if (($("#searchproductstext").val() != '') || (klasaid != 0)) {
             $("#searchproductlist" + speeddialsection).html('');
             $("#speeddialloader").show();
             $.ajax({
-                url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&s=' + $("#searchproductstext").val(),
+                url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&klasaid=' + klasaid  + '&s=' + $("#searchproductstext").val(),
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
                 timeout: 10000,
@@ -497,13 +498,16 @@
                     if (item.errnumber == '0') {
                         // $(".nastavidugmic").trigger('click')
                         GetDocTotal();
-                        GetSearchProductsList();
-                    } else { alert(item.errdescription) }
+                        GetSearchProductsList(0);
+                    } else {
+                            $(".errordescription").html(data.errdescription);
+                    }
                 });
                 $("#desktoploader,#desktoploader2").hide();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
+
             }
         });
     }
@@ -530,7 +534,7 @@
                 $("#desktoploader,#desktoploader2").hide();
                 //GetDocumentItems();
                 GetDocTotal();
-                GetSearchProductsList();
+                GetSearchProductsList(0);
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
