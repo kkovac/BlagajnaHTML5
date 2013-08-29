@@ -42,7 +42,7 @@
 
     //    ================================================================= theme
 
-    var bgindex = "1.jpg";
+    var bgindex = "2.jpg";
     if ($.Storage.get("BlagajnaHTML5bgindex") != undefined) { bgindex = $.Storage.get("BlagajnaHTML5bgindex") };
     $.backstretch("assets/css/bg/" + bgindex);
     $('img[data-id="' + bgindex + '"]').removeClass('img-rounded').addClass('img-thumbnail2').css('opacity','1');
@@ -180,6 +180,8 @@
                     if (i5 == 4) { i5 = 0; strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE + '<div class="clearfix" ></div>' }
                 });
 
+                $("#searchproductsbutton").trigger('click'); // odmah pokaži klase u prvom tabu
+
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 //alert(thrownError);
@@ -249,6 +251,7 @@
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     //alert(thrownError);
+                    $("#speeddialloader").hide();
                 }
             });
         }
@@ -382,50 +385,53 @@
     // ============================================================================= NACINI PLACANJA ...
 
     $(".naplata").click(function () {
-        $("#naplataloader").show();
+        ShowSection('#naplataitemslistwrapper');
+        if (POSType == 'N') { $("#naplataitemslist").hide();}
         var strFormattedHTML = '';
         var strPrviNacinPlacanja = '';
         var i5 = 1;
-        ShowSection('#naplataitemslistwrapper');
-        $.ajax({
-            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetNacinPlac',
-            dataType: 'jsonp',
-            jsonp: 'jsoncallback',
-            timeout: 10000,
-            success: function (data, status) {
-                var i6 = 0;
-                $.each(data, function (i, item) {
-                    if (i5 == 1) { i5 = 0; strPrviNacinPlacanja = 'bsjDocTotal2'; } else { strPrviNacinPlacanja = '' }
-                    i6 = i6 + 1;
-                    strFormattedHTML = strFormattedHTML
-                    + '<div class="col-sm-4 mojakolona" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<input type="number" class="form-control input-lg enterastab bsjPayTimeValues ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
-                    + '<div class="btn-primary btn-lg">' + item.Naziv + '</div>'
-                    + '</div></div>';
-                    if (i6 == 3) { i6 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
-                });
-                $("#naplataitemslist").html( strFormattedHTML );
-                $("#btnspremiracun").show();
-                $(".bsjPayTimeValues").on('change', function (event) {
-                    if (isNaN(parseFloat(this.value))) return;
-                    this.value = parseFloat(this.value).toFixed(2);
-                    $(".bsjDocTotal2").val((parseFloat($("#bsjDocTotal6").val()).toFixed(2) - SUMbsjPayTimeValuesExceptFirst()).toFixed(2));
-                    SUMbsjPayTimeValues();
-                });
-                $(".bsjPayTimeButton").on('click', function (event) {
-                    $(".bsjPayTimeButton").removeClass('btn-danger');
-                    $(this).addClass('btn-danger');
-                    $(".bsjPayTimeValues").val(0);
-                    $("#PayTime" + $(this).attr('tid')).val($("#bsjDocTotal6").val());
-                    SUMbsjPayTimeValues();
-                });
-                $("#naplataloader").hide();
-                GetDocTotal();
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                //alert(thrownError);
-            }
-        });
+        if ($("#naplataitemslist").html() == '') { // samo jednom zovem ...
+            $("#naplataloader").show();
+            $.ajax({
+                url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetNacinPlac',
+                dataType: 'jsonp',
+                jsonp: 'jsoncallback',
+                timeout: 10000,
+                success: function (data, status) {
+                    var i6 = 0;
+                    $.each(data, function (i, item) {
+                        if (i5 == 1) { i5 = 0; strPrviNacinPlacanja = 'bsjDocTotal2'; } else { strPrviNacinPlacanja = '' }
+                        i6 = i6 + 1;
+                        strFormattedHTML = strFormattedHTML
+                        + '<div class="col-sm-4 mojakolona" id="' + item.SifraNacinPlac + ' "><div class="Transparent kvadraticzarobu">'
+                        + '<input type="number" class="form-control input-lg enterastab bsjPayTimeValues ' + strPrviNacinPlacanja + '" value="0" step="any"  tid="' + item.SifraNacinPlac + '" id="PayTime' + item.SifraNacinPlac + '"  name="PayTime' + item.SifraNacinPlac + '"  placeholder="iznos" >'
+                        + '<div class="btn-primary btn-lg">' + item.Naziv + '</div>'
+                        + '</div></div>';
+                        if (i6 == 3) { i6 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
+                    });
+                    $("#naplataitemslist").html(strFormattedHTML);
+                    $("#btnspremiracun").show();
+                    $(".bsjPayTimeValues").on('change', function (event) {
+                        if (isNaN(parseFloat(this.value))) return;
+                        this.value = parseFloat(this.value).toFixed(2);
+                        $(".bsjDocTotal2").val((parseFloat($("#bsjDocTotal6").val()).toFixed(2) - SUMbsjPayTimeValuesExceptFirst()).toFixed(2));
+                        SUMbsjPayTimeValues();
+                    });
+                    $(".bsjPayTimeButton").on('click', function (event) {
+                        $(".bsjPayTimeButton").removeClass('btn-danger');
+                        $(this).addClass('btn-danger');
+                        $(".bsjPayTimeValues").val(0);
+                        $("#PayTime" + $(this).attr('tid')).val($("#bsjDocTotal6").val());
+                        SUMbsjPayTimeValues();
+                    });
+                    $("#naplataloader").hide();
+                    GetDocTotal();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    //alert(thrownError);
+                }
+            });
+        } else { $("#btnspremiracun").show(); GetDocTotal(); }
     });
     
     // ============================================================================= DAJ TOTAL ...
