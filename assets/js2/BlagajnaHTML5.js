@@ -237,8 +237,8 @@
                         + '<div class="col-sm-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu kvadraticzarobu' + speeddialsection + '">'
                         + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
                         + '<div class="btn-danger btn-lg">' + item.naziv + '</div>'
-                        + 'Userid : ' + item.userid + ' '
-                        + '<br />Barcode : ' + item.barcode + ' '
+                        //+ 'Userid : ' + item.userid + ' '
+                        // + '<br />Barcode : ' + item.barcode + ' '
                         + '</div></div>';
                         if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                     });
@@ -294,7 +294,7 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-sm-3  mojakolona" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke">'
+                    + '<div class="col-sm-3  mojakolona" naziv="' + item.Roba5400 + '" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke">'
                     + '<h5>'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.Količina1000 + ' = ' + item.Iznos1400
@@ -308,8 +308,31 @@
                 $(".kvadraticzastavke").on("click", function (event) {
                    // $(this).addClass('btn-success').addClass('disabled').attr('disabled', 'disabled');
                     ShowDocItem($(this).parent().attr('prometid'));
+                    $(".uklonistavku").attr('tid', $(this).parent().attr('prometid'));
                 });
                 GetDocTotal();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //alert(thrownError);
+            }
+        });
+    }
+
+    
+    // ================================================================================= UKLONI STAVKU ...
+
+    $(".uklonistavku").click(function () {
+        DelItem($(this).attr('tid'));
+    });
+
+    function DelItem(tid) {
+        $.ajax({
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=DelItem&id=' + tid,
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            timeout: 10000,
+            success: function (data, status) {
+                GetDocumentItems();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 //alert(thrownError);
@@ -370,10 +393,10 @@
                     $(".btnStol").removeClass('btn-danger');
                     $(this).addClass('btn-danger');
                     $.Storage.set({ "brojstola": $(this).attr('brojstola') });
-                    $("#brojstola").html($(this).attr('brojstola'));
+                    $("#brojstola,.brojstola").html($(this).attr('brojstola'));
                 });
                
-                if ($.Storage.get("brojstola") != undefined) { $("#brojstola").html($.Storage.get("brojstola")); $(".btnStol[brojstola='" + $.Storage.get("brojstola") + "']").addClass('btn-danger'); } else { $("#brojstola").html('1'); $(".btnStol[brojstola='1']").addClass('btn-danger'); };
+                if ($.Storage.get("brojstola") != undefined) { $("#brojstola,.brojstola").html($.Storage.get("brojstola")); $(".btnStol[brojstola='" + $.Storage.get("brojstola") + "']").addClass('btn-danger'); } else { $("#brojstola,.brojstola").html('1'); $(".btnStol[brojstola='1']").addClass('btn-danger'); };
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -449,6 +472,7 @@
                 $.each(data, function (i, item) {
                     $("#doctotal1").html('' + item.doctotal + '<span class="hidden-phone"></span>');
                     $(".bsjDocTotal2,#bsjDocTotal6").val(item.doctotal);
+                    $(".bsjDocTotal3").html(item.doctotal);
                     $(".brojstavki,#brojstavki").html(item.brojstavki);
                 });
                 $("#doctotal1loader").hide();
@@ -503,17 +527,16 @@
                 $.each(data, function (i, item) {
                     if (item.errnumber == '0') {
                         // $(".nastavidugmic").trigger('click')
-                        GetDocTotal();
-                        GetSearchProductsList(0);
                     } else {
-                            $(".errordescription").html(data.errdescription);
+                        // $(".errordescription").html(item.errdescription);
                     }
                 });
                 $("#desktoploader,#desktoploader2").hide();
+                GetDocTotal();
+                GetSearchProductsList(0);
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
-
             }
         });
     }

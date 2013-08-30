@@ -186,25 +186,27 @@
                                    <h4>Stolovi</h4>
                                    </div>
                                    <div  class="col-xs-6 mojakolona" >
-                                   <h4>...</h4>
+                                   <h4><div class="brojstola"></div></h4>
                                    </div>
                                </div>
 
-               <div class="">
+                        <!--
+                           <div class="">
                      
-                     <div class="clearfix">
-                        <div  class="col-xs-6 nekikvadratic mojakolona" >
-                            <div class="Transparent" >
-                            <div class="btn-primary btn-lg  naplata  "  ><span  class="glyphicon glyphicon-share-alt"></span> Zaključi dokument</div>
-                            </div>
-                        </div>
+                                 <div class="clearfix">
+                                    <div  class="col-xs-6 nekikvadratic mojakolona" >
+                                        <div class="Transparent" >
+                                        <div class="btn-primary btn-lg  naplata  "  ><span  class="glyphicon glyphicon-share-alt"></span> Zaključi dokument</div>
+                                        </div>
+                                    </div>
                          
                          
-                    </div>
+                                </div>
 
-                   <hr />
+                               <hr />
                 
-               </div>
+                           </div>
+                            -->
                
                                <div class="" id="stolovilist"></div>
                
@@ -294,11 +296,11 @@
            <div id="documentitemslistwrapper" class="myhide mojpanel Transparent2 clearfix">
                <div class="Transparent2 clearfix">
                <div  class="col-xs-3 mojakolona" >
-               <h4>  Stavke dokumenta </h4>
+               <h4>  Stavke </h4>
                   
                </div>
                <div  class="col-xs-2 mojakolona" >
-               <h4> </h4> 
+               <h4><div class="brojstavki"></div> </h4> 
                </div>
                <div  class="col-xs-6 mojakolona" >
                <h4> </h4> 
@@ -306,19 +308,18 @@
                <div  class="col-xs-1 mojakolona" >
                <img src="assets/ajax-loader.gif" class="loadergif" id="docitemsloader" alt="" />
                </div>
-
-                   
-
                </div>
 
-               <div class="clearfix">
-                        <div  class="col-xs-6 nekikvadratic mojakolona" >
-                            <div class="Transparent" >
-                            <div class="btn-primary btn-lg  naplata  "  ><span  class="glyphicon glyphicon-share-alt"></span> Zaključi dokument</div>
+                    <!--
+                       <div class="clearfix">
+                                <div  class="col-xs-6 nekikvadratic mojakolona" >
+                                    <div class="Transparent" >
+                                    <div class="btn-primary btn-lg  naplata  "  ><span  class="glyphicon glyphicon-share-alt"></span> Zaključi dokument</div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-               <hr />
+                       <hr />
+                    -->
             <div class="clearfix    " id="documentitemslist"></div>
            </div>
              <!-- END OF STAVKE DOKUMENTA SECTION --> 
@@ -326,11 +327,14 @@
             <!-- NAPLATA SECTION --> 
             <div id="naplataitemslistwrapper" class="myhide Transparent2 clearfix mojpanel">
                 <div class="Transparent2 clearfix zaglavljesekcije">
-                   <div  class="col-xs-4 mojakolona" >
-                   <h4>Zaključi dokument</h4>
+                   <div  class="col-xs-3 mojakolona" >
+                   <h4>Zaključi ?</h4>
                    </div>
-                   <div  class="col-xs-7 mojakolona" >
-                   <h4> </h4>
+                   <div  class="col-xs-3 mojakolona" >
+                   <h4>Stol: <span class="brojstola"></span> </h4>
+                   </div>
+                    <div  class="col-xs-4 mojakolona" >
+                   <h4>Iznos: <span class="bsjDocTotal3"></span> </h4>
                    </div>
                     <div  class="col-xs-1 mojakolona " >
                    <img src="assets/ajax-loader.gif" class="loadergif" id="naplataloader" alt="" />
@@ -339,13 +343,14 @@
                <div class="clearfix">
                     <div  class="col-xs-6 nekikvadratic mojakolona" >
                         <div class="Transparent" >
-                        <div class="btn-primary btn-lg  btnspremiracun" id="btnspremiracun" ><span  class="glyphicon glyphicon-check"></span> Spremi dokument</div>
+                        <div class="btn-primary btn-lg  btnspremiracun" id="btnspremiracun" ><span  class="glyphicon glyphicon-check"></span> Zaključi</div>
                         </div>
                     </div>
                      
                       
                 </div>
-
+                <br />
+              
                  <hr />
 
                 <div class="clearfix">
@@ -402,7 +407,7 @@
                     <div class="  clearfix">
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
                             <div class="Transparent " >
-                            <div class=" btn-primary btn-lg   naplata " ><span  class="glyphicon glyphicon-share-alt"></span> Zaključi dokument</div>
+                            <div class=" btn-primary btn-lg   naplata " ><span  class="glyphicon glyphicon-share-alt"></span> Zaključi </div>
                             </div>
                         </div>
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
@@ -412,7 +417,7 @@
                         </div>
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class=" btn-danger btn-lg    canceldoc  " ><span  class="glyphicon glyphicon-remove"></span> Poništi dokument</div>
+                             <div class=" btn-danger btn-lg    canceldoc  " ><span  class="glyphicon glyphicon-remove"></span> Poništi</div>
                              </div>
                         </div>
                     </div>
