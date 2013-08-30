@@ -101,7 +101,7 @@
                 
                     <div class="controls  col-sm-6">
                 <form class="form-signin" id="loginform">        
-                          <h2><span class="label label-success">HTML5 POS</span><span class="label label-danger"><i>!</i></span></h2>
+                          <h2><span class="label label-success">POS - narudžbe</span><span class="label label-danger"><i>!</i></span></h2>
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -118,7 +118,7 @@
                             <button type="submit" id="loginbutton" class="btn btn-success btn-lg"> <span class="glyphicon glyphicon-log-in"></span> Login</button>
                         </div>
                         <div class="btn-group pull-right">
-                            <button type="submit" id="settingsbutton" class="btn btn-danger btn-lg "> <span class="glyphicon glyphicon-wrench"></span> </button>
+                            <button type="submit" id="settingsbutton" class="btn btn-danger btn-lg "> <span class="glyphicon glyphicon-cog"></span> </button>
                         </div>
                         <img src="assets/ajax-loader.gif" class="loadergif" id="loginloadergif" alt="" />
                         <br /><br />
@@ -328,7 +328,7 @@
             <div id="naplataitemslistwrapper" class="myhide Transparent2 clearfix mojpanel">
                 <div class="Transparent2 clearfix zaglavljesekcije">
                    <div  class="col-xs-3 mojakolona" >
-                   <h4>Zaključi ?</h4>
+                   <h4>Zaključi?</h4>
                    </div>
                    <div  class="col-xs-3 mojakolona" >
                    <h4>Stol: <span class="brojstola"></span> </h4>
@@ -417,7 +417,7 @@
                         </div>
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class=" btn-danger btn-lg    canceldoc  " ><span  class="glyphicon glyphicon-remove"></span> Poništi</div>
+                             <div class=" btn-warning btn-lg    canceldoc  " ><span  class="glyphicon glyphicon-remove"></span> Poništi</div>
                              </div>
                         </div>
                     </div>
@@ -558,8 +558,8 @@
             <!-- DOCITEM KOLICINA, POPUST, NAPOMENA , ... -->
              <div class="myhide Transparent2 clearfix docitemsection mojpanel"  >
                         <div class="Transparent2 clearfix">
-                            <div  class="col-xs-3 mojakolona" >
-                            <h4>Detalji stavke:</h4>
+                            <div  class="col-xs-5 mojakolona" >
+                            <h4><span id="detaljno">Detaljno:</span></h4>
                             </div>
 
                             <div  class="col-xs-1 mojakolona pull-right " >
@@ -568,7 +568,7 @@
 
                              <ul id="myTab" class="nav nav-pills  ">
                               <li class="active col-xs-2 mojakolona"><a href="#kolicinatab" data-toggle="tab"><span class="glyphicon glyphicon-asterisk"></span></a></li>
-                              <li class="col-xs-2 mojakolona "><a href="#popusttab" data-toggle="tab"><span class="glyphicon glyphicon-chevron-down"></span></a></li>
+                               <!-- <li class="col-xs-2 mojakolona "><a href="#popusttab" data-toggle="tab"><span class="glyphicon glyphicon-chevron-down"></span></a></li>  -->
                               <li class="col-xs-2 mojakolona "><a href="#napomenastavketab" data-toggle="tab"><span class="glyphicon glyphicon-comment"></span></a></li>
                             </ul>
                             
@@ -638,7 +638,7 @@
                         
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class=" btn-danger btn-lg uklonistavku  " ><span  class="glyphicon glyphicon-remove"></span> Ukloni stavku</div>
+                             <div class=" btn-warning btn-lg uklonistavku  " ><span  class="glyphicon glyphicon-remove"></span> Ukloni stavku</div>
                              </div>
                         </div>
                 </div>

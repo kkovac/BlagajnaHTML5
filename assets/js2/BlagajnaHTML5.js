@@ -38,7 +38,7 @@
         }
     });
 
-    Login();
+    //Login();
 
     //    ================================================================= theme
 
@@ -174,7 +174,7 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE
-                    + '<div class="col-sm-3  mojakolona klasa" MPKLasaKasaID="' + item.MPKLasaKasaID + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-sm-3  mojakolona klasa" naziv="' + item.naziv + '" MPKLasaKasaID="' + item.MPKLasaKasaID + ' "><div class="Transparent kvadraticzarobu">'
                     + '<div class="btn-primary btn-lg">' + item.naziv + '</div>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE + '<div class="clearfix" ></div>' }
@@ -202,6 +202,7 @@
             $(".klasa").off();
             $(".klasa").on("click", function (event) {
                 GetSearchProductsList($(this).attr('MPKLasaKasaID'));
+                $("#" + speeddialsection + "tabCaption").html("<span  class='glyphicon glyphicon-stop'></span> " + $(this).attr('naziv'));
             });
         };
         GetSearchProductsList(0);
@@ -226,7 +227,7 @@
                 jsonp: 'jsoncallback',
                 timeout: 10000,
                 success: function (data, status) {
-                    $("#" + speeddialsection + "tabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $("#searchproductstext").val());
+                    if (klasaid==0) { $("#" + speeddialsection + "tabCaption").html("<span  class='glyphicon glyphicon-search'></span> " + $("#searchproductstext").val()); }
                     speeddialsectioncookie = speeddialsection + "tabCaption";
                     $.Storage.set(speeddialsectioncookie , $("#searchproductstext").val());
                     $("#searchproductstext").val('');
@@ -309,6 +310,7 @@
                    // $(this).addClass('btn-success').addClass('disabled').attr('disabled', 'disabled');
                     ShowDocItem($(this).parent().attr('prometid'));
                     $(".uklonistavku").attr('tid', $(this).parent().attr('prometid'));
+                    $("#detaljno").html( $(this).parent().attr('naziv'));
                 });
                 GetDocTotal();
             },
@@ -387,13 +389,14 @@
                     + '</div></div>';
                  });
 
-                 $("#stolovilist").html(strFormattedHTML);
+                $("#stolovilist").html(strFormattedHTML);
               
                 $(".btnStol").on('click', function (event) {
                     $(".btnStol").removeClass('btn-danger');
                     $(this).addClass('btn-danger');
                     $.Storage.set({ "brojstola": $(this).attr('brojstola') });
                     $("#brojstola,.brojstola").html($(this).attr('brojstola'));
+                    $(".naplata").trigger('click');
                 });
                
                 if ($.Storage.get("brojstola") != undefined) { $("#brojstola,.brojstola").html($.Storage.get("brojstola")); $(".btnStol[brojstola='" + $.Storage.get("brojstola") + "']").addClass('btn-danger'); } else { $("#brojstola,.brojstola").html('1'); $(".btnStol[brojstola='1']").addClass('btn-danger'); };
