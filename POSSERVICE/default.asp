@@ -49,7 +49,8 @@
         ' ako imam sql login onda idem preko njega
         database = SQLLogin 
         'cs = "Driver={SQL Server};UID=" & SQLLogin & ";PWD=" & SQLLoginPass & ";"
-        cs = "DRIVER={SQL Server};SERVER=kkovac-lap;UID=sa;PWD=tan5;DATABASE=" & database & ";"
+        'cs = "DRIVER={SQL Server};SERVER=kkovac-lap;UID=sa;PWD=tan5;DATABASE=" & database & ";"
+        cs = "DRIVER={SQL Server};SERVER=JUPITER2008R2;UID=sa;PWD=;DATABASE=" & database & ";"
     end if
   
     OpenDBConnection  
@@ -67,6 +68,7 @@
     if action="SaveQty" then SaveQty
     if action="GetDocTotal" then GetDocTotal
     if action="CancelDoc" then CancelDoc
+    if action="DelItem" then DelItem
     
     CloseDBConnection
  
@@ -286,6 +288,19 @@ sub CancelDoc
         CROSSDOMAIN_SqlToJSON(sql)
 end sub
 
+    
+sub DelItem
+        on error resume next
+        sql = "delete from tempp2 where prometid=" & id
+        conn.execute(sql)
+        if err.number <> 0 then
+            sql = "select  '" & err.number & "' as errnumber,'" & err.Description & "' as errdescription"
+            else
+            sql = "select  '0' as errnumber,'' as errdescription"
+        end if
+        CROSSDOMAIN_SqlToJSON(sql)
+end sub
+
 sub GetDocTotal
         on error resume next
         sql = "select isnull(SUM(kolicina * mpcijena),0) as doctotal, count(*) as brojstavki from tempp2 where oznakauredjaja='" & OznakaUredjaja & "'"
@@ -308,7 +323,7 @@ sub GetStolovi
 end sub
 
 sub GetStoloviNarudzbe
-    sql = "spPrikaz2 @action=1, @operateriid=" & CheckGUID() & ", @OznakaUredjaja='" & OznakaUredjaja & "'"
+    sql = "spPrikaz2 @action=1, @stol='" & id & "', @operateriid=" & CheckGUID() & ", @OznakaUredjaja='" & OznakaUredjaja & "'"
     CROSSDOMAIN_SqlToJSON(sql)
 end sub
 
@@ -321,6 +336,7 @@ sub GetDocumentItem
     sql = "select Kolicina,MPCijena from tempp2 where prometid=" & id
     CROSSDOMAIN_SqlToJSON(sql)
 end sub
+    
     
 sub GetSearchProductsList
     klasaid = fnumb(readx2("klasaid","0"))

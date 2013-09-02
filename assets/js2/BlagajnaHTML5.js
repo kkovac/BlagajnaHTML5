@@ -247,6 +247,7 @@
                     $(".kvadraticzarobu" + speeddialsection).on("click", function (event) {
                         // $(this).addClass('btn-danger').addClass('disabled').attr('disabled', 'disabled');
                         AddProductToDocument($(this).parent().attr('robaid'));
+                        $(this).fadeOut().fadeIn();
                     });
                     $("#speeddialloader").hide();
                 },
@@ -284,6 +285,7 @@
         var strFormattedHTML = '';
         $("#documentitemslist").html('');
         $("#docitemsloader").show();
+        $(".pokazistavkedokumenta").fadeOut().fadeIn();
         ShowSection('#documentitemslistwrapper');
         $.ajax({
             url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocumentItems',
@@ -335,7 +337,7 @@
                     + '<tr><td>' + item.Roba5400 + '</td><td>' + item.Količina1000 + '</td><td>' + item.Cijena1200 + '</td></tr>'
                 });
 
-                strFormattedHTML = '<table class="table"><thead><tr><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>'
+                strFormattedHTML = '<table class="table Transparent"><thead><tr><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>'
 
                 $("#pregledstolalist").html(strFormattedHTML);
 
@@ -419,13 +421,14 @@
                  });
 
                 $("#stolovilist").html(strFormattedHTML);
-              
+                $(".btnStol").off();
                 $(".btnStol").on('click', function (event) {
                     $(".btnStol").removeClass('btn-danger');
                     $(this).addClass('btn-danger');
                     $.Storage.set({ "brojstola": $(this).attr('brojstola') });
                     $("#brojstola,.brojstola").html($(this).attr('brojstola'));
-                    $(".naplata").trigger('click');
+                    //$(".naplata").trigger('click');
+                    ZakljuciDoc();
                 });
                
                 if ($.Storage.get("brojstola") != undefined) { $("#brojstola,.brojstola").html($.Storage.get("brojstola")); $(".btnStol[brojstola='" + $.Storage.get("brojstola") + "']").addClass('btn-danger'); } else { $("#brojstola,.brojstola").html('1'); $(".btnStol[brojstola='1']").addClass('btn-danger'); };
@@ -440,13 +443,18 @@
     // ============================================================================= NACINI PLACANJA ...
 
     $(".naplata").click(function () {
+        ZakljuciDoc();
+    });
+
+    function ZakljuciDoc() {
         $("#pregledstolalist").html('');
         ShowSection('#naplataitemslistwrapper');
         if (POSType == 'N') { $("#naplataitemslist").hide(); GetDocumentItemsTablica(); }
+        $(".naplata").fadeOut().fadeIn();
         var strFormattedHTML = '';
         var strPrviNacinPlacanja = '';
         var i5 = 1;
-        
+
         if ($("#naplataitemslist").html() == '') { // samo jednom zovem ...
             $("#naplataloader").show();
             $.ajax({
@@ -489,7 +497,7 @@
                 }
             });
         } else { $("#btnspremiracun").show(); GetDocTotal(); }
-    });
+    }
     
     // ============================================================================= DAJ TOTAL ...
 
@@ -663,7 +671,8 @@
     // ============================================================================= KRAJ ...
     
     $(".pokaziopcijedokumenta").click(function () {
-        ShowSection('.dugmicizaprodaju');  
+        ShowSection('.dugmicizaprodaju');
+        $(".pokaziopcijedokumenta").fadeOut().fadeIn();
     });
 
     $(".btnkraj").click(function () {
