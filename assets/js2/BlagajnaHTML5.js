@@ -404,7 +404,6 @@
     // ============================================================================= STOLOVI ...
 
     function GetStolovi() {
-        $("#naplataloader").show();
         var strFormattedHTML = '';
         $.ajax({
             url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetStolovi',
@@ -441,6 +440,7 @@
     // ============================================================================= NACINI PLACANJA ...
 
     $(".naplata").click(function () {
+        $("#pregledstolalist").html('');
         ShowSection('#naplataitemslistwrapper');
         if (POSType == 'N') { $("#naplataitemslist").hide(); GetDocumentItemsTablica(); }
         var strFormattedHTML = '';
@@ -670,7 +670,7 @@
         ShowSection('#krajsection');
     });
 
-    $(".nastavidugmic,.pokazistavkedokumenta").click(function () {
+    $(".nastavidugmic,.pokazistavkedokumenta,#pregledstolalist").click(function () {
         $("#krajsection").hide();
         GetDocumentItems();
         //$("#searchproductstext").focus();
