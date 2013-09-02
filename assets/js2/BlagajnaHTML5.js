@@ -566,6 +566,7 @@
                     }
                 });
                 $("#desktoploader,#desktoploader2").hide();
+                $("#pregledstolalist").html('');
                 GetDocTotal();
                 GetSearchProductsList(0);
             },
