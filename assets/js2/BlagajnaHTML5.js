@@ -206,6 +206,7 @@
             });
         };
         GetSearchProductsList(0);
+        $("#searchproductsbutton").fadeOut().fadeIn();
     });
 
     $("#searchproductstext").click(function () { GetSearchProductsList(0); });
@@ -687,6 +688,7 @@
 
     $(".glavnimenidugmic").click(function () {
         ShowSection('#glavnimeni');
+        $(".glavnimenidugmic").fadeOut().fadeIn();
     });
 
     // ============================================================================= SHOW ONE SECTION AND HIDE ALL OTHERS ...
