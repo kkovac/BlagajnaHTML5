@@ -320,6 +320,32 @@
         });
     }
 
+
+    // kao i ovo gore samo formatiram kao tablicu
+    function GetDocumentItemsTablica() {
+        var strFormattedHTML = '';
+        $.ajax({
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetDocumentItems',
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            timeout: 10000,
+            success: function (data, status) {
+                $.each(data, function (i, item) {
+                    strFormattedHTML = strFormattedHTML
+                    + '<tr><td>' + item.Roba5400 + '</td><td>' + item.Količina1000 + '</td><td>' + item.Cijena1200 + '</td></tr>'
+                });
+
+                strFormattedHTML = '<table class="table"><thead><tr><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>'
+
+                $("#pregledstolalist").html(strFormattedHTML);
+
+                $("#pregledstolovaloader").hide();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //alert(thrownError);
+            }
+        });
+    }
     
     // ================================================================================= UKLONI STAVKU ...
 
@@ -349,8 +375,8 @@
     });
 
     function GetStoloviNarudzbe() {
-        $("#pregledstolovaloader").show();
         ShowSection('#pregledstolovasection');
+        $("#pregledstolovaloader").show();
         var strFormattedHTML = '';
         $.ajax({
             url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetStoloviNarudzbe',
@@ -362,7 +388,10 @@
                     strFormattedHTML = strFormattedHTML
                     + '<tr><td>' + item.oznakauredjaja + '</td><td>' + item.Stol + '</td><td>' + item.sifra + '</td><td>' + item.Roba + '</td><td>' + item.Kolicina + '</td><td>' + item.MPCijena + '</td></tr>'
                 });
-                $("#pregledstolovalist").html('<table class="table"><thead><tr><th>Uređaj</th><th>Stol</th><th>Šifra</th><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>');
+
+                strFormattedHTML = '<table class="table"><thead><tr><th>Uređaj</th><th>Stol</th><th>Šifra</th><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>'
+                
+                $("#pregledstolovalist").html(strFormattedHTML);
                 $("#pregledstolovaloader").hide();
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -370,6 +399,7 @@
             }
         });
     }
+
 
     // ============================================================================= STOLOVI ...
 
@@ -412,10 +442,11 @@
 
     $(".naplata").click(function () {
         ShowSection('#naplataitemslistwrapper');
-        if (POSType == 'N') { $("#naplataitemslist").hide();}
+        if (POSType == 'N') { $("#naplataitemslist").hide(); GetDocumentItemsTablica(); }
         var strFormattedHTML = '';
         var strPrviNacinPlacanja = '';
         var i5 = 1;
+        
         if ($("#naplataitemslist").html() == '') { // samo jednom zovem ...
             $("#naplataloader").show();
             $.ajax({
