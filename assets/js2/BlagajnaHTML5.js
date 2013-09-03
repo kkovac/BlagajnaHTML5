@@ -233,11 +233,13 @@
                     $.Storage.set(speeddialsectioncookie , $("#searchproductstext").val());
                     $("#searchproductstext").val('');
                     var i5 = 0;
+                    var rrr = '';
                     $.each(data, function (i, item) {
                         i5 = i5 + 1;
+                        if (item.kolicina != 0) { rrr = ' x ' + item.kolicina + ' = ' + item.iznos } else { rrr = '';}
                         strFormattedHTML = strFormattedHTML
                         + '<div class="col-sm-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu kvadraticzarobu' + speeddialsection + '">'
-                        + '<h4>' + item.mpcijena + 'kn</h3>' + ' '
+                        + '<h4>' + item.mpcijena + 'kn <span class="rrr" id="rrr' + item.robaid + '" >' + rrr + '</span></h3>' + ' '
                         + '<div class="btn-danger btn-lg">' + item.naziv + '</div>'
                         //+ 'Userid : ' + item.userid + ' '
                         // + '<br />Barcode : ' + item.barcode + ' '
@@ -273,6 +275,15 @@
                     $("#docitemsloader").hide();
                     //GetDocumentItems();
                     GetDocTotal();
+
+                    $.each(data, function (i, item) {
+                        if (item.errnumber == '0') {
+                            $("#rrr" + robaid).html(' x ' + item.kolicina + ' = ' + item.iznos);
+                        } else {
+                            $(".errordescription").html(item.errdescription);
+                        }
+                    });
+
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     //alert(thrownError);
@@ -574,6 +585,7 @@
                         // $(".errordescription").html(item.errdescription);
                     }
                 });
+                $(".rrr").html('');
                 $("#desktoploader,#desktoploader2").hide();
                 $("#pregledstolalist").html('');
                 GetDocTotal();
@@ -608,6 +620,7 @@
                 //GetDocumentItems();
                 GetDocTotal();
                 GetSearchProductsList(0);
+                $(".rrr").html('');
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
