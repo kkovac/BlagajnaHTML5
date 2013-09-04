@@ -390,9 +390,13 @@
     });
 
     function GetStoloviNarudzbe() {
+        $("#pregledstolovalist").html('');
         ShowSection('#pregledstolovasection');
         $("#pregledstolovaloader").show();
         var strFormattedHTML = '';
+        var curStol = '';
+        var curTotal = 0;
+        var curTotalTotal = 0;
         $.ajax({
             url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetStoloviNarudzbe',
             dataType: 'jsonp',
@@ -400,11 +404,23 @@
             timeout: 10000,
             success: function (data, status) {
                 $.each(data, function (i, item) {
+                    curTotalTotal = curTotalTotal + (item.Kolicina * item.MPCijena);
+                    if (curStol != item.Stol) {
+                        if (curTotal!=0) { strFormattedHTML = strFormattedHTML + '<tr><td colspan="3"></td><td><h3><span class="label label-primary"> = ' + curTotal + '</span></h3></td></tr>'; }
+                        strFormattedHTML = strFormattedHTML + '<tr><td colspan="4"><h2><span class="label label-danger">' + item.Stol + '</span></h2></td></tr>';
+                        curTotal = 0;
+                    }
+                    curTotal = curTotal + (item.Kolicina * item.MPCijena)
+
                     strFormattedHTML = strFormattedHTML
-                    + '<tr><td>' + item.oznakauredjaja + '</td><td>' + item.Stol + '</td><td>' + item.sifra + '</td><td>' + item.Roba + '</td><td>' + item.Kolicina + '</td><td>' + item.MPCijena + '</td></tr>'
+                    + '<tr><td> </td><td>' + item.Roba + '</td><td>' + item.Kolicina + '</td><td>' + item.MPCijena + '</td></tr>'
+                    curStol = item.Stol;
                 });
 
-                strFormattedHTML = '<table class="table"><thead><tr><th>Uređaj</th><th>Stol</th><th>Šifra</th><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>'
+                strFormattedHTML = strFormattedHTML + '<tr><td colspan="3"></td><td><h3><span class="label label-primary"> = ' + curTotal + '</span></h3></td></tr>';
+                strFormattedHTML = '<table class="table"><thead><tr><th>Stol</th><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>'
+
+                strFormattedHTML = strFormattedHTML + '<br /><br /><h3><span class="label label-primary pull-right">Ukupno nenaplaćeno: ' + curTotalTotal + '</span></h3>'
                 
                 $("#pregledstolovalist").html(strFormattedHTML);
                 $("#pregledstolovaloader").hide();
