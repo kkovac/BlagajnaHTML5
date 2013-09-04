@@ -263,13 +263,28 @@ sub AddProductToDocument
            
                 Conn.Execute (sql2)
 
+          errnumber = 0
+          errDescription = ""
+          errDescription = err.Description
+          errnumber = err.number
+          iznos = 0
+          kolicina = 0
+
+          sql = "select sum(Kolicina) as kolicina,sum(Kolicina * MPCijena) as iznos  from tempp2 where robaid=" & robaid & " and oznakauredjaja='" & OznakaUredjaja & "'"
+          set trs = Conn.Execute (sql)
+          if not trs.eof then
+                kolicina = trs("kolicina")
+                iznos = trs("iznos")
+          end if
+          
+
           'response.write sql2
           'response.end
-     
+         
           if err.number <> 0 then
-                sql = "select  '" & err.number & "' as errnumber,'" & err.Description & "' as errdescription"
+                sql = "select  '" & errnumber & "' as errnumber,'" & errDescription & "' as errdescription, '" & kolicina & "' as kolicina, '" & iznos &"' as iznos"
                 else
-                sql = "select  '0' as errnumber,'' as errdescription"
+                sql = "select  '0' as errnumber,'' as errdescription, '" & kolicina & "' as kolicina, '" & iznos & "' as iznos"
           end if
 
           CROSSDOMAIN_SqlToJSON(sql)
@@ -342,9 +357,16 @@ sub GetSearchProductsList
     klasaid = fnumb(readx2("klasaid","0"))
     if klasaid=0 then
         s = readx2("s","")
-        sql = "select top 40 robaid,naziv,mpcijena,barcode,userid from roba where naziv like '%" & s & "%'"
+        sql = "select top 40 r.robaid,r.naziv,r.mpcijena,r.barcode,r.userid " & _
+                ", isnull(( select sum(kolicina) from tempp2 where robaid=r.robaid and oznakauredjaja='" & OznakaUredjaja & "'  ),0) as  kolicina  " & _
+                ", ( select sum(kolicina * MPCijena) from tempp2 where robaid=r.robaid and oznakauredjaja='" & OznakaUredjaja & "'  ) as  iznos " & _ 
+                " from roba r where r.naziv like '%" & s & "%'"
     else
-        sql = "select top 120 r.robaid,r.naziv,r.mpcijena,r.barcode,r.userid from roba r inner join MPLNKLasaKasa l on r.RobaId=l.robaid where l.MPKLasaKasaID=" & klasaid
+        sql = "select top 120 r.robaid,r.naziv,r.mpcijena,r.barcode,r.userid " & _
+              ", isnull(( select sum(kolicina) from tempp2 where robaid=r.robaid and oznakauredjaja='" & OznakaUredjaja & "'  ),0) as  kolicina  " & _
+              ", ( select sum(kolicina * MPCijena) from tempp2 where robaid=r.robaid and oznakauredjaja='" & OznakaUredjaja & "'  ) as  iznos " & _ 
+              " from roba r inner join MPLNKLasaKasa l on r.RobaId=l.robaid " & _
+              " where l.MPKLasaKasaID=" & klasaid
     end if
     CROSSDOMAIN_SqlToJSON(sql)
 end sub

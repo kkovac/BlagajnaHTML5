@@ -109,6 +109,7 @@
                     $(".navbar-brand").hide();
                     $("#dugmicinafixnomhederu").show('');
                     $("#usernamenav").html(data.username);
+                    $("#d2").html($("#d").val());
                     $.Storage.set({ "BlagajnaHTML5w": $("#w").val() });
                     $.Storage.set({ "BlagajnaHTML5g": $("#g").html() });
                     $.Storage.set({ "BlagajnaHTML5e": $("#e").val() });
@@ -443,7 +444,7 @@
                     ZakljuciDoc();
                 });
                
-                if ($.Storage.get("brojstola") != undefined) { $("#brojstola,.brojstola").html($.Storage.get("brojstola")); $(".btnStol[brojstola='" + $.Storage.get("brojstola") + "']").addClass('btn-danger'); } else { $("#brojstola,.brojstola").html('1'); $(".btnStol[brojstola='1']").addClass('btn-danger'); };
+               //  if ($.Storage.get("brojstola") != undefined) { $("#brojstola,.brojstola").html($.Storage.get("brojstola")); $(".btnStol[brojstola='" + $.Storage.get("brojstola") + "']").addClass('btn-danger'); } else { $("#brojstola,.brojstola").html('1'); $(".btnStol[brojstola='1']").addClass('btn-danger'); };
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -459,6 +460,7 @@
     });
 
     function ZakljuciDoc() {
+        if ($("#brojstola").html() == '') { $(".pokaziopcijedokumenta").trigger('click'); return; } // ako stol nije izabran idemo ga izabarati
         $("#pregledstolalist").html('');
         ShowSection('#naplataitemslistwrapper');
         if (POSType == 'N') { $("#naplataitemslist").hide(); GetDocumentItemsTablica(); }
@@ -585,6 +587,7 @@
                         // $(".errordescription").html(item.errdescription);
                     }
                 });
+                $("#brojstola").html('');
                 $(".rrr").html('');
                 $("#desktoploader,#desktoploader2").hide();
                 $("#pregledstolalist").html('');
@@ -621,6 +624,7 @@
                 GetDocTotal();
                 GetSearchProductsList(0);
                 $(".rrr").html('');
+                $("#brojstola").html('');
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
@@ -686,7 +690,7 @@
     
     $(".pokaziopcijedokumenta").click(function () {
         ShowSection('.dugmicizaprodaju');
-        $(".pokaziopcijedokumenta").fadeOut().fadeIn();
+        // $(".pokaziopcijedokumenta").fadeOut().fadeIn();
     });
 
     $(".btnkraj").click(function () {

@@ -49,7 +49,7 @@
             <a class="navbar-brand" href="#">HTML5 POS </a>
 
                <div id="dugmicinafixnomhederu" class="myhide">
-                <div class="col-xs-1 mojakolona glavnimenidugmic">
+                <div class="col-xs-2 mojakolona glavnimenidugmic">
                    <a class="btn btn-lg btn-block btn-danger mybigicon" href="#" ><span class="glyphicon glyphicon-home"></span></a> 
                 </div>
 
@@ -70,12 +70,12 @@
                     <div class="col-xs-2 mojakolona">
                                 <button type="button" class="btn btn-block btn-lg hidden-phone btn-success mybigicon  pokazistavkedokumenta"  >  <span class="glyphicon glyphicon-shopping-cart"></span> <span id="brojstavki" class="iznoszanaplatu" /> </button>
                     </div>
-                    <div class="col-xs-2 mojakolona">
+                    <div class="col-xs-2 mojakolona hide">
                                 <button type="button" class="btn btn-block btn-lg hidden-phone btn-info mybigicon  pokaziopcijedokumenta"  ><span class="glyphicon glyphicon-th-large"></span> <span id="brojstola" class="iznoszanaplatu" /></button>
                      </div>
                 </form>
              
-                 <div class="col-xs-3 mojakolona">
+                 <div class="col-xs-4 mojakolona">
                      <button type="button" class="btn btn-block btn-lg btn-primary  mybigicon naplata">
                          <span class="glyphicon glyphicon-share-alt hidden-phone"></span>
                          <span  class="iznoszanaplatu "><span id="doctotal1">0.00</span></span>
@@ -186,7 +186,7 @@
                                    <h4>Stolovi</h4>
                                    </div>
                                    <div  class="col-xs-6 mojakolona" >
-                                   <h4><div class="brojstola"></div></h4>
+                                   <h4> </h4>
                                    </div>
                                </div>
 
@@ -295,14 +295,12 @@
            <!-- STAVKE DOKUMENTA SECTION --> 
            <div id="documentitemslistwrapper" class="myhide mojpanel Transparent2 clearfix">
                <div class="Transparent2 clearfix">
-               <div  class="col-xs-3 mojakolona" >
-               <h4>  Stavke </h4>
+               <div  class="col-xs-6 mojakolona" >
+               <h4>  Stavke <span class="brojstavki"></span> </h4>
                   
                </div>
-               <div  class="col-xs-2 mojakolona" >
-               <h4><div class="brojstavki"></div> </h4> 
-               </div>
-               <div  class="col-xs-6 mojakolona" >
+              
+               <div  class="col-xs-5 mojakolona" >
                <h4> </h4> 
                </div>
                <div  class="col-xs-1 mojakolona" >
@@ -327,24 +325,27 @@
             <!-- NAPLATA SECTION --> 
             <div id="naplataitemslistwrapper" class="myhide Transparent2 clearfix mojpanel">
                 <div class="Transparent2 clearfix zaglavljesekcije">
-                   <div  class="col-xs-3 mojakolona" >
-                   <h4>Zaključi</h4>
-                   </div>
-                   <div  class="col-xs-3 mojakolona" >
-                   <h4>Stol: <span class="brojstola"></span> </h4>
-                   </div>
-                    <div  class="col-xs-4 mojakolona" >
-                   <h4>Iznos: <span class="bsjDocTotal3"></span> </h4>
-                   </div>
+                    
+                    <div  class="col-xs-11 mojakolona" >
+                    <h4>Zaključi stol <span class="brojstola"></span>, iznos: <span class="bsjDocTotal3"></span> ?</h4>
+                    </div>
+
                     <div  class="col-xs-1 mojakolona " >
-                   <img src="assets/ajax-loader.gif" class="loadergif" id="naplataloader" alt="" />
-                   </div>
+                    <img src="assets/ajax-loader.gif" class="loadergif" id="naplataloader" alt="" />
+                    </div>
+
                </div>
                <div class="clearfix">
                     <div  class="col-xs-4 nekikvadratic mojakolona" >
                         <div class="Transparent" >
                         <div class="btn-primary btn-lg  btnspremiracun" id="btnspremiracun" ><span  class="glyphicon glyphicon-check"></span> Zaključi</div>
                         </div>
+                    </div>
+
+                   <div  class="col-xs-4 nekikvadratic mojakolona" >
+                         <div class="Transparent" >
+                         <div class="   btn-info btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Stol: <span class="brojstola"></span></div>
+                         </div>
                     </div>
                      
                       
@@ -401,8 +402,11 @@
                         <div  class="col-xs-4 mojakolona" >
                         <h4>Glavni izbornik</h4>        
                         </div>
-                        <div  class="col-xs-6 mojakolona" >
-                        <h4><span id="usernamenav" >login name</span> </h4>
+                        <div  class="col-xs-4 mojakolona" >
+                        <h4><span class="glyphicon glyphicon-user"></span> <span id="usernamenav" ></span></h4>  
+                        </div>
+                        <div  class="col-xs-4 mojakolona" >
+                        <h4><span class="glyphicon glyphicon-briefcase"></span> <span id="d2" ></span></h4>  
                         </div>
                     </div>
                 
@@ -431,12 +435,12 @@
                  <div class="clearfix">
                      <div  class="col-xs-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="   btn-info btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Izbor stola</div>
+                         <div class="   btn-info btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Stol: <span class="brojstola"></span></div>
                          </div>
                     </div>
                     <div  class="col-xs-4 nekikvadratic mojakolona" >
                         <div class="Transparent" >
-                         <div class="   btn-info btn-lg pregledstolovadugmic  afterclickfocussearchproductstext"><span class="glyphicon glyphicon-list "></span> Pregled stolova</div>
+                         <div class="   btn-info btn-lg pregledstolovadugmic  afterclickfocussearchproductstext"><span class="glyphicon glyphicon-list "></span> Naručeno </div>
                         </div>
                     </div>
 
