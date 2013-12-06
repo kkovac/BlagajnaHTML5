@@ -40,18 +40,11 @@
     jsoncallback = request.QueryString("jsoncallback") ' jsoncallback
     OznakaUredjaja = ""
     OznakaUredjaja  = trim(Request.QueryString("o"))
+  
+    database = SQLLogin 
 
-    if SQLLogin="" then 
-        ' ako na klijentu nije unešen sql login onda radim sa MPBlagajnom i SA blank
-        database = "MPBlagajna"
-        cs = "DRIVER={SQL Server};SERVER=JUPITER2008R2;UID=sa;PWD=;DATABASE=" & database & ";"
-    else
-        ' ako imam sql login onda idem preko njega
-        database = SQLLogin 
-        'cs = "Driver={SQL Server};UID=" & SQLLogin & ";PWD=" & SQLLoginPass & ";"
-        'cs = "DRIVER={SQL Server};SERVER=kkovac-lap;UID=sa;PWD=tan5;DATABASE=" & database & ";"
-        cs = "DRIVER={SQL Server};SERVER=JUPITER2008R2;UID=sa;PWD=;DATABASE=" & database & ";"
-    end if
+    cs = "DRIVER={SQL Server};SERVER=nekiserver;UID=sa;PWD=nekipassword;DATABASE=" & database & ";"
+    
   
     OpenDBConnection  
 

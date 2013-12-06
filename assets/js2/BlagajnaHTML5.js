@@ -406,7 +406,7 @@
                 $.each(data, function (i, item) {
                     curTotalTotal = curTotalTotal + (item.Kolicina * item.MPCijena);
                     if (curStol != item.Stol) {
-                        if (curTotal!=0) { strFormattedHTML = strFormattedHTML + '<tr><td colspan="3"></td><td><h3><span class="label label-primary"> = ' + curTotal + '</span></h3></td></tr>'; }
+                        if (curTotal != 0) { strFormattedHTML = strFormattedHTML + '<tr><td colspan="2"></td><td colspan="2"><h3><span class="label label-primary pull-right"> = ' + curTotal + '</span></h3></td></tr>'; }
                         strFormattedHTML = strFormattedHTML + '<tr><td colspan="4"><h2><span class="label label-danger">' + item.Stol + '</span></h2></td></tr>';
                         curTotal = 0;
                     }
@@ -417,7 +417,7 @@
                     curStol = item.Stol;
                 });
 
-                strFormattedHTML = strFormattedHTML + '<tr><td colspan="3"></td><td><h3><span class="label label-primary"> = ' + curTotal + '</span></h3></td></tr>';
+                strFormattedHTML = strFormattedHTML + '<tr><td colspan="2"></td><td colspan="2"><h3><span class="label label-primary pull-right"> = ' + curTotal + '</span></h3></td></tr>';
                 strFormattedHTML = '<table class="table"><thead><tr><th>Stol</th><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>'
 
                 strFormattedHTML = strFormattedHTML + '<br /><br /><h3><span class="label label-primary pull-right">Ukupno nenaplaćeno: ' + curTotalTotal + '</span></h3>'
