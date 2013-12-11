@@ -10,6 +10,14 @@
 
     $(".mysection,.loadergif").hide();
 
+    /*
+    $('.slider').glide({
+        autoplay: 5000,
+        arrows: 'body',
+        nav: 'body'
+    });
+    */
+
     //$('.carousel').carousel();
 
     if ($.Storage.get("BlagajnaHTML5w") != undefined) { $("#w").val($.Storage.get("BlagajnaHTML5w")) };
@@ -175,8 +183,8 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE
-                    + '<div class="col-sm-3  mojakolona klasa" naziv="' + item.naziv + '" MPKLasaKasaID="' + item.MPKLasaKasaID + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<div class="btn-primary btn-lg">' + item.naziv + '</div>'
+                    + '<div class="col-sm-3   mojakolona klasa" naziv="' + item.naziv + '" MPKLasaKasaID="' + item.MPKLasaKasaID + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="btn-lg">' + item.naziv + '</div>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE + '<div class="clearfix" ></div>' }
                 });
@@ -239,9 +247,9 @@
                         i5 = i5 + 1;
                         if (item.kolicina != 0) { rrr = ' x ' + item.kolicina + ' = ' + item.iznos } else { rrr = '';}
                         strFormattedHTML = strFormattedHTML
-                        + '<div class="col-sm-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent kvadraticzarobu kvadraticzarobu' + speeddialsection + '">'
+                        + '<div class="col-sm-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent  kvadraticzarobu kvadraticzarobu' + speeddialsection + '">'
                         + '<h4>' + item.mpcijena + 'kn <span class="rrr" id="rrr' + item.robaid + '" >' + rrr + '</span></h3>' + ' '
-                        + '<div class="btn-danger btn-lg">' + item.naziv + '</div>'
+                        + '<h5>' + item.naziv + '</h5>'
                         //+ 'Userid : ' + item.userid + ' '
                         // + '<br />Barcode : ' + item.barcode + ' '
                         + '</div></div>';
@@ -310,12 +318,12 @@
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     strFormattedHTML = strFormattedHTML
-                    + '<div class="col-sm-3  mojakolona" naziv="' + item.Roba5400 + '" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke">'
-                    + '<h5>'
+                    + '<div class="col-sm-3  mojakolona" naziv="' + item.Roba5400 + '" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke ">'
+                    + '<h4>'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.Količina1000 + ' = ' + item.Iznos1400
-                    + '</h5>' + ' '
-                    + '<div class="btn-success btn-lg">' + item.Roba5400 + '</div>'
+                    + '</h4>' + ' '
+                    + '<h5>' + item.Roba5400 + '</h5>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
@@ -445,7 +453,7 @@
                  $.each(data, function (i, item) {
                     strFormattedHTML = strFormattedHTML
                     + '<div class="col-sm-4 mojakolona " id="' + item.mpstoloviid + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<div class="btn btn-default btn-block btn-lg btnStol" brojstola="' + item.broj + '" >' + '[' + item.broj + '] ' + item.opis + '</div>'
+                    + '<div class="btn-lg btnStol" brojstola="' + item.broj + '" >' + '<span class="glyphicon glyphicon-th-large"></span> [' + item.broj + '] ' + item.opis + '</div>'
                     + '</div></div>';
                  });
 

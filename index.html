@@ -14,6 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/BlagajnaHTML5.css" rel="stylesheet" />
+    <link href="assets/css/sliderstyle.css" rel="stylesheet" />
     <link href="" class="additional" rel="stylesheet" />
   
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -61,26 +62,26 @@
                     <div class="col-xs-2 mojakolona">
                              
                         
-                          <button type="submit" class="btn  btn-danger btn-block  btn-lg  mybigicon " id="searchproductsbutton"><span class="glyphicon glyphicon-search"></span> </button>
+                          <a type="submit" class="btn  btn-black btn-block  btn-lg  mybigicon " id="searchproductsbutton"><span class="glyphicon glyphicon-search"></span> </a>
                           
                     </div>
 
                     
 
                     <div class="col-xs-2 mojakolona">
-                                <button type="button" class="btn btn-block btn-lg hidden-phone btn-success mybigicon  pokazistavkedokumenta"  >  <span class="glyphicon glyphicon-shopping-cart"></span> <span id="brojstavki" class="iznoszanaplatu" /> </button>
+                                <a type="button" class="btn  btn-black btn-block btn-lg hidden-phone mybigicon  pokazistavkedokumenta"  >  <span class="glyphicon glyphicon-shopping-cart"></span> <span id="brojstavki" class="iznoszanaplatu" /> </a>
                     </div>
                     <div class="col-xs-2 mojakolona hide">
-                                <button type="button" class="btn btn-block btn-lg hidden-phone btn-info mybigicon  pokaziopcijedokumenta"  ><span class="glyphicon glyphicon-th-large"></span> <span id="brojstola" class="iznoszanaplatu" /></button>
+                                <a type="button" class="btn btn-block btn-lg hidden-phone btn-black mybigicon  pokaziopcijedokumenta"  ><span class="glyphicon glyphicon-th-large"></span> <span id="brojstola" class="iznoszanaplatu" /></a>
                      </div>
                 </form>
              
                  <div class="col-xs-4 mojakolona">
-                     <button type="button" class="btn btn-block btn-lg btn-primary  mybigicon naplata">
+                     <a type="button" class="btn btn-block btn-lg btn-black  mybigicon naplata">
                          <span class="glyphicon glyphicon-share-alt hidden-phone"></span>
                          <span  class="iznoszanaplatu "><span id="doctotal1">0.00</span></span>
                          <img src="assets/ajax-loader.gif" class="loadergif" id="doctotal1loader" alt="" />
-                     </button>
+                     </a>
                 </div>   
            
                 </div>
@@ -101,8 +102,10 @@
                 
                     <div class="controls  col-sm-6">
                 <form class="form-signin" id="loginform">        
-                          <h2><span class="label label-success">POS - narudžbe</span><span class="label label-danger"><i>v1.1</i></span></h2>
+                        <h2><span class="label label-success">POS - narudžbe</span><span class="label label-danger"><i>v1.3</i></span></h2>
+
                         <br />
+
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                             <input type="text" id="e" autofocus class="form-control input-lg enterastab" name="e" placeholder="username">
@@ -117,7 +120,7 @@
                         <div class="btn-group">
                             <button type="submit" id="loginbutton" class="btn btn-success btn-lg"> <span class="glyphicon glyphicon-log-in"></span> Login</button>
                         </div>
-                        <div class="btn-group pull-right">
+                        <div class="btn-group ">
                             <button type="submit" id="settingsbutton" class="btn btn-danger btn-lg "> <span class="glyphicon glyphicon-cog"></span> </button>
                         </div>
                         <img src="assets/ajax-loader.gif" class="loadergif" id="loginloadergif" alt="" />
@@ -153,11 +156,12 @@
                      
 
 
-                    <div class="controls  col-sm-6 Transparent">
+                    <div class="  col-sm-6 Transparent">
                            
                                   <div class="">
                                     
-                                        
+                                       
+
                                         <br />
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. <span id="readmoreabout" class="myhide"> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?".</span></p>
                                        
@@ -230,7 +234,15 @@
               <br />
                <textarea  rows="3" class="form-control mojtextarea input-lg" id="commentform"></textarea>
                     <br />
-                    <div class="btn-info btn-lg col-xs-4 nastavidugmic" id="spreminapomenu"><span  class="glyphicon glyphicon-ok"></span> Spremi</div>
+                
+
+                <div  class="col-xs-4 nekikvadratic mojakolona " >
+                         <div class="Transparent clearfix" >
+                     <div class="btn-lg nastavidugmic" id="spreminapomenu"><span  class="glyphicon glyphicon-ok"></span> Spremi</div>
+                         </div>
+                    </div>
+
+
                   <br /> <br />
             </div>
            <!-- END OF COMMENT SECTION -->
@@ -344,7 +356,7 @@
 
                    <div  class="col-xs-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="   btn-info btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Stol: <span class="brojstola"></span></div>
+                         <div class="    btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Stol: <span class="brojstola"></span></div>
                          </div>
                     </div>
                      
@@ -410,17 +422,17 @@
                     <div class="  clearfix">
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
                             <div class="Transparent " >
-                            <div class=" btn-primary btn-lg   naplata " ><span  class="glyphicon glyphicon-share-alt"></span> Zaključi </div>
+                            <div class="  btn-lg  naplata " ><span  class="glyphicon glyphicon-share-alt"></span> Zaključi </div>
                             </div>
                         </div>
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class=" btn-success btn-lg   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Stavke <span class="brojstavki"></span></div>
+                             <div class="  btn-lg   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Stavke <span class="brojstavki"></span></div>
                              </div>
                         </div>
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class=" btn-danger btn-lg    canceldoc  " ><span  class="glyphicon glyphicon-remove"></span> Poništi</div>
+                             <div class="  btn-lg    canceldoc  " ><span  class="glyphicon glyphicon-remove"></span> Poništi</div>
                              </div>
                         </div>
                     </div>
@@ -428,18 +440,18 @@
                  <div class="clearfix">
                      <div  class="col-xs-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="   btn-info btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Stol: <span class="brojstola"></span></div>
+                         <div class="    btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="glyphicon glyphicon-th-large "></span> Stol: <span class="brojstola"></span></div>
                          </div>
                     </div>
                     <div  class="col-xs-4 nekikvadratic mojakolona" >
                         <div class="Transparent" >
-                         <div class="   btn-info btn-lg pregledstolovadugmic  afterclickfocussearchproductstext"><span class="glyphicon glyphicon-list "></span> Naručeno </div>
+                         <div class="    btn-lg pregledstolovadugmic  afterclickfocussearchproductstext"><span class="glyphicon glyphicon-list "></span> Naručeno </div>
                         </div>
                     </div>
 
                      <div  class="col-xs-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class="  btn-info    btn-lg  butonzakomentiranje"><span  class="glyphicon glyphicon-comment"></span> Napomena</div>
+                             <div class="  btn-lg  butonzakomentiranje"><span  class="glyphicon glyphicon-comment"></span> Napomena</div>
                              </div>
                         </div>
                       
@@ -450,18 +462,18 @@
                 <div class="clearfix">
                     <div  class="col-xs-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="  btn-info btn-lg themedugmic"><span class="glyphicon glyphicon-tint "></span> Teme</div>
+                         <div class="  btn-lg themedugmic"><span class="glyphicon glyphicon-tint "></span> Teme</div>
                          </div>
                     </div>
                     <div  class="col-xs-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class=" btn-info btn-lg uklunithemedugmic" id="themeblank" data-id="0.png" data-css="assets/css/BlagajnaHTML5FBPb.css" ><span class="glyphicon glyphicon-tint "></span> Ukloni temu</div>
+                         <div class=" btn-lg uklunithemedugmic" id="themeblank" data-id="0.png" data-css="assets/css/BlagajnaHTML5FBPb.css" ><span class="glyphicon glyphicon-tint "></span> Ukloni temu</div>
                          </div>
                     </div>
 
                     <div  class="col-xs-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class=" btn-info btn-lg    logoutdugmic  " ><span  class="glyphicon glyphicon-log-out"></span> Odjava</div>
+                             <div class=" btn-lg    logoutdugmic  " ><span  class="glyphicon glyphicon-log-out"></span> Odjava</div>
                              </div>
                         </div>
                     
@@ -539,12 +551,12 @@
                      <div class="row clearfix">
                         <div  class="col-xs-6 nekikvadratic " >
                             <div class="Transparent" >
-                            <div class="btn-danger btn-lg   reallycanceldoc " ><span  class="glyphicon glyphicon-remove"></span> Da , poništi</div>
+                            <div class="btn-lg   reallycanceldoc " ><span  class="glyphicon glyphicon-remove"></span> Da , poništi</div>
                             </div>
                         </div>
                         <div  class="col-xs-6 nekikvadratic " >
                              <div class="Transparent" >
-                             <div class="btn-success btn-lg   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Ne, nastavi</div>
+                             <div class="btn-lg   nastavidugmic afterclickfocussearchproductstext   "   ><span class="glyphicon glyphicon-shopping-cart "></span> Ne, nastavi</div>
                              </div>
                         </div>
                          
@@ -553,7 +565,7 @@
                 </div>
             <!-- END OF CANCEL DOC -->
 
-            <!-- DOCITEM KOLICINA, POPUST, NAPOMENA , ... -->
+            <!-- STAVKA DETALJ DOCITEM KOLICINA, POPUST, NAPOMENA , ... -->
              <div class="myhide Transparent2 clearfix docitemsection mojpanel"  >
                         <div class="Transparent2 clearfix">
                             <div  class="col-xs-5 mojakolona" >
@@ -587,12 +599,12 @@
                                                 </div>
                                                 <div  class="col-xs-2 nekikvadratic mojakolona " >
                                                 <div class="Transparent " >
-                                                      <div class="btn-info btn-lg " id="pluskolicina" ><span  class="glyphicon glyphicon-plus"></span></div>
+                                                      <div class=" btn-lg " id="pluskolicina" ><span  class="glyphicon glyphicon-plus"></span></div>
                                                 </div>
                                                 </div>
                                                 <div  class="col-xs-2 nekikvadratic mojakolona " >
                                                 <div class="Transparent " >
-                                                      <div class=" btn-info btn-lg " id="minuskolicina" ><span  class="glyphicon glyphicon-minus"></span></div>
+                                                      <div class="  btn-lg " id="minuskolicina" ><span  class="glyphicon glyphicon-minus"></span></div>
                                                 </div>
                                                 </div>
                               </div>
@@ -624,19 +636,18 @@
               <br/>
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
                             <div class="Transparent " >
-                            <div class=" btn-primary btn-lg spremikolicinu " ><span  class="glyphicon glyphicon-ok"></span> Spremi</div>
+                            <div class="  btn-lg spremikolicinu " ><span  class="glyphicon glyphicon-ok"></span> Spremi</div>
                             </div>
                         </div>
 
+
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
-                             <div class="Transparent" >
-                             <div class=" btn-success btn-lg nastavidugmic  " ><span  class="glyphicon glyphicon-shopping-cart"></span> Stavke <span class="brojstavki"></span> </div>
-                             </div>
+                             
                         </div>
                         
                         <div  class="col-xs-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class=" btn-danger btn-lg uklonistavku  " ><span  class="glyphicon glyphicon-remove"></span> Ukloni</div>
+                             <div class="  btn-lg uklonistavku  " ><span  class="glyphicon glyphicon-remove"></span> Ukloni</div>
                              </div>
                         </div>
                 </div>
@@ -647,6 +658,7 @@
 
     </div> <!-- end of container  -->
 
+       
 
     <!-- BOOTSTRAP CORE -->
     <script src="assets/js/jquery.js"></script>
@@ -655,6 +667,6 @@
     <script src="assets/js2/jquery.Storage.js"></script>
 	<script src="assets/js2/BlagajnaHTML5.js?5"></script>
     <script src="assets/js2/jquery.backstretch.js"></script>
-
+    <script src="assets/js2/jquery.glide.js"></script>
   </body>
 </html>
