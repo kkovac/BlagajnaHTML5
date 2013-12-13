@@ -187,7 +187,7 @@
                     i5 = i5 + 1;
                     c5 = c5 + 1;
                     strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE
-                    + '<div class="col-sm-3   mojakolona klasa" naziv="' + item.naziv + '" MPKLasaKasaID="' + item.MPKLasaKasaID + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-sm-3 mojakolona klasa" naziv="' + item.naziv + '" MPKLasaKasaID="' + item.MPKLasaKasaID + ' "><div class="Transparent kvadraticzarobu">'
                     + '<div class="btn-lg"><span class="label label-danger">' + c5 + ' <span class="glyphicon glyphicon-stop"></span></span> ' + item.naziv + '</div>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE + '<div class="clearfix" ></div>' }
@@ -331,7 +331,7 @@
                     c5 = c5 + 1;
                     strFormattedHTML = strFormattedHTML
                     + '<div class="col-sm-3  mojakolona" naziv="' + item.Roba5400 + '" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke ">'
-                    + '<span  class=" col-xs-2 mojakolona"><h5><span class="label label-success"> ' + c5 + '</span></h5></span>'
+                    + '<span  class=" col-xs-2 mojakolona"><h5><span class="label label-success"><strong>' + c5 + '</strong></span></h5></span>'
                     + '<span class=" col-xs-9 mojakolona">'
                     + '<span style="border-bottom:1px dashed;">'
                     + item.Cijena1200 + 'kn '
