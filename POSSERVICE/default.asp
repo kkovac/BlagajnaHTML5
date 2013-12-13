@@ -2,10 +2,18 @@
 <!--#include file="JSON_UTIL_0.1.1.asp"-->
 <%
 
+
+'    response.CodePage=65001
+'    response.CharSet = "UTF-8"
+'    Response.ContentType = "application/json"
+'    Response.AddHeader "Content-Type", "application/json;charset=UTF-8"
+
     response.CodePage=65001
-    response.CharSet = "UTF-8"
-    Response.ContentType = "application/json"
-    Response.AddHeader "Content-Type", "application/json;charset=UTF-8"
+    Response.ContentType = "text/html; charset=utf-8"
+    Response.Expires = -1
+    Response.CacheControl = "no-cache"
+    Response.AddHeader "Pragma", "no-cache"
+
     
     Dim Conn
     Dim cs 

@@ -10,6 +10,8 @@
 
     $(".mysection,.loadergif").hide();
 
+    //$('.glavniizbornik').equalHeight();
+
     /*
     $('.slider').glide({
         autoplay: 5000,
@@ -180,11 +182,13 @@
             success: function (data, status) {
                 
                 var i5 = 0;
+                var c5 = 0;
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
+                    c5 = c5 + 1;
                     strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE
                     + '<div class="col-sm-3   mojakolona klasa" naziv="' + item.naziv + '" MPKLasaKasaID="' + item.MPKLasaKasaID + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<div class="btn-lg">' + item.naziv + '</div>'
+                    + '<div class="btn-lg"><span class="label label-danger">' + c5 + '</span> ' + '<span style="border-bottom:1px dashed;">' + item.naziv + '</span>' + '</div>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE + '<div class="clearfix" ></div>' }
                 });
@@ -248,7 +252,7 @@
                         if (item.kolicina != 0) { rrr = ' x ' + item.kolicina + ' = ' + item.iznos } else { rrr = '';}
                         strFormattedHTML = strFormattedHTML
                         + '<div class="col-sm-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent  kvadraticzarobu kvadraticzarobu' + speeddialsection + '">'
-                        + '<h4>' + item.mpcijena + 'kn <span class="rrr" id="rrr' + item.robaid + '" >' + rrr + '</span></h3>' + ' '
+                        + '<h4><span class="label label-primary">' + item.mpcijena + 'kn</span> <span class="label label-success"><span class="rrr" id="rrr' + item.robaid + '" >' + rrr + '</span></span></h3>' + ' '
                         + '<h5>' + item.naziv + '</h5>'
                         //+ 'Userid : ' + item.userid + ' '
                         // + '<br />Barcode : ' + item.barcode + ' '
@@ -315,15 +319,20 @@
             timeout: 10000,
             success: function (data, status) {
                 var i5 = 0;
+                var c5 = 0;
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
+                    c5 = c5 + 1;
                     strFormattedHTML = strFormattedHTML
                     + '<div class="col-sm-3  mojakolona" naziv="' + item.Roba5400 + '" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke ">'
-                    + '<h4>'
+                    + '<span  class=" col-xs-2"><span class="label label-success">' + c5 + '</span></span>'
+                    + '<span class=" col-xs-9   ">'
+                    + '<span style="border-bottom:1px dotted;">'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.Količina1000 + ' = ' + item.Iznos1400
-                    + '</h4>' + ' '
+                    + '</span>' + ' '
                     + '<h5>' + item.Roba5400 + '</h5>'
+                     + '</span>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
@@ -414,19 +423,19 @@
                 $.each(data, function (i, item) {
                     curTotalTotal = curTotalTotal + (item.Kolicina * item.MPCijena);
                     if (curStol != item.Stol) {
-                        if (curTotal != 0) { strFormattedHTML = strFormattedHTML + '<tr><td colspan="2"></td><td colspan="2"><h3><span class="label label-primary pull-right"> = ' + curTotal + '</span></h3></td></tr>'; }
-                        strFormattedHTML = strFormattedHTML + '<tr><td colspan="4"><h2><span class="label label-danger">' + item.Stol + '</span></h2></td></tr>';
+                        if (curTotal != 0) { strFormattedHTML = strFormattedHTML + '<tr><td></td><td colspan="2"><h3><span class="label label-primary pull-right"> = ' + curTotal + '</span></h3></td></tr>'; }
+                        strFormattedHTML = strFormattedHTML + '<tr><td colspan="3"><h2><span class="label label-danger">Stol ' + item.Stol + '</span></h2></td></tr>';
                         curTotal = 0;
                     }
                     curTotal = curTotal + (item.Kolicina * item.MPCijena)
 
                     strFormattedHTML = strFormattedHTML
-                    + '<tr><td> </td><td>' + item.Roba + '</td><td>' + item.Kolicina + '</td><td>' + item.MPCijena + '</td></tr>'
+                    + '<tr><td>' + item.Roba + '</td><td>' + item.Kolicina + '</td><td>' + item.MPCijena + '</td></tr>'
                     curStol = item.Stol;
                 });
 
                 strFormattedHTML = strFormattedHTML + '<tr><td colspan="2"></td><td colspan="2"><h3><span class="label label-primary pull-right"> = ' + curTotal + '</span></h3></td></tr>';
-                strFormattedHTML = '<table class="table"><thead><tr><th>Stol</th><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>'
+                strFormattedHTML = '<table class="table"><thead><tr><th>Naziv</th><th>Količina</th><th>Cijena</th></tr></thead><tbody>' + strFormattedHTML + '</tbody></table>'
 
                 strFormattedHTML = strFormattedHTML + '<br /><br /><h3><span class="label label-primary pull-right">Ukupno nenaplaćeno: ' + curTotalTotal + '</span></h3>'
                 
@@ -453,7 +462,7 @@
                  $.each(data, function (i, item) {
                     strFormattedHTML = strFormattedHTML
                     + '<div class="col-sm-4 mojakolona " id="' + item.mpstoloviid + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<div class="btn-lg btnStol" brojstola="' + item.broj + '" >' + '<span class="glyphicon glyphicon-th-large"></span> [' + item.broj + '] ' + item.opis + '</div>'
+                    + '<div class="btn-lg btnStol" brojstola="' + item.broj + '" >' + '<span class="label label-danger"><span class="glyphicon glyphicon-th-large"></span></span> [' + item.broj + '] ' + item.opis + '</div>'
                     + '</div></div>';
                  });
 

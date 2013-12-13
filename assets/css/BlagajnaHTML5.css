@@ -4,7 +4,7 @@
 .iznoszanaplatu { font-weight : bold; }
 .kvadraticzarobu, .kvadraticzastavke { margin-top : 5px; overflow : hidden; cursor : pointer; }
 .nekikvadratic{  margin-top : 5px; overflow : hidden; cursor : pointer; }
-.mojtextarea { height : 3em; font-size : 24px; }
+.mojtextarea { height : 3em; font-size : 18px; }
  .errordescription {font-size : 18px; }
 
 .navbar-brand { line-height: 15px; }
@@ -19,6 +19,7 @@
 .mojakolona.col-xs-5,
 .mojakolona.col-xs-6,
 .mojakolona.col-xs-7,
+.mojakolona.col-xs-8,
 .mojakolona.col-xs-12,
 .mojakolona.col-xs-11,
 .mojakolona.col-xs-9,
@@ -26,7 +27,9 @@
  {
   padding-right: 3px !important;
   padding-left: 3px !important;
+  
 }
+
 
 .mojlead {font-size : 18px;
 }
