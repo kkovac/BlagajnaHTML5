@@ -188,7 +188,7 @@
                     c5 = c5 + 1;
                     strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE
                     + '<div class="col-sm-3   mojakolona klasa" naziv="' + item.naziv + '" MPKLasaKasaID="' + item.MPKLasaKasaID + ' "><div class="Transparent kvadraticzarobu">'
-                    + '<div class="btn-lg"><span class="label label-danger">' + c5 + '</span> ' + '<span style="border-bottom:1px dashed;">' + item.naziv + '</span>' + '</div>'
+                    + '<div class="btn-lg"><span class="label label-danger pull-right">' + c5 + ' <span class="glyphicon glyphicon-play"></span></span> ' + item.naziv + '</div>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE + '<div class="clearfix" ></div>' }
                 });
@@ -325,9 +325,9 @@
                     c5 = c5 + 1;
                     strFormattedHTML = strFormattedHTML
                     + '<div class="col-sm-3  mojakolona" naziv="' + item.Roba5400 + '" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke ">'
-                    + '<span  class=" col-xs-2"><span class="label label-success">' + c5 + '</span></span>'
+                    + '<span  class=" col-xs-2"><span class="label label-success"> ' + c5 + '</span></span>'
                     + '<span class=" col-xs-9   ">'
-                    + '<span style="border-bottom:1px dotted;">'
+                    + '<span style="border-bottom:1px dashed;">'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.Količina1000 + ' = ' + item.Iznos1400
                     + '</span>' + ' '
