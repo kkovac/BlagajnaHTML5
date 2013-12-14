@@ -504,12 +504,15 @@
     function ZakljuciDoc() {
         if ($("#brojstola").html() == '') { $(".pokaziopcijedokumenta").trigger('click'); return; } // ako stol nije izabran idemo ga izabarati
         $("#pregledstolalist").html('');
+        $("#documentcommentviewer").html($("#documentcomment").val());
         ShowSection('#naplataitemslistwrapper');
         if (POSType == 'N') { $("#naplataitemslist").hide(); GetDocumentItemsTablica(); }
         $(".naplata").fadeOut().fadeIn();
         var strFormattedHTML = '';
         var strPrviNacinPlacanja = '';
         var i5 = 1;
+        
+        
 
         if ($("#naplataitemslist").html() == '') { // samo jednom zovem ...
             $("#naplataloader").show();
