@@ -366,7 +366,9 @@ sub GetSearchProductsList
         sql = "select top 120 r.robaid,r.naziv,r.mpcijena,r.barcode,r.userid " & _
               ", isnull(( select sum(kolicina) from tempp2 where robaid=r.robaid and oznakauredjaja='" & OznakaUredjaja & "'  ),0) as  kolicina  " & _
               ", ( select sum(kolicina * MPCijena) from tempp2 where robaid=r.robaid and oznakauredjaja='" & OznakaUredjaja & "'  ) as  iznos " & _ 
+              " , isnull(f.id,0) as mojfavorit "
               " from roba r inner join MPLNKLasaKasa l on r.RobaId=l.robaid " & _
+              " left join MojiFavoriti f on (f.tip=1 and operateriid=" & CheckGUID() & " and r.roabid = f.id)"
               " where l.MPKLasaKasaID=" & klasaid
     end if
     CROSSDOMAIN_SqlToJSON(sql)

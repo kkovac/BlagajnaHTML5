@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		assets\css\BlagajnaHTML5FBPw.css = assets\css\BlagajnaHTML5FBPw.css
 		res\xml\config.xml = res\xml\config.xml
 		POSSERVICE\default.asp = POSSERVICE\default.asp
+		\\SPIN-IIS\ng\POSSERVICE\default.asp = \\SPIN-IIS\ng\POSSERVICE\default.asp
 		index.html = index.html
 	EndProjectSection
 EndProject

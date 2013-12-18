@@ -2,8 +2,9 @@
 .kontejnerodfiksiranoghedera { padding-top : 5px; padding-bottom : 5px; }
 .mojpanel {padding-bottom : 15px !important;  }
 .iznoszanaplatu { font-weight : bold; }
-.kvadraticzarobu, .kvadraticzastavke { margin-top : 5px; overflow : hidden; cursor : pointer; }
+.kvadraticzarobu, .kvadraticzastavke { margin-top : 5px; overflow : hidden; cursor : pointer; height: 100%; }
 .nekikvadratic{  margin-top : 5px; overflow : hidden; cursor : pointer; }
+.nekikvadraticbezpointera{  margin-top : 0px; overflow : hidden; height : 100%; display : block; }
 .mojtextarea { height : 3em; font-size : 18px; }
  .errordescription {font-size : 18px; }
 
@@ -30,14 +31,7 @@
   
 }
 
-
-.mojlead {font-size : 18px;
-}
-
-.mojleadzastavke {font-size : 18px; color : green;
-} 
-
-
+ 
 
 .btn-black {
   color: #fff;

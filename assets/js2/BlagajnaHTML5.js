@@ -247,21 +247,24 @@
                     $("#searchproductstext").val('');
                     var i5 = 0;
                     var rrr = '';
+                    var strmojfavorit = '';
                     $.each(data, function (i, item) {
                         i5 = i5 + 1;
+                        if (item.mojfavorit == 0) { strmojfavorit = '-empty ' } else { strmojfavorit = ' text-danger' }
                         if (item.kolicina != 0) { rrr = ' x ' + item.kolicina + ' = ' + item.iznos } else { rrr = '';}
                         strFormattedHTML = strFormattedHTML
-                        + '<div class="col-sm-3  mojakolona " robaid="' + item.robaid + ' "><div class="Transparent  kvadraticzarobu kvadraticzarobu' + speeddialsection + '">'
-                        + '<span class=" col-xs-11 mojakolona">'
-                        + '<h5><span class="label label-primary">' + item.mpcijena + 'kn</span> <span class="label label-success"><span class="rrr" id="rrr' + item.robaid + '" >' + rrr + '</span></span></h5>' + ' '
-                        + '<h5>' + item.naziv + '</h5>'
+                        + '<div class="clearfix col-sm-3  mojakolona"><div class=" Transparent  kvadraticzarobu" robaid="' + item.robaid + '" >'
+                        + '<span class="   col-xs-10 mojakolona clearfix   kvadraticzarobu' + speeddialsection + ' ">'
+                        + '<h4><span class="label label-primary">' + item.mpcijena + 'kn</span> <span class="label label-success"><span class="rrr' + item.robaid + '" >' + rrr + '</span></span></h4>' + ' '
+                        + ' ' + item.naziv + ' '
                         //+ 'Userid : ' + item.userid + ' '
                         // + '<br />Barcode : ' + item.barcode + ' '
                         + '</span>'
-                        + '<span class=" col-xs-1 mojakolona">'
-                       
-                    + '<span class="text-muted pull-right" ><h5> <span class="glyphicon glyphicon-plus"></span> </h5></span>'
-                   + '</span>'
+                        + '<span class=" col-xs-2 mojakolona">'
+                        + '<span class="text-muted pull-right" ><h4> <span class="glyphicon glyphicon-edit"></span> </h4></span>'
+                        + '<div class="clearfix" />'
+                        + '<span class="text-muted pull-right mojfavorit' + speeddialsection + '"  data-id="' + item.robaid + '" ><h4><span class="fav1tip' + item.robaid + ' glyphicon glyphicon-star' + strmojfavorit + '"></span></h4> </span>'
+                        + '</span>'
                         + '</div></div>';
                         if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                     });
@@ -271,6 +274,11 @@
                         AddProductToDocument($(this).parent().attr('robaid'));
                         $(this).fadeOut().fadeIn();
                     });
+
+                    $(".mojfavorit" + speeddialsection).on("click", function (event) {
+                        BookMarkIt(1,$(this).attr('data-id'));
+                    });
+
                     $("#speeddialloader").hide();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -279,6 +287,29 @@
                 }
             });
         }
+    }
+
+    // ============================================================================= BOOKMARKS ...
+
+    function BookMarkIt(tip,id) {
+        $.ajax({
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=BookMarkIt&id=' + id + '&tip=' + tip,
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            timeout: 10000,
+            success: function (data, status) {
+                $.each(data, function (i, item) {
+                    if (item.bookmarkcount == '0') {
+                        $(".fav1tip" + id).removeClass('glyphicon-star').removeClass('text-danger').addClass('glyphicon-star-empty');
+                    } else {
+                        $(".fav1tip" + id).removeClass('glyphicon-star-empty').addClass('glyphicon-star').addClass('text-danger');
+                    }
+                });
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //alert(thrownError);
+            }
+        });
     }
 
     // ============================================================================= DODAJ ROBU NA DOKUMENT ...
@@ -297,7 +328,7 @@
 
                     $.each(data, function (i, item) {
                         if (item.errnumber == '0') {
-                            $("#rrr" + robaid).html(' x ' + item.kolicina + ' = ' + item.iznos);
+                            $(".rrr" + robaid).html(' x ' + item.kolicina + ' = ' + item.iznos);
                         } else {
                             $(".errordescription").html(item.errdescription);
                         }
@@ -326,22 +357,25 @@
             success: function (data, status) {
                 var i5 = 0;
                 var c5 = 0;
+                var strnapomenastavke = '';
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     c5 = c5 + 1;
+                    strnapomenastavke = '';
+                    if (item.napomenastavke != '') { strnapomenastavke = '<span class="glyphicon glyphicon-comment"></span> ' + item.napomenastavke + ''; }
                     strFormattedHTML = strFormattedHTML
                     + '<div class="col-sm-3  mojakolona" naziv="' + item.Roba5400 + '" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke ">'
-                    + '<span  class=" col-xs-2 mojakolona"><h5><span class="label label-success"><strong>' + c5 + '</strong></span></h5></span>'
-                    + '<span class=" col-xs-9 mojakolona">'
+                   + '<span  class=" col-xs-2 mojakolona"> <span class="label label-success"><strong>' + c5 + '</strong></span> '
+                    + '<span class="text-muted pull-left" ><h4> <span class="glyphicon glyphicon-chevron-right"></span> </h4></span>'
+                    + '</span>'
+                    + '<span class=" col-xs-10 mojakolona">'
                     + '<span style="border-bottom:1px dashed;">'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.Količina1000 + ' = ' + item.Iznos1400
                     + '</span>' + ' '
-                    + '<h5>' + item.Roba5400 + '</h5>'
+                    + ' ' + item.Roba5400 + ' ' + strnapomenastavke + ' '
                     + '</span>'
-                    + '<span class=" col-xs-1 mojakolona">'
-                    + '<span class="text-muted pull-right" ><h5> <span class="glyphicon glyphicon-chevron-right"></span> </h5></span>'
-                    + '</span>'
+                   
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
@@ -691,6 +725,7 @@
                 $("#saveqtyloader").hide();
                 $.each(data, function (i, item) {
                     $("#kolicina").val(item.Kolicina);
+                    $("#napomenastavke").val(item.napomenastavke);
                 });
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -717,7 +752,7 @@
         var strFormattedHTML = '';
         $("#saveqtyloader").show();
         $.ajax({
-            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=SaveQty&id=' + $("#kolicina").attr('data-id') + '&qty=' + $("#kolicina").val() + '&popust=' + $("#popust").val(),
+            url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=SaveQty&id=' + $("#kolicina").attr('data-id') + '&qty=' + $("#kolicina").val() + '&napomenastavke=' + $("#napomenastavke").val() + '&popust=' + $("#popust").val(),
             dataType: 'jsonp',
             jsonp: 'jsoncallback',
             timeout: 10000,
