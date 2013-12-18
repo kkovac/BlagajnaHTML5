@@ -365,17 +365,18 @@
                     if (item.napomenastavke != '') { strnapomenastavke = '<span class="glyphicon glyphicon-comment"></span> ' + item.napomenastavke + ''; }
                     strFormattedHTML = strFormattedHTML
                     + '<div class="col-sm-3  mojakolona" naziv="' + item.Roba5400 + '" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke ">'
-                   + '<span  class=" col-xs-2 mojakolona"> <span class="label label-success"><strong>' + c5 + '</strong></span> '
-                    + '<span class="text-muted pull-left" ><h4> <span class="glyphicon glyphicon-chevron-right"></span> </h4></span>'
-                    + '</span>'
+                    
                     + '<span class=" col-xs-10 mojakolona">'
-                    + '<span style="border-bottom:1px dashed;">'
+                    + '<h4><span class="label label-success">'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.Količina1000 + ' = ' + item.Iznos1400
-                    + '</span>' + ' '
+                    + '</span></h4>' + ' '
                     + ' ' + item.Roba5400 + ' ' + strnapomenastavke + ' '
                     + '</span>'
-                   
+                    + '<span  class=" col-xs-2 mojakolona">'
+                    + '<h4><span class="text-muted pull-right" ><span class="glyphicon glyphicon-chevron-right"></span></span></h4>'
+                    + '<h4><span class="text-muted pull-right" ><strong>' + c5 + '</strong></span></h4> '
+                    + '</span>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
                 });
