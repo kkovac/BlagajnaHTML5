@@ -183,11 +183,35 @@
                 
                 var i5 = 0;
                 var c5 = 0;
+                strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE
+                   + '<div class="col-sm-3 mojakolona klasa" naziv="<span class=labelfortranslation data-hr=Favoriti data-en=Favorites > Favoriti</span>" MPKLasaKasaID="-1">'
+                   + '<div class="Transparent kvadraticzarobu">'
+                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></span><span class="labelfortranslation" data-hr="Favoriti" data-en="Favorites" > Favoriti</span></div>'
+                   + '</div>'
+                   + '</div>'
+                   + '<div class="col-sm-3 mojakolona klasa" MPKLasaKasaID="-2">'
+                   + '<div class="Transparent kvadraticzarobu">'
+                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-fire"></span><span class="glyphicon glyphicon-fire"></span></span><span class="labelfortranslation" data-hr="Najčešći" data-en="Frequent" > Najčešći</span></div>'
+                   + '</div>'
+                   + '</div>'
+                   + '<div class="col-sm-3 mojakolona klasa" MPKLasaKasaID="-3">'
+                   + '<div class="Transparent kvadraticzarobu">'
+                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-flash"></span><span class="glyphicon glyphicon-flash"></span></span><span class="labelfortranslation" data-hr="Zadnji" data-en="Latest" > Zadnji</span></div>'
+                   + '</div>'
+                   + '</div>'
+                   + '<div class="col-sm-3 mojakolona klasa" MPKLasaKasaID="-4">'
+                   + '<div class="Transparent kvadraticzarobu">'
+                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-gift"></span><span class="glyphicon glyphicon-gift"></span></span><span class="labelfortranslation" data-hr="Akcija" data-en="On sale" > Akcija</span></div>'
+                   + '</div>'
+                   + '</div>'
+                   + '<div class="clearfix" ></div>';
+
                 $.each(data, function (i, item) {
                     i5 = i5 + 1;
                     c5 = c5 + 1;
                     strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE
-                    + '<div class="col-sm-3 mojakolona klasa" naziv="' + item.naziv + '" MPKLasaKasaID="' + item.MPKLasaKasaID + ' "><div class="Transparent kvadraticzarobu">'
+                    + '<div class="col-sm-3 mojakolona klasa" naziv="' + item.naziv + '" MPKLasaKasaID="' + item.MPKLasaKasaID + ' ">' 
+                    + '<div class="Transparent kvadraticzarobu">'
                     + '<div class="btn-lg"><span class="label label-danger">' + c5 + ' <span class="glyphicon glyphicon-stop"></span></span> ' + item.naziv + '</div>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE + '<div class="clearfix" ></div>' }
@@ -255,10 +279,9 @@
                         strFormattedHTML = strFormattedHTML
                         + '<div class="clearfix col-sm-3  mojakolona"><div class=" Transparent  kvadraticzarobu" robaid="' + item.robaid + '" >'
                         + '<span class="   col-xs-10 mojakolona clearfix   kvadraticzarobu' + speeddialsection + ' ">'
-                        + '<h4><span class="label label-primary">' + item.mpcijena + 'kn</span> <span class="label label-success"><span class="rrr' + item.robaid + '" >' + rrr + '</span></span></h4>' + ' '
+                        + '<h4><span class="label label-primary">' + item.mpcijena + 'kn</span></h4>' + ' '
                         + ' ' + item.naziv + ' '
-                        //+ 'Userid : ' + item.userid + ' '
-                        // + '<br />Barcode : ' + item.barcode + ' '
+                        + '<div><span class="glyphicon glyphicon-shopping-cart text-muted"></span><span class="text-muted rrr' + item.robaid + '" >' + rrr + '</span></div>'
                         + '</span>'
                         + '<span class=" col-xs-2 mojakolona">'
                         + '<span class="text-muted pull-right" ><h4> <span class="glyphicon glyphicon-edit"></span> </h4></span>'
