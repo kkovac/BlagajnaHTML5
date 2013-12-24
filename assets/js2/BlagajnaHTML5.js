@@ -271,17 +271,18 @@
                     $("#searchproductstext").val('');
                     var i5 = 0;
                     var rrr = '';
+                    var prefixrrr = '';
                     var strmojfavorit = '';
                     $.each(data, function (i, item) {
                         i5 = i5 + 1;
                         if (item.mojfavorit == 0) { strmojfavorit = '-empty ' } else { strmojfavorit = ' text-danger' }
-                        if (item.kolicina != 0) { rrr = ' x ' + item.kolicina + ' = ' + item.iznos } else { rrr = '';}
+                        if (item.kolicina != 0) { prefixrrr = ''; rrr = '<span class="label label-success"><span class="glyphicon glyphicon-shopping-cart"></span> x ' + item.kolicina + ' = ' + item.iznos + '</span>' } else { prefixrrr = ''; rrr = '<span class="glyphicon glyphicon-shopping-cart text-muted"></span>'; }
                         strFormattedHTML = strFormattedHTML
                         + '<div class="clearfix col-sm-3  mojakolona"><div class=" Transparent  kvadraticzarobu" robaid="' + item.robaid + '" >'
                         + '<span class="   col-xs-10 mojakolona clearfix   kvadraticzarobu' + speeddialsection + ' ">'
                         + '<h4><span class="label label-primary">' + item.mpcijena + 'kn</span></h4>' + ' '
                         + ' ' + item.naziv + ' '
-                        + '<div><span class="glyphicon glyphicon-shopping-cart text-muted"></span><span class="text-muted rrr' + item.robaid + '" >' + rrr + '</span></div>'
+                        + '<h4>' + prefixrrr + '<span class="rrr rrr' + item.robaid + '" >' + rrr + '</span></h4>'
                         + '</span>'
                         + '<span class=" col-xs-2 mojakolona">'
                         + '<span class="text-muted pull-right" ><h4> <span class="glyphicon glyphicon-edit"></span> </h4></span>'
@@ -295,7 +296,7 @@
                     $(".kvadraticzarobu" + speeddialsection).on("click", function (event) {
                         // $(this).addClass('btn-danger').addClass('disabled').attr('disabled', 'disabled');
                         AddProductToDocument($(this).parent().attr('robaid'));
-                        $(this).fadeOut().fadeIn();
+                        $(this).fadeOut('fast').fadeIn('fast');
                     });
 
                     $(".mojfavorit" + speeddialsection).on("click", function (event) {
@@ -351,7 +352,7 @@
 
                     $.each(data, function (i, item) {
                         if (item.errnumber == '0') {
-                            $(".rrr" + robaid).html(' x ' + item.kolicina + ' = ' + item.iznos);
+                            $(".rrr" + robaid).html('<span class="label label-success"><span class="glyphicon glyphicon-shopping-cart"></span> x ' + item.kolicina + ' = ' + item.iznos + '</span>');
                         } else {
                             $(".errordescription").html(item.errdescription);
                         }
@@ -691,7 +692,7 @@
                     }
                 });
                 $("#brojstola").html('');
-                $(".rrr").html('');
+                $(".rrr").html('<span class="glyphicon glyphicon-shopping-cart text-muted"></span>');
                 $("#desktoploader,#desktoploader2").hide();
                 $("#pregledstolalist").html('');
                 GetDocTotal();
@@ -726,7 +727,7 @@
                 //GetDocumentItems();
                 GetDocTotal();
                 GetSearchProductsList(0);
-                $(".rrr").html('');
+                $(".rrr").html('<span class="glyphicon glyphicon-shopping-cart text-muted"></span>');
                 $("#brojstola").html('');
             },
             error: function (xhr, ajaxOptions, thrownError) {
