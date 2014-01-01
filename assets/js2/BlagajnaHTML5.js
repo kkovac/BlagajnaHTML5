@@ -28,6 +28,8 @@
     if ($.Storage.get("BlagajnaHTML5p") != undefined) { $("#p").val($.Storage.get("BlagajnaHTML5p")) };
     if ($.Storage.get("BlagajnaHTML5d") != undefined) { $("#d").val($.Storage.get("BlagajnaHTML5d")) };
     if ($.Storage.get("BlagajnaHTML5o") != undefined) { $("#o").val($.Storage.get("BlagajnaHTML5o")) };
+    if ($.Storage.get("BlagajnaHTML5langid") != undefined) { $("#langid").attr("data-langid", $.Storage.get("BlagajnaHTML5langid")) };
+    if ($.Storage.get("BlagajnaHTML5langcaption") != undefined) { $("#langid").html($.Storage.get("BlagajnaHTML5langcaption")) };
 
     $("input[type=text]").focus(function() { $(this).select(); });
     $("input[type=text]").mouseup(function (e) { e.preventDefault(); });
@@ -47,6 +49,25 @@
             return false;
         }
     });
+
+    //    ================================================================= language
+
+    Translate();
+
+    $(".langselector").on('click', function () {
+        $("#langid").html($(this).html());
+        $.Storage.set({ "BlagajnaHTML5langid": $(this).attr("data-langid") });
+        $("#langid").attr("data-langid", $(this).attr("data-langid"));
+        $.Storage.set({ "BlagajnaHTML5langcaption": $(this).html() });
+        Translate();
+    });
+
+    function Translate() {
+        $(".translateable").each(function () {
+            $(this).html($(this).attr("data-" + $("#langid").attr("data-langid")));
+        });
+        }
+    
 
     //Login();
 

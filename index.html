@@ -102,7 +102,7 @@
                 
                     <div class="controls  col-sm-6">
                 <form class="form-signin" id="loginform">        
-                        <h2><span class="label label-success">POS - narudžbe</span><span class="label label-danger"><i>v1.3</i></span></h2>
+                        <h3><span class=" "><span class="translateable" data-hr="POS-narudžbe" data-en="POS-orders" data-ger="POS-bestellen" >POS-narudžbe</span></span> <span class="label label-danger"><i>v1.4</i></span></h3>
 
                         <br />
 
@@ -118,10 +118,26 @@
                         </div>
                         <br />
                         <div class="btn-group">
-                            <button type="submit" id="loginbutton" class="btn btn-success btn-lg"> <span class="glyphicon glyphicon-log-in"></span> Login</button>
+                            <button type="submit" id="loginbutton" class="btn btn-success btn-lg"> <span class="glyphicon glyphicon-log-in"></span> <span class="translateable" data-hr="Ulaz" data-en="Login" data-ger="Login" >Login</span></button>
                         </div>
+
+
+                        <!-- Split button -->
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-default btn-lg"><span id="langid" data-langid="hr" >HR</span></button>
+                          <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" data-langid="en"  class="langselector" >EN</a></li>
+                            <li><a href="#" data-langid="ger" class="langselector" >GER</a></li>
+                            <li><a href="#" data-langid="hr"  class="langselector" >HR</a></li>
+                          </ul>
+                        </div>
+
                         <div class="btn-group ">
-                            <button type="submit" id="settingsbutton" class="btn btn-danger btn-lg "> <span class="glyphicon glyphicon-cog"></span> </button>
+                            <button type="submit" id="settingsbutton" class="btn btn-default btn-lg "> <span class="glyphicon glyphicon-cog"></span> </button>
                         </div>
                         <img src="assets/ajax-loader.gif" class="loadergif" id="loginloadergif" alt="" />
                         <br /><br />
@@ -129,7 +145,7 @@
                         <div id="settingssection" class="myhide">
                         
                               <br />
-                                    <h4>Login parametri <span class="label label-danger"> <i> !!!</i> </span></h4>
+                                    <h4><span class="translateable" data-hr="Postavke" data-en="Settings" data-ger="Einstellung" >Settings</span> <span class="label label-danger"> <i> !!!</i> </span></h4>
                                    
                         <br />
 
@@ -302,7 +318,7 @@
            <div id="documentitemslistwrapper" class="myhide mojpanel Transparent2 clearfix">
                <div class="Transparent2 clearfix">
                <div  class="col-xs-6 mojakolona" >
-               <h4> <span class="glyphicon glyphicon-shopping-cart"></span>  Stavke <span class="brojstavki"></span> </h4>
+               <h4> <span class="glyphicon glyphicon-shopping-cart"></span>  <span class="translateable" data-hr="Stavke" data-en="Items" data-ger="Artikel" >Stavke</span> <span class="brojstavki"></span> </h4>
                   
                </div>
               
@@ -333,7 +349,7 @@
                 
                <div class="Transparent2 clearfix zaglavljesekcije">
                     <div  class="col-xs-12 mojakolona" >
-                    <h4><span class="glyphicon glyphicon-file"></span> Dokument </h4>
+                    <h4><span class="glyphicon glyphicon-file"></span> <span class="translateable" data-hr="Dokument" data-en="Document" data-ger="Dokument" >Dokument</span> </h4>
                     </div>
 
                     <div  class="col-xs-1 mojakolona " >
@@ -346,13 +362,13 @@
 
                     <div  class="col-xs-6 nekikvadratic mojakolona " >
                         <div class="Transparent" >
-                        <div class="btn-primary btn-lg  btnspremiracun" id="btnspremiracun" ><span  class="glyphicon glyphicon-check"></span> Zaključi</div>
+                        <div class="btn-primary btn-lg  btnspremiracun" id="btnspremiracun" ><span  class="glyphicon glyphicon-check"></span> <span class="translateable" data-hr="Zaključi" data-en="Close" data-ger="Verschließen" >Zaključi</span></div>
                         </div>
                     </div>
 
                    <div class="col-xs-6 nekikvadratic mojakolona ">
                              <div class="Transparent">
-                             <div class=" btn-danger btn-lg    canceldoc  "><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span></span> Poništi</div>
+                             <div class=" btn-danger btn-lg    canceldoc  "><span class="label label-danger"><span class="glyphicon glyphicon-remove"></span></span> <span class="translateable" data-hr="Poništi" data-en="Cancel" data-ger="Stornieren" >Poništi</span></div>
                              </div>
                    </div>
                    
@@ -361,12 +377,12 @@
                  <div class="clearfix">
                     <div  class="col-xs-6 nekikvadratic mojakolona Transparent" >
                         <div class="" >
-                        <div class="btn-lg  " id="Div1" > <span class="label label-danger"><span class="glyphicon glyphicon-usd"></span></span> Naplata:</div>
+                        <div class="btn-lg  " id="Div1" > <span class="label label-danger"><span class="glyphicon glyphicon-usd"></span></span> <span class="translateable" data-hr="Naplata" data-en="Payment" data-ger="Zahlung" >Naplata</span></div>
                         </div>
                     </div>
                    <div  class="col-xs-6 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="    btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="label label-danger"><span class="glyphicon glyphicon-th-large "></span></span> Stol: <span class="brojstola"></span></div>
+                         <div class="    btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="label label-danger"><span class="glyphicon glyphicon-th-large "></span></span> <span class="translateable" data-hr="Stol" data-en="Table" data-ger="Tisch" >Stol</span> <span class="brojstola"></span></div>
                          </div>
                     </div>
                 </div>
@@ -374,7 +390,7 @@
                 <div  class="col-xs-12 nekikvadratic mojakolona Transparent" >
                      <div class="    btn-lg butonzapartnera">
                          <span class="label label-danger"><span class="glyphicon glyphicon-user"></span></span>
-                Partner: 
+                         <span class="translateable" data-hr="Partner" data-en="Partner" data-ger="Partner" >Partner</span>
                 <span id="partnerid"  ></span>
                          </div>
                 </div>
@@ -382,7 +398,7 @@
                 <div  class="col-xs-12 nekikvadratic mojakolona Transparent" >
                      <div class="    btn-lg butonzakomentiranje">
                          <span class="label label-danger"><span class="glyphicon glyphicon-comment"></span></span>
-                Napomena: 
+                         <span class="translateable" data-hr="Napomena" data-en="Note" data-ger="Anmerkung" >Napomena</span>
                 <span id="documentcommentviewer"  ></span>
                          </div>
                 </div>
@@ -432,7 +448,7 @@
             <div class="myhide Transparent2 mojpanel clearfix" id="glavnimeni" >
                 <div class="Transparent2 clearfix">
                         <div  class="col-xs-11 mojakolona" >
-                        <h4><span class="glyphicon glyphicon-home"></span> Glavni izbornik</h4>        
+                        <h4><span class="glyphicon glyphicon-home"></span> <span class="translateable" data-hr="Glavni izbornik" data-en="Main menu" data-ger="Hauptmenü" >Glavni izbornik</span></h4>        
                         </div>
                          
                     </div>
@@ -442,17 +458,17 @@
                   <div class="  clearfix">
                         <div  class="col-sm-4 nekikvadratic mojakolona" >
                             <div class="Transparent " >
-                            <div class="  btn-lg  naplata " ><span class="label label-danger"><span  class="glyphicon glyphicon-file"></span></span> Dokument </div>
+                            <div class="  btn-lg  naplata " ><span class="label label-danger"><span  class="glyphicon glyphicon-file"></span></span> <span class="translateable" data-hr="Dokument" data-en="Document" data-ger="Dokument" >Dokument</span> </div>
                             </div>
                         </div>
                         <div  class="col-sm-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class="  btn-lg   nastavidugmic afterclickfocussearchproductstext   "   ><span class="label label-danger"><span class="glyphicon glyphicon-shopping-cart "></span></span> Stavke <span class="brojstavki"></span></div>
+                             <div class="  btn-lg   nastavidugmic afterclickfocussearchproductstext   "   ><span class="label label-danger"><span class="glyphicon glyphicon-shopping-cart "></span></span> <span class="translateable" data-hr="Stavke" data-en="Items" data-ger="Artikel" >Stavke</span> <span class="brojstavki"></span></div>
                              </div>
                         </div>
                         <div  class="col-sm-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class="  btn-lg    canceldoc  " ><span class="label label-danger"><span  class="glyphicon glyphicon-remove"></span></span> Poništi</div>
+                             <div class="  btn-lg    canceldoc  " ><span class="label label-danger"><span  class="glyphicon glyphicon-remove"></span></span> <span class="translateable" data-hr="Poništi" data-en="Cancel" data-ger="Stornieren" >Poništi</span></div>
                              </div>
                         </div>
                  </div>
@@ -460,7 +476,7 @@
                  <div class="clearfix">
                      <div  class="col-sm-4 nekikvadratic mojakolona" >
                          <div class="Transparent" >
-                         <div class="btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="label label-danger"><span class="glyphicon glyphicon-th-large "></span></span> Stol: <span class="brojstola"></span></div>
+                         <div class="btn-lg  pokaziopcijedokumenta afterclickfocussearchproductstext"><span class="label label-danger"><span class="glyphicon glyphicon-th-large "></span></span> <span class="translateable" data-hr="Stol" data-en="Table" data-ger="Tisch" >Stol</span> <span class="brojstola"></span></div>
                          </div>
                     </div>
                     <div  class="col-sm-4 nekikvadratic mojakolona" >
@@ -470,7 +486,7 @@
                     </div>
                      <div  class="col-sm-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class="btn-lg  butonzakomentiranje"><span class="label label-danger"><span  class="glyphicon glyphicon-comment"></span></span> Napomena</div>
+                             <div class="btn-lg  butonzakomentiranje"><span class="label label-danger"><span  class="glyphicon glyphicon-comment"></span></span> <span class="translateable" data-hr="Napomena" data-en="Note" data-ger="Anmerkung" >Napomena</span></div>
                              </div>
                      </div>
                 </div>
@@ -489,7 +505,7 @@
                     </div>
                     <div  class="col-sm-4 nekikvadratic mojakolona" >
                              <div class="Transparent" >
-                             <div class=" btn-lg    logoutdugmic  " ><span class="label label-danger"><span  class="glyphicon glyphicon-log-out"></span></span> Odjava
+                             <div class=" btn-lg    logoutdugmic  " ><span class="label label-danger"><span  class="glyphicon glyphicon-log-out"></span></span> <span class="translateable" data-hr="Odjava" data-en="Logout" data-ger="Ausloggen" >Odjava</span>
 
                                      
 
