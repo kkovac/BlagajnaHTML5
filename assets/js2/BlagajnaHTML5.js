@@ -205,24 +205,24 @@
                 var i5 = 0;
                 var c5 = 0;
                 strFormattedHTMLzaKLASE = strFormattedHTMLzaKLASE
-                   + '<div class="col-sm-3 mojakolona klasa" naziv="<span class=labelfortranslation data-hr=Favoriti data-en=Favorites > Favoriti</span>" MPKLasaKasaID="-1">'
+                   + '<div class="col-sm-3 mojakolona klasa" naziv="<span class=translateable data-hr=Favoriti data-en=Favorites > Favoriti</span>" MPKLasaKasaID="-1">'
                    + '<div class="Transparent kvadraticzarobu">'
-                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></span><span class="labelfortranslation" data-hr="Favoriti" data-en="Favorites" > Favoriti</span></div>'
+                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></span> <span class="translateable" data-hr="Favoriti" data-en="Favorites" > Favoriti</span></div>'
                    + '</div>'
                    + '</div>'
                    + '<div class="col-sm-3 mojakolona klasa" MPKLasaKasaID="-2">'
                    + '<div class="Transparent kvadraticzarobu">'
-                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-fire"></span><span class="glyphicon glyphicon-fire"></span></span><span class="labelfortranslation" data-hr="Najčešći" data-en="Frequent" > Najčešći</span></div>'
+                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-fire"></span><span class="glyphicon glyphicon-fire"></span></span> <span class="translateable" data-hr="Najčešći" data-en="Frequent" > Najčešći</span></div>'
                    + '</div>'
                    + '</div>'
                    + '<div class="col-sm-3 mojakolona klasa" MPKLasaKasaID="-3">'
                    + '<div class="Transparent kvadraticzarobu">'
-                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-flash"></span><span class="glyphicon glyphicon-flash"></span></span><span class="labelfortranslation" data-hr="Zadnji" data-en="Latest" > Zadnji</span></div>'
+                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-flash"></span><span class="glyphicon glyphicon-flash"></span></span> <span class="translateable" data-hr="Zadnji" data-en="Latest" > Zadnji</span></div>'
                    + '</div>'
                    + '</div>'
                    + '<div class="col-sm-3 mojakolona klasa" MPKLasaKasaID="-4">'
                    + '<div class="Transparent kvadraticzarobu">'
-                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-gift"></span><span class="glyphicon glyphicon-gift"></span></span><span class="labelfortranslation" data-hr="Akcija" data-en="On sale" > Akcija</span></div>'
+                   + '<div class="btn-lg"><span class="label label-danger"><span class="glyphicon glyphicon-gift"></span><span class="glyphicon glyphicon-gift"></span></span> <span class="translateable" data-hr="Akcija" data-en="On sale" > Akcija</span></div>'
                    + '</div>'
                    + '</div>'
                    + '<div class="clearfix" ></div>';
@@ -239,7 +239,7 @@
                 });
 
                 $("#searchproductsbutton").trigger('click'); // odmah pokaži klase u prvom tabu
-
+               
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 //alert(thrownError);
@@ -256,12 +256,13 @@
     $("#searchproductsbutton").click(function () { // CLICK NA CRVENO SEARCH DUGME - ako nije ništa unešeno u tražilicu prikazujem klase robe
         if ($("#searchproductstext").val() == '') { 
             $("#searchproductlist" + speeddialsection).html(strFormattedHTMLzaKLASE);
-            $("#" + speeddialsection + "tabCaption").html("<span class='label label-danger'><span  class='glyphicon glyphicon-stop'></span></span> KLASE");
+            $("#" + speeddialsection + "tabCaption").html("<span class='label label-danger'><span  class='glyphicon glyphicon-stop'></span></span> ");
             $(".klasa").off();
             $(".klasa").on("click", function (event) {
                 GetSearchProductsList($(this).attr('MPKLasaKasaID'));
                 $("#" + speeddialsection + "tabCaption").html("<span class='label label-danger'><span  class='glyphicon glyphicon-stop'></span></span> " + $(this).attr('naziv'));
             });
+            Translate();
         };
         GetSearchProductsList(0);
         $("#searchproductsbutton").fadeOut().fadeIn();
@@ -281,7 +282,7 @@
             $("#searchproductlist" + speeddialsection).html('');
             $("#speeddialloader").show();
             $.ajax({
-                url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&klasaid=' + klasaid  + '&s=' + $("#searchproductstext").val(),
+                url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetSearchProductsList&klasaid=' + klasaid  + '&s=' + $.trim($("#searchproductstext").val()),
                 dataType: 'jsonp',
                 jsonp: 'jsoncallback',
                 timeout: 10000,
@@ -297,16 +298,21 @@
                     $.each(data, function (i, item) {
                         i5 = i5 + 1;
                         if (item.mojfavorit == 0) { strmojfavorit = '-empty ' } else { strmojfavorit = ' text-danger' }
-                        if (item.kolicina != 0) { prefixrrr = ''; rrr = '<span class="label label-success"><span class="glyphicon glyphicon-shopping-cart"></span> x ' + item.kolicina + ' = ' + item.iznos + '</span>' } else { prefixrrr = ''; rrr = '<span class="glyphicon glyphicon-shopping-cart text-muted"></span>'; }
+                        if (item.kolicina != 0)
+                        { prefixrrr = ''; rrr = '<span class="label label-success"><span class="glyphicon glyphicon-shopping-cart"></span> x ' + item.kolicina + ' = ' + item.iznos + '</span>' }
+                        else
+                        {
+                            prefixrrr = '';
+                            rrr = '<span class="glyphicon glyphicon-shopping-cart text-muted"></span>';
+                        }
                         strFormattedHTML = strFormattedHTML
                         + '<div class="clearfix col-sm-3  mojakolona"><div class=" Transparent  kvadraticzarobu" robaid="' + item.robaid + '" >'
                         + '<span class="   col-xs-10 mojakolona clearfix   kvadraticzarobu' + speeddialsection + ' ">'
-                        + '<h4><span class="label label-primary">' + item.mpcijena + 'kn</span></h4>' + ' '
+                        + '<h4><span class="label label-primary">' + item.mpcijena + 'kn</span> ' + ' '
+                        + ' ' + prefixrrr + '<span class="rrr rrr' + item.robaid + '" >' + rrr + '</span></h4>'
                         + ' ' + item.naziv + ' '
-                        + '<h4>' + prefixrrr + '<span class="rrr rrr' + item.robaid + '" >' + rrr + '</span></h4>'
                         + '</span>'
                         + '<span class=" col-xs-2 mojakolona">'
-                        + '<span class="text-muted pull-right" ><h4> <span class="glyphicon glyphicon-edit"></span> </h4></span>'
                         + '<div class="clearfix" />'
                         + '<span class="text-muted pull-right mojfavorit' + speeddialsection + '"  data-id="' + item.robaid + '" ><h4><span class="fav1tip' + item.robaid + ' glyphicon glyphicon-star' + strmojfavorit + '"></span></h4> </span>'
                         + '</span>'
@@ -411,16 +417,17 @@
                     strFormattedHTML = strFormattedHTML
                     + '<div class="col-sm-3  mojakolona" naziv="' + item.Roba5400 + '" prometid="' + item.prometid + '" ><div class="Transparent kvadraticzastavke ">'
                     
-                    + '<span class=" col-xs-10 mojakolona">'
-                    + '<h4><span class="label label-success">'
+                    + '<span class=" col-xs-11 mojakolona">'
+                    + '<h4>'
+                    + ' <span class="label label-success">'
                     + item.Cijena1200 + 'kn '
                     + ' x  ' + item.Količina1000 + ' = ' + item.Iznos1400
                     + '</span></h4>' + ' '
-                    + ' ' + item.Roba5400 + ' ' + strnapomenastavke + ' '
+                    + '<span class="text text-muted"><strong>' + c5 + '.</strong></span> ' + item.Roba5400 + ' ' + strnapomenastavke + ' '
                     + '</span>'
-                    + '<span  class=" col-xs-2 mojakolona">'
+                    + '<span  class=" col-xs-1 mojakolona">'
                     + '<h4><span class="text-muted pull-right" ><span class="glyphicon glyphicon-chevron-right"></span></span></h4>'
-                    + '<h4><span class="text-muted pull-right" ><strong>' + c5 + '</strong></span></h4> '
+                    
                     + '</span>'
                     + '</div></div>';
                     if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
