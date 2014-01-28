@@ -1,7 +1,9 @@
 ﻿$(document).ready(function () {
 
-    var POSType = 'N'; // N - samo narudžbe , blank je defoltni normalni POS
+    var POSType = ''; // N - samo narudžbe , blank je defoltni normalni POS
+    var Fiskalizacija = 1; //  0-no , 1-yes
     var strCrossDomainServiceURL = 'http://www.spin.hr/ng/posservice/'; // ili moj lokalni:  http://192.168.68.148/BlagajnaHTML5/posservice/
+    var strFiskalizacijaServiceURL = 'http://127.0.0.1/nekisite/'
     var stPicturesURL = 'http://127.0.0.1/BlagajnaHTML5/assets/pic/';
     var strDevice = '';
     var dataBase = '';
@@ -78,7 +80,7 @@
     $.backstretch("assets/css/bg/" + bgindex);
     $('img[data-id="' + bgindex + '"]').removeClass('img-rounded').addClass('img-thumbnail2').css('opacity','1');
 
-    $('.themeimg img,#themeblank').click(function () {
+    $('.themeimg img,#themeblank,#themeblank2,#themeblank3').click(function () {
         bgindex = $(this).attr('data-id');
         if (bgindex == '0.png') { $('.backstretch').remove(); } else { $.backstretch("assets/css/bg/" + bgindex); }
         $.Storage.set({ "BlagajnaHTML5bgindex": bgindex });
@@ -86,6 +88,14 @@
         $("link.additional").attr("href", $(this).attr('data-css'));
         $('.themeimg img').removeClass('img-thumbnail2').addClass('img-rounded').css('opacity', '0.3');
         $('img[data-id="' + bgindex + '"]').removeClass('img-rounded').addClass('img-thumbnail2').css('opacity', '1');
+    });
+
+    $('#themeblank3').click(function () {
+        $('.navbar').removeClass('navbar-inverse');
+    });
+
+    $('.themeimg img,#themeblank,#themeblank2').click(function () {
+        $('.navbar').addClass('navbar-inverse');
     });
 
     if ($.Storage.get("BlagajnaHTML5AdditionalCSS") != undefined) {
@@ -598,8 +608,6 @@
         var strFormattedHTML = '';
         var strPrviNacinPlacanja = '';
         var i5 = 1;
-        
-        
 
         if ($("#naplataitemslist").html() == '') { // samo jednom zovem ...
             $("#naplataloader").show();
@@ -700,7 +708,7 @@
     // ============================================================================= SAVE DOCUMENT ...
 
     $(".btnspremiracun").click(function () {
-        SaveDoc();
+            SaveDoc();
     });
 
     function SaveDoc() {
@@ -715,16 +723,54 @@
                 $.each(data, function (i, item) {
                     if (item.errnumber == '0') {
                         // $(".nastavidugmic").trigger('click')
+
+                            if (Fiskalizacija = 1) {
+                                Fiskaliziraj();
+                            }
+                            else {
+                                // clear DOM = new document
+                                ClearDOM();
+                            }
+
                     } else {
                         // $(".errordescription").html(item.errdescription);
+                        alert(item.errdescription);
                     }
                 });
-                $("#brojstola").html('');
-                $(".rrr").html('<span class="glyphicon glyphicon-shopping-cart text-muted"></span>');
-                $("#desktoploader,#desktoploader2").hide();
-                $("#pregledstolalist").html('');
-                GetDocTotal();
-                GetSearchProductsList(0);
+                
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+            }
+        });
+    }
+
+    // ============================================================================= CLEAR DOM ...
+    function ClearDOM() {
+        $("#brojstola").html('');
+        $(".rrr").html('<span class="glyphicon glyphicon-shopping-cart text-muted"></span>');
+        $("#desktoploader,#desktoploader2").hide();
+        $("#pregledstolalist").html('');
+        GetDocTotal();
+        GetSearchProductsList(0);
+    }
+
+    // ============================================================================= FISKALIZACIJA ...
+
+    function Fiskaliziraj() {
+        var strFormattedHTML = '';
+        $.ajax({
+            url: strFiskalizacijaServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=fiskaliziraj&broj=000012&godina=2014',
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            timeout: 10000,
+            success: function (data, status) {
+                $.each(data, function (i, item) {
+                    if (item.errnumber == '0') {
+                        alert(item.errdescription);
+                    }
+                    else { alert(item.errdescription); }
+                });
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);
