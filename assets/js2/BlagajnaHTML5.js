@@ -78,6 +78,8 @@
     var bgindex = "2.jpg";
     if ($.Storage.get("BlagajnaHTML5bgindex") != undefined) { bgindex = $.Storage.get("BlagajnaHTML5bgindex") };
     $.backstretch("assets/css/bg/" + bgindex);
+    
+    $('.backstretch').addClass('hidden-print');
     $('img[data-id="' + bgindex + '"]').removeClass('img-rounded').addClass('img-thumbnail2').css('opacity','1');
 
     $('.themeimg img,#themeblank,#themeblank2,#themeblank3').click(function () {
@@ -864,6 +866,34 @@
             }
         });
     }
+    // ============================================================================= DAJ PARTNERE
+
+   function GetPartners() {
+       strFormattedHTML = '';
+       $.ajax({
+           url: strCrossDomainServiceURL + '?o=' + strDevice + '&d=' + $("#d").val() + '&g=' + $("#g").html() + '&a=GetPartners',
+           dataType: 'jsonp',
+           jsonp: 'jsoncallback',
+           timeout: 10000,
+           success: function (data, status) {
+               var i5 = 0;
+               var c5 = 0;
+               $.each(data, function (i, item) {
+                   i5 = i5 + 1;
+                   c5 = c5 + 1;
+                   strFormattedHTML = strFormattedHTML
+                   + '<div class="col-sm-3 mojakolona klasa" naziv="' + item.naziv + '" data.id="' + item.id + ' ">'
+                   + '<div class="Transparent kvadraticzarobu">'
+                   + '<div class="btn-lg"><span class="label label-danger">' + c5 + ' <span class="glyphicon glyphicon-stop"></span></span> ' + item.naziv + '</div>'
+                   + '</div></div>';
+                   if (i5 == 4) { i5 = 0; strFormattedHTML = strFormattedHTML + '<div class="clearfix" ></div>' }
+               });
+           },
+           error: function (xhr, ajaxOptions, thrownError) {
+               //alert(thrownError);
+           }
+       });
+   }
 
     // ============================================================================= KRAJ ...
     
@@ -887,6 +917,11 @@
         $(".glavnimenidugmic").fadeOut().fadeIn();
     });
 
+    $(".butonzapartnera").click(function () {
+        ShowSection('#partnerisection');
+        $(".glavnimenidugmic").fadeOut().fadeIn();
+    });
+
     // ============================================================================= SHOW ONE SECTION AND HIDE ALL OTHERS ...
 
     function ShowSection(sectionname) {
@@ -906,6 +941,7 @@
         $(".docitemsection").hide();
         $("#speeddial").hide();
         $("#pregledstolovasection").hide();
+        $("#partnerisection").hide();
         $(sectionname).show();
        // $("#searchproductstext").focus();
     }
